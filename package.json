@@ -1,0 +1,19 @@
+{
+  "name": "costradamus",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jordanlrothwell/costradamus.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jordanlrothwell/costradamus/issues"
+  },
+  "homepage": "https://github.com/jordanlrothwell/costradamus#readme"
+}
