@@ -1,13 +1,16 @@
 import { Schema, model } from "mongoose";
 
-//todo: add schemas
+// import schemas
+import QuantumSchema from "./schemas/Quantum";
+import OfferSchema from "./schemas/Offer";
+import MilestoneSchema from "./schemas/Milestone";
 
 // interface representing a document in mongoDB
 interface IMatter {
   reference: string;
   quantum: Schema;
-  offers: Schema[];
-  milestones: Schema[];
+  offers: Schema;
+  milestones: Schema;
 }
 
 // schema corresponding to the document interface
@@ -17,9 +20,9 @@ const MatterSchema = new Schema(
       type: String,
       required: true,
     },
-    //todo: add quantum schema
-    //todo: add offers schema
-    //todo: add milestones schema
+    quantum: QuantumSchema,
+    offers: OfferSchema,
+    milestones: MilestoneSchema,
   },
   { timestamps: true }
 );
