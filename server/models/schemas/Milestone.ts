@@ -7,6 +7,7 @@ interface IMilestone {
   arbitration?: Date;
 }
 
+// schema corresponding to the document interface
 const MilestoneSchema = new Schema<IMilestone>(
   {
     defence: {

@@ -17,6 +17,10 @@
   },
   "homepage": "https://github.com/jordanlrothwell/costradamus#readme",
   "dependencies": {
+    "apollo-server": "^3.6.7",
+    "apollo-server-express": "^3.6.7",
+    "gql": "^1.1.2",
+    "graphql": "^16.4.0",
     "mongoose": "^6.3.1"
   }
 }
