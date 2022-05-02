@@ -1,5 +1,8 @@
 import { Schema, model } from "mongoose";
 
+import scaleSchema from "./schemas/Scale";
+import SpecialSchema from "./schemas/Special";
+
 // interface representing a document in mongoDB
 interface ICost {
   itemNumber: number;
@@ -20,12 +23,12 @@ const CostSchema = new Schema(
       type: String,
       required: true,
     },
-    // TODO: add sub-schema for scale
+    scale: scaleSchema,
     category: {
       type: String,
       required: true,
     },
-    // TODO: add sub-schema for special
+    special: SpecialSchema,
   },
   { timestamps: true }
 );
