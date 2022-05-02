@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/jordanlrothwell/costradamus/issues"
   },
-  "homepage": "https://github.com/jordanlrothwell/costradamus#readme"
+  "homepage": "https://github.com/jordanlrothwell/costradamus#readme",
+  "dependencies": {
+    "mongoose": "^6.3.1"
+  }
 }
