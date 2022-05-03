@@ -1,5 +1,4 @@
-import { Cost } from "../models/Cost";
-import { Matter } from "../models/Matter";
+const { Matter, Cost } = require("../models");
 
 // resolvers for the GraphQL schema
 const resolvers = {

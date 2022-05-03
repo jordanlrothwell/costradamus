@@ -21,7 +21,7 @@ const MatterSchema = new Schema(
       required: true,
     },
     quantum: QuantumSchema,
-    offers: OfferSchema,
+    offer: OfferSchema,
     milestones: MilestoneSchema,
   },
   { timestamps: true }
