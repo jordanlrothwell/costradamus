@@ -1,4 +1,5 @@
 const { gql } = require("apollo-server-express");
+const DateScalar = require("./custom/DateScalar");
 
 // GraphQL schema
 const typeDefs = gql`
@@ -8,7 +9,7 @@ const typeDefs = gql`
   }
 
   type Cost {
-    itemNumber: Int!
+    itemNumber: String!
     description: String!
     scale: Scale
     category: String!
@@ -16,17 +17,17 @@ const typeDefs = gql`
   }
 
   type Scale {
-    A: Int
-    B: Int
-    C: Int
-    D: Int
-    E: Int
-    F: Int
-    G: Int
+    A: Float
+    B: Float
+    C: Float
+    D: Float
+    E: Float
+    F: Float
+    G: Float
   }
 
   type Special {
-    rate: Int
+    rate: Float
     amount: Int
   }
 
@@ -39,24 +40,26 @@ const typeDefs = gql`
   }
 
   type Quantum {
-    claimedAmount: Int
-    awardedAmount: Int
+    claimedAmount: Float
+    awardedAmount: Float
   }
+
+  scalar Date # Custom scalar type
 
   type Offer {
     isPlaintiff: Boolean!
-    amount: Int
-    date: String
+    amount: Float
+    date: Date
   }
 
   type Milestone {
-    defence: Int
-    preHearing: Int
-    arbitration: Int
+    defence: Date
+    preHearing: Date
+    arbitration: Date
   }
 
   input CostInput {
-    itemNumber: Int
+    itemNumber: String
     description: String
     scale: ScaleInput
     category: String
@@ -64,35 +67,35 @@ const typeDefs = gql`
   }
 
   input ScaleInput {
-    A: Int
-    B: Int
-    C: Int
-    D: Int
-    E: Int
-    F: Int
-    G: Int
+    A: Float
+    B: Float
+    C: Float
+    D: Float
+    E: Float
+    F: Float
+    G: Float
   }
 
   input SpecialInput {
-    rate: Int
+    rate: Float
     amount: Int
   }
 
   input QuantumInput {
-    claimedAmount: Int
-    awardedAmount: Int
+    claimedAmount: Float
+    awardedAmount: Float
   }
 
   input OfferInput {
     isPlaintiff: Boolean
-    amount: Int
+    amount: Float
     date: String
   }
 
   input MilestoneInput {
-    defence: Int
-    preHearing: Int
-    arbitration: Int
+    defence: Date
+    preHearing: Date
+    arbitration: Date
   }
   
   input MatterInput {

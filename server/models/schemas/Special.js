@@ -5,7 +5,6 @@ const SpecialSchema = new Schema(
   {
     rate: {
       type: Number,
-      required: true,
     },
     amount: {
       type: Number,

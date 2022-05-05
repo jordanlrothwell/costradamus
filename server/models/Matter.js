@@ -1,8 +1,9 @@
 const { Schema, model } = require("mongoose");
 
 // import schemas
-const QuantumSchema = require("./schemas/Quantum");
-const OfferSchema = require("./schemas/Offer");
+const  QuantumSchema  = require("./schemas/Quantum");
+const OfferSchema  = require("./schemas/Offer");
+const  MilestoneSchema  = require("./schemas/Milestone");
 
 // schema corresponding to the document interface
 const MatterSchema = new Schema(
@@ -11,41 +12,9 @@ const MatterSchema = new Schema(
       type: String,
       required: true,
     },
-    quantum: {
-      claimedAmount: {
-        type: Number,
-        required: true,
-      },
-      awardedAmount: {
-        type: Number,
-        required: true,
-      },
-    },
-    offer: {
-      isPlaintiff: {
-        type: Boolean,
-        required: true,
-      },
-      amount: {
-        type: Number,
-        required: true,
-      },
-      date: {
-        type: Date,
-        required: true,
-      },
-    },
-    milestones: {
-      defence: {
-        type: Date,
-      },
-      preHearing: {
-        type: Date,
-      },
-      arbitration: {
-        type: Date,
-      },
-    },
+    quantum: QuantumSchema,
+    offer: OfferSchema,
+    milestones: MilestoneSchema,
   },
   {
     toJSON: {

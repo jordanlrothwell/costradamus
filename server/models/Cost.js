@@ -8,7 +8,7 @@ const SpecialSchema = require("./schemas/Special");
 const CostSchema = new Schema(
   {
     itemNumber: {
-      type: Number,
+      type: String,
       required: true,
     },
     description: {

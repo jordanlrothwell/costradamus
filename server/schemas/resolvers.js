@@ -3,18 +3,21 @@ const { Matter, Cost } = require("../models");
 // resolvers for the GraphQL schema
 const resolvers = {
   Query: {
-    costs: () => Cost.find(),
-    matters: () => Matter.find(),
+    costs: async () => {
+      return Cost.find({});
+    },
+    matters: async () => {
+      return Matter.find({});
+    },
   },
-  Mutation: {
-    createCost: (parent, args) => {
-      const cost = new Cost(args);
-      return cost.save();
-    },
-    createMatter: (parent, args) => {
-      const matter = new Matter(args);
-      return matter.save();
-    },
+  Cost: {
+    scale: (cost) => cost.scale,
+    special: (cost) => cost.special,
+  },
+  Matter: {
+    quantum: (matter) => matter.quantum,
+    offer: (matter) => matter.offer,
+    milestones: (matter) => matter.milestones,
   },
 };
 
