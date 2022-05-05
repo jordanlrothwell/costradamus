@@ -1,14 +1,7 @@
-import { Schema } from "mongoose";
-
-// interface representing a document in mongoDB
-interface IOffer {
-  isPlaintiff: boolean;
-  amount: number;
-  date: Date;
-}
+const { Schema } = require("mongoose");
 
 // schema corresponding to the document interface
-const OfferSchema = new Schema<IOffer>(
+const OfferSchema = new Schema(
   {
     isPlaintiff: {
       type: Boolean,
@@ -23,7 +16,7 @@ const OfferSchema = new Schema<IOffer>(
       required: true,
     },
   },
-  { timestamps: true }
+  { _id: false }
 );
 
-export default OfferSchema;
+module.exports = OfferSchema;

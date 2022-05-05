@@ -1,16 +1,8 @@
-import { Schema, model } from "mongoose";
+const { Schema, model } = require("mongoose");
 
-import scaleSchema from "./schemas/Scale";
-import SpecialSchema from "./schemas/Special";
-
-// interface representing a document in mongoDB
-interface ICost {
-  itemNumber: number;
-  description: string;
-  scale: Schema;
-  category: string;
-  special?: Schema;
-}
+// import schemas
+const scaleSchema = require("./schemas/Scale");
+const SpecialSchema = require("./schemas/Special");
 
 // schema corresponding to the document interface
 const CostSchema = new Schema(
@@ -30,8 +22,14 @@ const CostSchema = new Schema(
     },
     special: SpecialSchema,
   },
-  { timestamps: true }
+  {
+    toJSON: {
+      getters: true,
+    },
+  }
 );
 
 // model representing the collection in mongoDB
-export const Cost = model<ICost>("Cost", CostSchema);
+const Cost = model("Cost", CostSchema);
+
+module.exports = Cost;

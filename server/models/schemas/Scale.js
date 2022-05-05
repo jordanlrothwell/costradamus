@@ -1,18 +1,7 @@
-import { Schema } from "mongoose";
-
-// interface representing a document in mongoDB
-interface IScale {
-  A: number;
-  B: number;
-  C: number;
-  D: number;
-  E: number;
-  F: number;
-  G: number;
-}
+const { Schema } = require("mongoose");
 
 // schema corresponding to the document interface
-const ScaleSchema = new Schema<IScale>(
+const ScaleSchema = new Schema(
   {
     A: {
       type: Number,
@@ -36,7 +25,7 @@ const ScaleSchema = new Schema<IScale>(
       type: Number,
     },
   },
-  { timestamps: true }
+  { _id: false }
 );
 
-export default ScaleSchema;
+module.exports = ScaleSchema;

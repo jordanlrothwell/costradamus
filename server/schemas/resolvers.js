@@ -1,27 +1,19 @@
-const { Tech, Matchup } = require('../models');
+const { Matter, Cost } = require("../models");
 
+// resolvers for the GraphQL schema
 const resolvers = {
   Query: {
-    tech: async () => {
-      return Tech.find({});
-    },
-    matchups: async (parent, { _id }) => {
-      const params = _id ? { _id } : {};
-      return Matchup.find(params);
-    },
+    costs: () => Cost.find(),
+    matters: () => Matter.find(),
   },
   Mutation: {
-    createMatchup: async (parent, args) => {
-      const matchup = await Matchup.create(args);
-      return matchup;
+    createCost: (parent, args) => {
+      const cost = new Cost(args);
+      return cost.save();
     },
-    createVote: async (parent, { _id, techNum }) => {
-      const vote = await Matchup.findOneAndUpdate(
-        { _id },
-        { $inc: { [`tech${techNum}_votes`]: 1 } },
-        { new: true }
-      );
-      return vote;
+    createMatter: (parent, args) => {
+      const matter = new Matter(args);
+      return matter.save();
     },
   },
 };
