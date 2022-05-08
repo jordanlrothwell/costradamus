@@ -1,9 +1,9 @@
 const { Schema, model } = require("mongoose");
 
 // import schemas
-const  QuantumSchema  = require("./schemas/Quantum");
-const OfferSchema  = require("./schemas/Offer");
-const  MilestoneSchema  = require("./schemas/Milestone");
+const QuantumSchema = require("./schemas/Quantum");
+const OfferSchema = require("./schemas/Offer");
+const MilestoneSchema = require("./schemas/Milestone");
 
 // schema corresponding to the document interface
 const MatterSchema = new Schema(
@@ -15,6 +15,10 @@ const MatterSchema = new Schema(
     quantum: QuantumSchema,
     offer: OfferSchema,
     milestones: MilestoneSchema,
+    user: {
+      type: Schema.Types.ObjectId,
+      ref: "User",
+    },
   },
   {
     toJSON: {

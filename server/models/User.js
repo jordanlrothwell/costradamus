@@ -22,6 +22,7 @@ const UserSchema = new Schema({
     required: true,
     minlength: 6,
   },
+  matters: [{ type: Schema.Types.ObjectId, ref: "Matter" }],
 });
 
 UserSchema.pre("save", async function (next) {

@@ -1,11 +1,27 @@
 const { gql } = require("apollo-server-express");
-const DateScalar = require("./custom/DateScalar");
 
 // GraphQL schema
 const typeDefs = gql`
+
+  type User {
+    _id: ID
+    username: String
+    email: String
+    password: String
+    matters: [Matter]
+  }
+
+  type Auth {
+    token: ID!
+    user: User
+  }
+
   type Query {
+    users: [User]
+    user(username: String!): User
     costs: [Cost]
     matters: [Matter]
+    me: User
   }
 
   type Cost {
@@ -32,11 +48,11 @@ const typeDefs = gql`
   }
 
   type Matter {
-    reference: String
-    description: String
+    reference: String!
     quantum: Quantum
     offer: Offer
     milestones: Milestone
+    user: User
   }
 
   type Quantum {
@@ -104,11 +120,18 @@ const typeDefs = gql`
     quantum: QuantumInput
     offer: OfferInput
     milestones: MilestoneInput
+    user: ID
   }
 
   type Mutation {
-    createCost(input: CostInput): Cost
-    createMatter(input: MatterInput): Matter
+    createUser(username: String!, email: String!, password: String!): Auth
+    login(email: String!, password: String!): Auth
+    createCost(input: CostInput!): Cost
+    createMatter(input: MatterInput!): Matter
+    updateCost(id: ID!, input: CostInput!): Cost
+    updateMatter(id: ID!, input: MatterInput!): Matter
+    deleteCost(id: ID!): Cost
+    deleteMatter(id: ID!): Matter
   }
 
 `;
