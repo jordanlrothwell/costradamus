@@ -52,7 +52,7 @@ const typeDefs = gql`
     quantum: Quantum
     offer: Offer
     milestones: Milestone
-    user: User
+    matterUser: ID
   }
 
   type Quantum {
@@ -120,11 +120,11 @@ const typeDefs = gql`
     quantum: QuantumInput
     offer: OfferInput
     milestones: MilestoneInput
-    user: ID
+    matterUser: ID
   }
 
   type Mutation {
-    createUser(username: String!, email: String!, password: String!): Auth
+    addUser(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
     createCost(input: CostInput!): Cost
     createMatter(input: MatterInput!): Matter
@@ -133,7 +133,6 @@ const typeDefs = gql`
     deleteCost(id: ID!): Cost
     deleteMatter(id: ID!): Matter
   }
-
 `;
 
 module.exports = typeDefs;

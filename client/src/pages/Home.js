@@ -1,42 +1,70 @@
-import { Link } from 'react-router-dom';
-import { useQuery } from '@apollo/client';
-import { QUERY_MATCHUPS } from '../utils/queries';
+import React from "react";
+import { useMutation } from "@apollo/client";
 
+// import graphql queries and mutations
+import { ADD_USER } from "../utils/mutations";
+
+// signup page component
 const Home = () => {
-  const { loading, data } = useQuery(QUERY_MATCHUPS, {
-    fetchPolicy: "no-cache"
-  });
+  // add user mutation
+  const [addUser] = useMutation(ADD_USER);
 
-  const matchupList = data?.matchups || [];
-
+  // add user function
+  const addUserFunc = async (e) => {
+    e.preventDefault();
+    // get user input
+    const username = e.target.username.value;
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+    // add user to database
+    await addUser({
+      variables: {
+        username,
+        email,
+        password
+      },
+    });
+    // clear input fields
+    e.target.username.value = "";
+    e.target.email.value = "";
+    e.target.password.value = "";
+  };
   return (
-    <div className="card bg-white card-rounded w-50">
-      <div className="card-header bg-dark text-center">
-        <h1>Welcome to Tech Matchup!</h1>
-      </div>
-      <div className="card-body m-5">
-        <h2>Here is a list of matchups you can vote on:</h2>
-        {loading ? (
-          <div>Loading...</div>
-        ) : (
-          <ul className="square">
-            {matchupList.map((matchup) => {
-              return (
-                <li key={matchup._id}>
-                  <Link to={{ pathname: `/matchup/${matchup._id}` }}>
-                    {matchup.tech1} vs. {matchup.tech2}
-                  </Link>
-                </li>
-              );
-            })}
-          </ul>
-        )}
-      </div>
-      <div className="card-footer text-center m-3">
-        <h2>Ready to create a new matchup?</h2>
-        <Link to="/matchup">
-          <button className="btn btn-lg btn-danger">Create Matchup!</button>
-        </Link>
+    <div className="flex-column justify-flex-start min-100-vh">
+      <div className="container">
+        <h1>Sign Up</h1>
+        <form onSubmit={addUserFunc}>
+          <div className="form-group">
+            <label htmlFor="username">Username</label>
+            <input
+              type="text"
+              className="form-control"
+              id="username"
+              placeholder="Enter username"
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="email">Email address</label>
+            <input
+              type="email"
+              className="form-control"
+              id="email"
+              placeholder="Enter email"
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="password">Password</label>
+            <input
+              type="password"
+              className="form-control"
+              id="password"
+              placeholder="Enter password"
+            />
+          </div>
+          <button type="submit" className="btn btn-primary">
+            Submit
+          </button>
+        </form>
       </div>
     </div>
   );

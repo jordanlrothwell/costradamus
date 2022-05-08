@@ -1,22 +1,77 @@
 import { gql } from '@apollo/client';
 
-export const QUERY_TECH = gql`
-  query tech {
-    tech {
+export const QUERY_USER = gql`
+  query user($username: String!) {
+    user(username: $username) {
       _id
-      name
+      username
+      email
+      matters {
+        _id
+        reference
+        quantum {
+          claimedAmount
+          awardedAmount
+        }
+        offer {
+          isPlaintiff
+          amount
+          date
+        }
+        milestones {
+          defence
+          preHearing
+          arbitration
+        }
+        matterUser
+      }
     }
   }
 `;
 
-export const QUERY_MATCHUPS = gql`
-  query matchups($_id: String) {
-    matchups(_id: $_id) {
+export const QUERY_MATTERS = gql`
+  query matters {
+    matters {
       _id
-      tech1
-      tech2
-      tech1_votes
-      tech2_votes
+      reference
+      quantum {
+        claimedAmount
+        awardedAmount
+      }
+      offer {
+        isPlaintiff
+        amount
+        date
+      }
+      milestones {
+        defence
+        preHearing
+        arbitration
+      }
+      matterUser
+    }
+`;
+
+export const QUERY_SINGLE_MATTER = gql`
+  query getSingleMatter($reference: String!) {
+    getSingleMatter(reference: $reference) {
+      _id
+      reference
+      quantum {
+        claimedAmount
+        awardedAmount
+      }
+      offer {
+        isPlaintiff
+        amount
+        date
+      }
+      milestones {
+        defence
+        preHearing
+        arbitration
+      }
+      matterUser
     }
   }
 `;

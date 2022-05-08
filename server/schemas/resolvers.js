@@ -30,7 +30,7 @@ const resolvers = {
     // returns the milestones of a matter
     milestones: async (root) => await Milestone.find({ matter: root._id }),
     // returns the user of a matter
-    user: async (root) => await User.findOne({ _id: root.user }),
+    matterUser: async (root) => await User.findOne({ _id: root.matterUser }),
   },
   Cost: {
     // returns the scale of a cost
@@ -45,7 +45,7 @@ const resolvers = {
 
   Mutation: {
     // creates a new user
-    createUser: async (root, { username, email, password }) => {
+    addUser: async (root, { username, email, password }) => {
       const user = await User.create({ username, email, password });
       const token = signToken(user);
       return { token, user };
@@ -66,12 +66,33 @@ const resolvers = {
     // creates a new matter
     createMatter: async (root, { reference }, context) => {
       if (context.user) {
-        const matter = await Matter.create({ reference });
+        const matter = await Matter.create({
+          reference,
+          matterUser: context.user.username,
+        });
         await User.findOneAndUpdate(
           { _id: context.user._id },
           { $addToSet: { matters: matter._id } }
         );
         return matter;
+      }
+      throw new AuthenticationError("You are not logged in");
+    },
+    // updates a matter
+    updateMatter: async (
+      root,
+      { reference, quantum, offer, milestones },
+      context
+    ) => {
+      if (context.user) {
+        const matter = await Matter.findOneAndUpdate(
+          { _id: root._id },
+          { reference, quantum, offer, milestones }
+        );
+        await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $addToSet: { matters: matter._id } }
+        );
       }
       throw new AuthenticationError("You are not logged in");
     },
