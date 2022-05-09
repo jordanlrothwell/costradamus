@@ -1,6 +1,6 @@
 [
     {
-        "itemNumber": "1",
+        "itemNumber": 1,
         "description": "Claim for debt, liquidated demand or claim arising from a motor vehicle accident for costs of repairs only or for total loss of vehicle only including all professional costs.",
         "special": {
             "rate": null,
@@ -18,7 +18,7 @@
         }
     },
     {
-        "itemNumber": "2",
+        "itemNumber": 2,
         "description": "Instructions to make, issue or oppose an application or summons or any notice of objection under the Judgment Debt Recovery Act 1984 including instructions for any affidavit (not otherwise provided for).",
         "special": {
             "rate": null,
@@ -36,7 +36,7 @@
         }
     },
     {
-        "itemNumber": "3",
+        "itemNumber": 3,
         "description": "Complaint, including instructions to sue, letter before action, attendances on counsel, copies for service, issuing, and attendances on process server.",
         "special": {
             "rate": null,
@@ -54,7 +54,7 @@
         }
     },
     {
-        "itemNumber": "4",
+        "itemNumber": 4,
         "description": "Consent of litigation guardian including preparation of memorandum, copies and obtaining signature of litigation guardian.",
         "special": {
             "rate": null,
@@ -72,7 +72,7 @@
         }
     },
     {
-        "itemNumber": "5",
+        "itemNumber": 5,
         "description": "Notices of defence to claim, counterclaim or third party notice including instructions to defend, perusal of claim, counterclaim or third party notice, reply, attendances on counsel, copies, filing and service.",
         "special": {
             "rate": null,
@@ -90,7 +90,7 @@
         }
     },
     {
-        "itemNumber": "6",
+        "itemNumber": 6,
         "description": "Counterclaim, third party notice, notice of contribution or any further pleading including instructions to issue, attendances on counsel, copies, filing and service.",
         "special": {
             "rate": null,
@@ -108,7 +108,7 @@
         }
     },
     {
-        "itemNumber": "7",
+        "itemNumber": 7,
         "description": "Perusal of notice of defence, counterclaim, third party notice or any other pleading, and notice of contribution.",
         "special": {
             "rate": null,
@@ -126,7 +126,7 @@
         }
     },
     {
-        "itemNumber": "8",
+        "itemNumber": 8,
         "description": "Request for particulars of any document including attendances on counsel, copies, filing, service and perusal of further particulars.",
         "special": {
             "rate": null,
@@ -144,7 +144,7 @@
         }
     },
     {
-        "itemNumber": "9",
+        "itemNumber": 9,
         "description": "Further and better particulars of any documents including perusal of request, attendances on counsel, copies, filing and service.",
         "special": {
             "rate": null,
@@ -162,7 +162,7 @@
         }
     },
     {
-        "itemNumber": "10",
+        "itemNumber": 10,
         "description": "Attending view, including arranging view and attendance on counsel.",
         "special": {
             "rate": null,
@@ -180,7 +180,7 @@
         }
     },
     {
-        "itemNumber": "11",
+        "itemNumber": 11,
         "description": "If the attendance exceeds half an hour - for each quarter hour thereafter.",
         "special": {
             "rate": null,
@@ -198,7 +198,7 @@
         }
     },
     {
-        "itemNumber": "12",
+        "itemNumber": 12,
         "description": "Notice of discovery including filing and service.",
         "special": {
             "rate": null,
@@ -216,7 +216,7 @@
         }
     },
     {
-        "itemNumber": "13",
+        "itemNumber": 13,
         "description": "Perusal of affidavit of documents and inspection of documents.",
         "special": {
             "rate": null,
@@ -234,7 +234,7 @@
         }
     },
     {
-        "itemNumber": "14",
+        "itemNumber": 14,
         "description": "Affidavit of documents including instructions, attendances on counsel, copies, swearing, affirming, filing, service and production of documents for inspection.",
         "special": {
             "rate": null,
@@ -252,7 +252,7 @@
         }
     },
     {
-        "itemNumber": "15",
+        "itemNumber": 15,
         "description": "Notice to produce documents including filing and service.",
         "special": {
             "rate": null,
@@ -270,7 +270,7 @@
         }
     },
     {
-        "itemNumber": "16",
+        "itemNumber": 16,
         "description": "Interrogatories for examination including instructions, attendances on counsel, copies, filing, service and perusal of answers.",
         "special": {
             "rate": null,
@@ -288,7 +288,7 @@
         }
     },
     {
-        "itemNumber": "17",
+        "itemNumber": 17,
         "description": "Answers to interrogatories including perusal of interrogatories, instructions, attendances on counsel, copies, swearing, affirming, filing and service.",
         "special": {
             "rate": null,
@@ -306,7 +306,7 @@
         }
     },
     {
-        "itemNumber": "18",
+        "itemNumber": 18,
         "description": "Brief to advise including preparation of memorandum to counsel, attendances on counsel and perusal of advice.",
         "special": {
             "rate": null,
@@ -324,7 +324,7 @@
         }
     },
     {
-        "itemNumber": "19",
+        "itemNumber": 19,
         "description": "Any necessary notice (including notices before proceeding), certificate (including certificates before proceeding), undertaking, consent, order, memorandum (not otherwise provided for) including copies, filing and service.",
         "special": {
             "rate": null,
@@ -342,7 +342,7 @@
         }
     },
     {
-        "itemNumber": "20",
+        "itemNumber": 20,
         "description": "Notice to admit including perusal of admissions, copies, filing and service.",
         "special": {
             "rate": null,
@@ -360,7 +360,7 @@
         }
     },
     {
-        "itemNumber": "21",
+        "itemNumber": 21,
         "description": "Admissions, including perusal of notice to admit, copies, filing and service.",
         "special": {
             "rate": null,
@@ -378,7 +378,7 @@
         }
     },
     {
-        "itemNumber": "22",
+        "itemNumber": 22,
         "description": "Offer of compromise or notice of acceptance of offer including copies, filing and service.",
         "special": {
             "rate": null,
@@ -396,7 +396,7 @@
         }
     },
     {
-        "itemNumber": "23",
+        "itemNumber": 23,
         "description": "Subpoena including instructions, copies and issuing.",
         "special": {
             "rate": null,
@@ -414,7 +414,7 @@
         }
     },
     {
-        "itemNumber": "24",
+        "itemNumber": 24,
         "description": "Attendance on witness to arrange attendance to give evidence without subpoena, including reminders.",
         "special": {
             "rate": null,
@@ -432,7 +432,7 @@
         }
     },
     {
-        "itemNumber": "25",
+        "itemNumber": 25,
         "description": "Arranging examination or inspection by an expert witness and notifying party, supplying relevant documents to witness, obtaining and perusing report.",
         "special": {
             "rate": null,
@@ -450,7 +450,7 @@
         }
     },
     {
-        "itemNumber": "26",
+        "itemNumber": 26,
         "description": "Notifying party of examination or inspection arranged by opposite party.",
         "special": {
             "rate": null,
@@ -468,7 +468,7 @@
         }
     },
     {
-        "itemNumber": "28",
+        "itemNumber": 28,
         "description": "Application or summons or any notice under the Judgment Debt Recovery Act 1984 including copies, issuing and affidavit of service.",
         "special": {
             "rate": null,
@@ -486,7 +486,7 @@
         }
     },
     {
-        "itemNumber": "29",
+        "itemNumber": 29,
         "description": "Application for an order under Rule 21.01 (in addition to item 1 if applicable) or 21.08 including copies and issuing.",
         "special": {
             "rate": null,
@@ -504,7 +504,7 @@
         }
     },
     {
-        "itemNumber": "29A",
+        "itemNumber": 29.1,
         "description": "To draw or settle any necessary medical panel referral documents including medical questions, lists of documents and submissions pursuant to the Accident Compensation Act 1985 etc.",
         "special": {
             "rate": null,
@@ -522,7 +522,7 @@
         }
     },
     {
-        "itemNumber": "29B",
+        "itemNumber": 29.2,
         "description": "To draw or settle any necessary medical panel referral documents including medical questions, section 304 statements, lists of documents and submissions pursuant to the Workplace Injury Rehabilitation and Compensation Act 2013 etc.",
         "special": {
             "rate": null,
@@ -540,7 +540,7 @@
         }
     },
     {
-        "itemNumber": "30",
+        "itemNumber": 30,
         "description": "Notice of objection under the Judgment Debt Recovery Act 1984 including copies, issuing and affidavit of service.",
         "special": {
             "rate": null,
@@ -558,7 +558,7 @@
         }
     },
     {
-        "itemNumber": "31",
+        "itemNumber": 31,
         "description": "Affidavit including attendances on counsel, copies, swearing, affirming, filing and service.",
         "special": {
             "rate": null,
@@ -576,7 +576,7 @@
         }
     },
     {
-        "itemNumber": "32",
+        "itemNumber": 32,
         "description": "Affidavit of service, including swearing or affirming and filing (not otherwise provided for).",
         "special": {
             "rate": null,
@@ -594,7 +594,7 @@
         }
     },
     {
-        "itemNumber": "33",
+        "itemNumber": 33,
         "description": "For work necessarily and properly done in preparing for hearing (not otherwise provided for).",
         "special": {
             "rate": null,
@@ -612,7 +612,7 @@
         }
     },
     {
-        "itemNumber": "34",
+        "itemNumber": 34,
         "description": "Preparation including all necessary instructions, instructions for brief for counsel or brief notes for Australian lawyer, correspondence and perusals.",
         "special": {
             "rate": null,
@@ -630,7 +630,7 @@
         }
     },
     {
-        "itemNumber": "35",
+        "itemNumber": 35,
         "description": "Attendance at conference whether by counsel or Australian lawyer.",
         "special": {
             "rate": null,
@@ -648,7 +648,7 @@
         }
     },
     {
-        "itemNumber": "36",
+        "itemNumber": 36,
         "description": "Preparation including all necessary instructions, instructions for brief for counsel or brief notes for Australian lawyer, all necessary correspondence, perusals, etc.",
         "special": {
             "rate": null,
@@ -666,7 +666,7 @@
         }
     },
     {
-        "itemNumber": "37",
+        "itemNumber": 37,
         "description": "Attending mediation by Australian lawyer, for first 4 hours or part thereof.",
         "special": {
             "rate": null,
@@ -684,7 +684,7 @@
         }
     },
     {
-        "itemNumber": "38",
+        "itemNumber": 38,
         "description": "For each subsequent hour.",
         "special": {
             "rate": null,
@@ -702,7 +702,7 @@
         }
     },
     {
-        "itemNumber": "39",
+        "itemNumber": 39,
         "description": "Attending mediation with counsel (where necessary) per hour.",
         "special": {
             "rate": null,
@@ -720,7 +720,7 @@
         }
     },
     {
-        "itemNumber": "40",
+        "itemNumber": 40,
         "description": "If Australian lawyer attends at a place more than 50 kilometres from the Australian lawyer's place of business, an additional fee may be allowed.",
         "special": {
             "rate": null,
@@ -738,7 +738,7 @@
         }
     },
     {
-        "itemNumber": "41",
+        "itemNumber": 41,
         "description": "The reasonable costs of a mediation held before the commencement of proceedings may be allowed.",
         "special": {
             "rate": null,
@@ -756,7 +756,7 @@
         }
     },
     {
-        "itemNumber": "42",
+        "itemNumber": 42,
         "description": "Attendance at Court or upon magistrate or officer of the Court on application, summons, appeal or to hear reserved judgment.",
         "special": {
             "rate": null,
@@ -774,7 +774,7 @@
         }
     },
     {
-        "itemNumber": "43",
+        "itemNumber": 43,
         "description": "Attendance of Australian lawyer without counsel at a directions hearing or at the hearing of an application for revocation of a direction of a conciliation officer including a WorkCover directions hearing or at the hearing of an application for revocation of a direction of a conciliation officer.",
         "special": {
             "rate": null,
@@ -792,7 +792,7 @@
         }
     },
     {
-        "itemNumber": "44",
+        "itemNumber": 44,
         "description": "Attending WorkCover mentions.",
         "special": {
             "rate": null,
@@ -810,7 +810,7 @@
         }
     },
     {
-        "itemNumber": "45",
+        "itemNumber": 45,
         "description": "Attendance at Court on hearing - Australian lawyer without counsel for the first 6 hours (including any luncheon adjournment).",
         "special": {
             "rate": null,
@@ -828,7 +828,7 @@
         }
     },
     {
-        "itemNumber": "46",
+        "itemNumber": 46,
         "description": "If attendance at Court exceeds 6 hours - for each hour thereafter.",
         "special": {
             "rate": null,
@@ -846,7 +846,7 @@
         }
     },
     {
-        "itemNumber": "47",
+        "itemNumber": 47,
         "description": "Attendance at Court by Australian lawyer on hearing with counsel for the first 3 hours.",
         "special": {
             "rate": null,
@@ -864,7 +864,7 @@
         }
     },
     {
-        "itemNumber": "48",
+        "itemNumber": 48,
         "description": "If attendance exceeds 3 hours - for each hour thereafter.",
         "special": {
             "rate": null,
@@ -882,7 +882,7 @@
         }
     },
     {
-        "itemNumber": "49",
+        "itemNumber": 49,
         "description": "Appointment and attendance per hour (when necessary).",
         "special": {
             "rate": null,
@@ -900,7 +900,7 @@
         }
     },
     {
-        "itemNumber": "50",
+        "itemNumber": 50,
         "description": "To draw or settle any necessary document including notice before action, particulars of claim or defence (including special defence), counterclaim, interrogatories etc.",
         "special": {
             "rate": null,
@@ -918,7 +918,7 @@
         }
     },
     {
-        "itemNumber": "51",
+        "itemNumber": 51,
         "description": "To confer, prepare, view or consult - per hour.",
         "special": {
             "rate": null,
@@ -936,7 +936,7 @@
         }
     },
     {
-        "itemNumber": "52",
+        "itemNumber": 52,
         "description": "To advise on evidence or give opinion.",
         "special": {
             "rate": null,
@@ -954,7 +954,7 @@
         }
     },
     {
-        "itemNumber": "53",
+        "itemNumber": 53,
         "description": "Brief on hearing for each day or part of a day.",
         "special": {
             "rate": null,
@@ -972,7 +972,7 @@
         }
     },
     {
-        "itemNumber": "55",
+        "itemNumber": 55,
         "description": "Attending mediation, for the first 4 hours or part thereof.",
         "special": {
             "rate": null,
@@ -990,7 +990,7 @@
         }
     },
     {
-        "itemNumber": "56",
+        "itemNumber": 56,
         "description": "For each subsequent hour.",
         "special": {
             "rate": null,
@@ -1008,7 +1008,7 @@
         }
     },
     {
-        "itemNumber": "57",
+        "itemNumber": 57,
         "description": "Attending at WorkCover directions hearing.",
         "special": {
             "rate": null,
@@ -1026,7 +1026,7 @@
         }
     },
     {
-        "itemNumber": "57A.",
+        "itemNumber": 57.1,
         "description": "Attending at the hearing of an application for revocation of a direction of a conciliation officer.",
         "special": {
             "rate": null,
@@ -1044,7 +1044,7 @@
         }
     },
     {
-        "itemNumber": "58",
+        "itemNumber": 58,
         "description": "Drawing any document or brief (where not otherwise provided for) - per folio.",
         "special": {
             "rate": null,
@@ -1062,7 +1062,7 @@
         }
     },
     {
-        "itemNumber": "59",
+        "itemNumber": 59,
         "description": "Typing any document or brief (where not otherwise provided for) - per folio.",
         "special": {
             "rate": null,
@@ -1080,7 +1080,7 @@
         }
     },
     {
-        "itemNumber": "60",
+        "itemNumber": 60,
         "description": "Copies - For the first 50 pages of photocopying in a proceeding, $2.55 per page. For any photocopying after the first 50 pages in a proceeding, 72 cents per page.",
         "special": {
             "rate": 2.55,
@@ -1098,7 +1098,7 @@
         }
     },
     {
-        "itemNumber": "61",
+        "itemNumber": 61,
         "description": "Of any document or part of a document (where not otherwise provided for) - per folio.",
         "special": {
             "rate": null,
@@ -1116,7 +1116,7 @@
         }
     },
     {
-        "itemNumber": "62",
+        "itemNumber": 62,
         "description": "Examination or scanning any document which is not necessary to peruse - per folio.",
         "special": {
             "rate": null,
@@ -1134,7 +1134,7 @@
         }
     },
     {
-        "itemNumber": "63",
+        "itemNumber": 63,
         "description": "Special letter.",
         "special": {
             "rate": null,
@@ -1152,7 +1152,7 @@
         }
     },
     {
-        "itemNumber": "64",
+        "itemNumber": 64,
         "description": "Ordinary letter (including an agency letter).",
         "special": {
             "rate": null,
@@ -1170,7 +1170,7 @@
         }
     },
     {
-        "itemNumber": "65",
+        "itemNumber": 65,
         "description": "Circular letter. After the first, postage may be claimed as a disbursement.",
         "special": {
             "rate": null,
@@ -1188,7 +1188,7 @@
         }
     },
     {
-        "itemNumber": "66",
+        "itemNumber": 66,
         "description": "Attendance - such as an attendance at the office of the registrar or on a process server or to serve or an attendance which is capable of being made by a clerk.",
         "special": {
             "rate": null,
@@ -1206,7 +1206,7 @@
         }
     },
     {
-        "itemNumber": "67",
+        "itemNumber": 67,
         "description": "Attendance (personal or by telephone) of an Australian lawyer or managing clerk and involving the exercise of skill or legal knowledge - for each quarter hour.",
         "special": {
             "rate": null,
@@ -1224,7 +1224,7 @@
         }
     },
     {
-        "itemNumber": "68",
+        "itemNumber": 68,
         "description": "Attendance which does not involve the exercise of skill or legal knowledge - for each quarter hour.",
         "special": {
             "rate": null,
@@ -1242,7 +1242,7 @@
         }
     },
     {
-        "itemNumber": "69",
+        "itemNumber": 69,
         "description": "Warrant to seize property or of delivery including instructions, preparation and issuing.",
         "special": {
             "rate": null,
@@ -1260,7 +1260,7 @@
         }
     },
     {
-        "itemNumber": "70",
+        "itemNumber": 70,
         "description": "Summons for oral examination, including instructions, preparation of summons and affidavit, issuing, arranging service, forwarding summons and affidavit to registrar with letter.",
         "special": {
             "rate": null,
@@ -1278,7 +1278,7 @@
         }
     },
     {
-        "itemNumber": "71",
+        "itemNumber": 71,
         "description": "Proceedings for attachment of debts including all professional costs.",
         "special": {
             "rate": null,
@@ -1296,7 +1296,7 @@
         }
     },
     {
-        "itemNumber": "72",
+        "itemNumber": 72,
         "description": "Summons for attachment of earnings, including instructions, preparation of summons, affidavit and Form 72A, issuing summons, arranging service, forwarding summons and affidavit to registrar with a letter (including affidavit of service).",
         "special": {
             "rate": null,
@@ -1314,7 +1314,7 @@
         }
     },
     {
-        "itemNumber": "73",
+        "itemNumber": 73,
         "description": "Form 72F, including preparation, filing and service.",
         "special": {
             "rate": null,
@@ -1332,7 +1332,7 @@
         }
     },
     {
-        "itemNumber": "74",
+        "itemNumber": 74,
         "description": "Order to attend or to give a statement under Rule 72.04 including preparation, issuing and arranging service.",
         "special": {
             "rate": null,
@@ -1350,7 +1350,7 @@
         }
     },
     {
-        "itemNumber": "75",
+        "itemNumber": 75,
         "description": "Registration of interstate judgment.",
         "special": {
             "rate": null,
@@ -1368,7 +1368,7 @@
         }
     },
     {
-        "itemNumber": "76",
+        "itemNumber": 76,
         "description": "For service of Court documents on each person to be served.",
         "special": {
             "rate": null,
@@ -1386,7 +1386,7 @@
         }
     },
     {
-        "itemNumber": "77",
+        "itemNumber": 77,
         "description": "For service of Court documents on each person to be served where service is effected by post or by leaving at a document exchange.",
         "special": {
             "rate": null,
@@ -1404,7 +1404,7 @@
         }
     },
     {
-        "itemNumber": "78",
+        "itemNumber": 78,
         "description": "For every necessary visit made in attempting service of Court documents and for each report of non-service where the time, date and number of visits attempting service are shown by affidavit.",
         "special": {
             "rate": null,
@@ -1422,7 +1422,7 @@
         }
     },
     {
-        "itemNumber": "79",
+        "itemNumber": 79,
         "description": "In addition to the abovementioned service fees an allowance at the rate of 72 cents for each 1 kilometre in respect of any distance measured both ways from the nearest court house or other building where the Court is held, or the residence of the person who served the court document, whichever is the closer, to the place of service or attempted service of the document.",
         "special": {
             "rate": 0.72,
@@ -1440,7 +1440,7 @@
         }
     },
     {
-        "itemNumber": "80",
+        "itemNumber": 80,
         "description": "Order for substituted service including all professional costs.",
         "special": {
             "rate": null,
