@@ -1,12 +1,11 @@
 // homepage
 import React from "react";
-
-import DragList from "../components/dnd-test/DragList";
+import CostContainer from "../components/Costs/CostContainer";
 
 const Home = () => {
   return (
     <div>
-      <DragList/>
+      <CostContainer />
     </div>
   );
 };

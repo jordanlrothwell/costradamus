@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import DragList from "../src/components/dnd-test/DragList"
+import App from './App';
 
 ReactDOM.render(
   <React.StrictMode>
-    <DragList/>
+    <App/>
   </React.StrictMode>,
   document.getElementById('root')
 );

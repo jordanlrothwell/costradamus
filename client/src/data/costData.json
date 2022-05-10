@@ -546,7 +546,7 @@
             "rate": null,
             "amount": null
         },
-        "category": "STRING",
+        "category": "Notice of Objection",
         "scale": {
             "A": 48,
             "B": 48,
