@@ -1,4 +1,5 @@
 import React from "react";
+import { useState } from 'react';
 
 import styled from "styled-components";
 
@@ -23,9 +24,25 @@ const BoardItemStyled = styled.div`
 `;
 
 export default function BoardItem(props) {
+  const [hidden, setHidden] = useState(false);
+
+  const dragStart = (e) => {
+    setTimeout(() => setHidden(true), 0);
+    e.dataTransfer.setData("column", )
+  };
+
+  const dragEnd = () => {
+    setHidden(false)
+  };
+
   return (
-    <BoardItemStyled>
-      {props.itemNumber}: {props.description}
+    <BoardItemStyled
+      draggable={props.draggable}
+      onDragStart={dragStart}
+      onDragEnd={dragEnd}
+      hidden={hidden}
+    >
+      {props.itemID}: {props.description}
     </BoardItemStyled>
   );
 }

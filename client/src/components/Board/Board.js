@@ -1,8 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 
-import BoardColumn from "./BoardColumn";
-import BoardColumn2 from "../Builder/BoardColumn2";
+import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
+import BoardItem from "./BoardItem";
+
+import costData from "../../data/costData.json"
 
 const BoardStyled = styled.div`
   display: flex;
@@ -15,11 +17,26 @@ const BoardStyled = styled.div`
 
 export default function Board() {
   return (
-    <section>
-      <BoardStyled>
-        <BoardColumn/>
-        <BoardColumn2/>
-      </BoardStyled>
-    </section>
+    <DragDropContext>
+      <Droppable droppableId="droppable">
+        {(provided) => (
+          <BoardStyled {...provided.droppableProps} ref={provided.innerRef}>
+            {costData.map((item, index) => (
+              <Draggable draggableId={item.id} index={index}>
+                {(provided) => (
+                  <div
+                    ref={provided.innerRef}
+                    {...provided.draggableProps}
+                    {...provided.dragHandleProps}
+                  >
+                    <BoardItem item={item} />
+                  </div>
+                )}
+              </Draggable>
+            ))}
+          </BoardStyled>
+        )}
+      </Droppable>
+    </DragDropContext>
   );
 }
