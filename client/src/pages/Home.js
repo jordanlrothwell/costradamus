@@ -1,11 +1,13 @@
 // homepage
 import React from "react";
-import CostContainer from "../components/Costs/CostContainer";
+
+import BuildContext from "../components/Lists/BuildContext"
 
 const Home = () => {
+
   return (
     <div>
-      <CostContainer />
+      <BuildContext />
     </div>
   );
 };

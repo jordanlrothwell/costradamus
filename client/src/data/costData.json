@@ -991,7 +991,7 @@
     },
     {
         "itemNumber": 56,
-        "description": "For each subsequent hour.",
+        "description": "For each subsequent hour. ",
         "special": {
             "rate": null,
             "amount": null
