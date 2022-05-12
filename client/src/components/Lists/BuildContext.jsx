@@ -48,7 +48,7 @@ const Adjacent = styled.div`
 
 const Card = styled.div`
   background-color: hsl(215, 14%, 37.5%);
-  border-radius: var(--border-radius-500);
+  border-radius: 8px;
   cursor: pointer;
   color: hsl(228, 19%, 98%);
   padding: 0.66rem 1rem;
@@ -108,16 +108,16 @@ export default function BuildContext() {
                           >
                             {(provided, snapshot) => {
                               return (
-                                <Card>
-                                <div
+                                <Card
                                   ref={provided.innerRef}
                                   {...provided.draggableProps}
                                   {...provided.dragHandleProps}
                                 >
                                   <div>
-                                    <span>{cost.description}</span>
+                                    <span className="noselect">
+                                      {cost.description}
+                                    </span>
                                   </div>
-                                </div>
                                 </Card>
                               );
                             }}
@@ -149,19 +149,18 @@ export default function BuildContext() {
                             draggableId={cost.description}
                             index={index}
                           >
-                              
                             {(provided, snapshot) => {
                               return (
-                                <Card>
-                                <div
+                                <Card
                                   ref={provided.innerRef}
                                   {...provided.draggableProps}
                                   {...provided.dragHandleProps}
                                 >
                                   <div>
-                                    <span>{cost.description}</span>
+                                    <span className="noselect">
+                                      {cost.description}
+                                    </span>
                                   </div>
-                                </div>
                                 </Card>
                               );
                             }}
