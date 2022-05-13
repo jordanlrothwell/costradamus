@@ -5,27 +5,9 @@ import { useQuery } from "@apollo/client";
 import { QUERY_USER } from "../../utils/queries";
 
 const Profile = () => {
-  const { loading, error, data } = useQuery(QUERY_USER, {
-    variables: {
-      username: "test",
-    },
-  });
-  if (loading) {
-    return <p>Loading...</p>;
-  }
-  if (error) {
-    return <p>Error :(</p>;
-  }
-  return (
-    <div>
-      <h1>Profile</h1>
-      <p>
-        {data.user.username}
-        {data.user.email}
-      </p>
-      <Link to="/">Home</Link>
-    </div>
-  );
+ const { data, loading, error } = useQuery(QUERY_USER);
+
+ 
 };
 
 export default Profile;

@@ -1,7 +1,9 @@
-import { useCallback, useReducer } from "react";
+import React, { useCallback, useReducer } from "react";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import styled from "styled-components";
 import produce from "immer";
+import { useMutation } from "@apollo/client";
+import { ADD_MATTER, UPDATE_MATTER } from "../../utils/mutations";
 
 import costData from "../../data/costData.json";
 
@@ -22,6 +24,7 @@ const Column = styled.div`
   box-shadow: 0 12px 16px rgba(0, 0, 0, 0.25);
   margin: 3rem auto;
   max-width: 370px;
+  position: relative;
 `;
 
 const ColumnHeader = styled.div`
@@ -71,6 +74,10 @@ export default function BuildContext() {
     items: costData,
   });
 
+  const [matterCosts, setMatterCosts] = React.useState([]);
+
+  const [updateMatter, { error }] = useMutation(UPDATE_MATTER);
+
   const onDragEnd = useCallback((result) => {
     if (result.reason === "DROP") {
       if (!result.destination) {
@@ -91,7 +98,7 @@ export default function BuildContext() {
       <DragDropContext onDragEnd={onDragEnd}>
         <Column>
           <ColumnHeader>
-            <ColumnTitle>Costs</ColumnTitle>
+            <ColumnTitle className="noselect">Costs</ColumnTitle>
           </ColumnHeader>
           <Holder>
             <Droppable droppableId="items" type="COST">
@@ -134,7 +141,7 @@ export default function BuildContext() {
         </Column>
         <Column>
           <ColumnHeader>
-            <ColumnTitle>Matter</ColumnTitle>
+            <ColumnTitle className="noselect">Matter</ColumnTitle>
           </ColumnHeader>
           <Holder>
             <Droppable droppableId="items2" type="COST">

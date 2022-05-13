@@ -47,3 +47,28 @@ export const ADD_MATTER = gql`
     }
   }
 `;
+
+export const UPDATE_MATTER = gql`
+  mutation updateMatter($_id: ID!, $reference: String, $quantum: QuantumInput, $offer: OfferInput, $milestones: MilestoneInput) {
+    updateMatter(_id: $_id, reference: $reference, quantum: $quantum, offer: $offer, milestones: $milestones) {
+      _id
+      reference
+      quantum {
+        claimedAmount
+        awardedAmount
+      }
+      offer {
+        isPlaintiff
+        amount
+        date
+      }
+      milestones {
+        defence
+        preHearing
+        arbitration
+      }
+      matterUser
+    }
+  }
+`;
+

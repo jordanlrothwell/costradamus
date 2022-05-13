@@ -15,6 +15,11 @@ const MatterSchema = new Schema(
     quantum: QuantumSchema,
     offer: OfferSchema,
     milestones: MilestoneSchema,
+    costs: {
+      type: Schema.Types.ObjectId,
+      default: {},
+      ref: "Cost",
+    },
     matterUser: {
       type: Schema.Types.ObjectId,
       ref: "User",
