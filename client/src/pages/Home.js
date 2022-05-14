@@ -1,22 +1,13 @@
-// homepage
 import React from "react";
 
-import BuildContext from "../components/Lists/BuildContext";
-
+// auth middleware
 import Auth from "../utils/auth";
 
+// components
+import Navbar from "../components/Navbar/Navbar";
+
 const Home = () => {
-  return (
-    Auth.loggedIn() ? (
-    <div>
-      <BuildContext />
-    </div>
-  ) : (
-    <div>
-      <h1>You are not logged in</h1>
-    </div>
-  )
-  );
+  return (<div></div>)
 };
 
 export default Home;

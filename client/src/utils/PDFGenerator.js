@@ -6,6 +6,7 @@ const path = require("path");
 const costData = require("../data/costData.json")
 
 console.log(costData[0])
+
 const testData = [{
     itemNumber: 1,
     description: 'Claim for debt, liquidated demand or claim arising from a motor vehicle accident for costs of repairs only or for total loss of vehicle only including all professional costs.',
@@ -36,24 +37,6 @@ const pdfName = "test.pdf";
 function generatePDF(costs, name) {
   const doc = new PDFDocument({ size: "A4", margin: 50 });
   doc.pipe(fs.createWriteStream(`./${name}.pdf`));
-
-    // create a table with the data
-    doc.fontSize(12).text("Costs");
-    doc.moveDown();
-    doc.table(costs, {
-        margin: { top: 50, left: 50, right: 50, bottom: 50 },
-        width: 500,
-        layout: "lightHorizontalLines",
-        columnStyles: {
-            0: { columnWidth: 100 },
-            1: { columnWidth: 100 },
-            2: { columnWidth: 100 },
-            3: { columnWidth: 100 },
-            4: { columnWidth: 100 },
-            5: { columnWidth: 100 },
-        },
-    });
-
 
   doc.end();
 }
