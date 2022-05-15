@@ -5,42 +5,44 @@ import produce from "immer";
 import { useMutation } from "@apollo/client";
 import { ADD_MATTER, UPDATE_MATTER } from "../../utils/mutations";
 
+import tinyLogo from "../../assets/images/tiny-logo.png";
+
 import costData from "../../data/costData.json";
 
 const ColumnContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  padding: grid;
 `;
 
 const Column = styled.div`
-  background-image: linear-gradient(
-    0deg,
-    hsl(215, 14%, 16%) 0%,
-    hsl(215, 19%, 29%) 100%
-  );
-  border-radius: 3px;
+  background-color: #ffffff;
+  border-radius: 10px;
   box-shadow: 0 12px 16px rgba(0, 0, 0, 0.25);
   margin: 3rem auto;
-  max-width: 370px;
   position: relative;
+  margin-top: 3rem;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  min-width: 34.5rem;
 `;
 
 const ColumnHeader = styled.div`
   border-radius: 3px;
 `;
 
-const ColumnTitle = styled.div`
-  color: white;
-  font-size: 1rem;
+const ColumnTitle = styled.h2`
+  color: #dc5c04;
+  font-size: 2rem;
   font-weight: bold;
   padding: 1rem;
   text-align: center;
+  font-family: "Lalezar", cursive;
 `;
 
 const Holder = styled.div`
   padding: 1rem 1.5rem;
+  min-height: 34.5rem;
 `;
 
 const Adjacent = styled.div`
@@ -50,13 +52,37 @@ const Adjacent = styled.div`
 `;
 
 const Card = styled.div`
-  background-color: hsl(215, 14%, 37.5%);
+  display: grid;
+  grid-template-columns: 0.5fr 0.5fr 6fr;
+  background-color: #0487c4;
+  background-image: linear-gradient(320deg, #7cc4eb, #0487c4);
   border-radius: 8px;
   cursor: pointer;
   color: hsl(228, 19%, 98%);
   padding: 0.66rem 1rem;
   position: relative;
+  font-size: 0.9rem;
+  align-items: center;
+  text-align: left;
 `;
+
+const TinyLogo = styled.img`
+  width: 3.5rem;
+  height: 3.5rem;
+  margin-left: -0.5rem;
+`;
+
+const ItemNumber = styled.span`
+  font-weight: bold;
+  font-family: "Source Sans Pro", sans-serif;
+  font-size: 1.2rem;
+  margin-left: -0.5rem;
+`
+
+const ItemDescription = styled.span`
+  font-family: "Source Sans Pro", sans-serif;
+  font-size: 1.2rem;
+`
 
 const dragReducer = produce((draft, action) => {
   switch (action.type) {
@@ -69,9 +95,16 @@ const dragReducer = produce((draft, action) => {
   }
 });
 
-export default function BuildContext() {
+const getListStyle = (isDraggingOver) => ({
+  background: isDraggingOver ? "#ffdfc9" : "white",
+  borderRadius: "10px",
+  padding: "1rem",
+});
+
+export default function Builder() {
   const [state, dispatch] = useReducer(dragReducer, {
-    items: costData,
+    // return the entire costData array without the sixth item
+    items: costData
   });
 
   const [matterCosts, setMatterCosts] = React.useState([]);
@@ -98,13 +131,13 @@ export default function BuildContext() {
       <DragDropContext onDragEnd={onDragEnd}>
         <Column>
           <ColumnHeader>
-            <ColumnTitle className="noselect">Costs</ColumnTitle>
+            <ColumnTitle className="noselect">costs</ColumnTitle>
           </ColumnHeader>
           <Holder>
             <Droppable droppableId="items" type="COST">
               {(provided, snapshot) => {
                 return (
-                  <div ref={provided.innerRef} {...provided.droppableProps}>
+                  <div ref={provided.innerRef} style={getListStyle(snapshot.isDraggingOver)} {...provided.droppableProps}>
                     {state.items?.map((cost, index) => {
                       return (
                         <Adjacent>
@@ -120,11 +153,11 @@ export default function BuildContext() {
                                   {...provided.draggableProps}
                                   {...provided.dragHandleProps}
                                 >
-                                  <div>
-                                    <span className="noselect">
+                                    <TinyLogo className="noselect" src={tinyLogo} alt="tiny logo" />
+                                    <ItemNumber className="noselect">{cost.itemNumber}</ItemNumber>
+                                    <ItemDescription className="noselect">
                                       {cost.description}
-                                    </span>
-                                  </div>
+                                    </ItemDescription>
                                 </Card>
                               );
                             }}
@@ -141,13 +174,13 @@ export default function BuildContext() {
         </Column>
         <Column>
           <ColumnHeader>
-            <ColumnTitle className="noselect">Matter</ColumnTitle>
+            <ColumnTitle className="noselect">builder</ColumnTitle>
           </ColumnHeader>
           <Holder>
             <Droppable droppableId="items2" type="COST">
               {(provided, snapshot) => {
                 return (
-                  <div ref={provided.innerRef} {...provided.droppableProps}>
+                  <div style={getListStyle(snapshot.isDraggingOver)} ref={provided.innerRef} {...provided.droppableProps}>
                     {state.items2?.map((cost, index) => {
                       return (
                         <Adjacent>
@@ -163,11 +196,11 @@ export default function BuildContext() {
                                   {...provided.draggableProps}
                                   {...provided.dragHandleProps}
                                 >
-                                  <div>
-                                    <span className="noselect">
+                                  <TinyLogo className="noselect" src={tinyLogo} alt="tiny logo" />
+                                  <ItemNumber className="noselect">{cost.itemNumber}</ItemNumber>
+                                  <ItemDescription className="noselect">
                                       {cost.description}
-                                    </span>
-                                  </div>
+                                    </ItemDescription>
                                 </Card>
                               );
                             }}
@@ -183,6 +216,7 @@ export default function BuildContext() {
           </Holder>
         </Column>
       </DragDropContext>
+      <iframe></iframe>
     </ColumnContainer>
   );
 }
