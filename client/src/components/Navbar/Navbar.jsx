@@ -7,7 +7,8 @@ import { Link } from "react-router-dom";
 import logo from "../../assets/images/logo.png";
 
 const Header = styled.header`
-  padding: 45px 0;
+  padding: 10px 0;
+  background-color: #ffffff;
 `;
 
 const FlexBetweenContainer = styled.div`

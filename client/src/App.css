@@ -12,17 +12,6 @@ html {
   font-size: 16px;
 }
 
-body {
-  font-family: "Poppins", sans-serif, "Segoe UI", Tahoma, Geneva, Verdana;
-  font-weight: 500;
-  outline: none;
-}
-
-p {
-  color: #9e9aa7;
-  font-weight: 500;
-  line-height: 1.7;
-}
 
 a {
   text-decoration: none;
@@ -42,4 +31,25 @@ a {
   user-select: none;
   /* Non-prefixed version, currently
                                   supported by Chrome, Edge, Opera and Firefox */
+}
+
+.hidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+::placeholder {
+  color: white;
+  font-family: "Source Sans Pro", sans-serif;
+  font-size: 1.25rem;
+}
+
+::selection {
+  background: #7cc4eb; /* WebKit/Blink Browsers */
 }
