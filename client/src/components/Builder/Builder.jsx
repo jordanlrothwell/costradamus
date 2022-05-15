@@ -106,11 +106,7 @@ export default function Builder() {
     // return the entire costData array without the sixth item
     items: costData
   });
-
-  const [matterCosts, setMatterCosts] = React.useState([]);
-
-  const [updateMatter, { error }] = useMutation(UPDATE_MATTER);
-
+  
   const onDragEnd = useCallback((result) => {
     if (result.reason === "DROP") {
       if (!result.destination) {

@@ -4,6 +4,10 @@ import { Link } from "react-router-dom";
 import { useMutation } from "@apollo/client";
 import { LOGIN_USER } from "../../utils/mutations";
 
+// pages
+import Profile from "../../pages/Profile";
+
+// auth middleware
 import Auth from "../../utils/auth";
 
 // icons
@@ -107,9 +111,10 @@ const SubmitInput = styled.input`
     background-color: #dc5c04;
   }
   background-color: #f9b15b;
+  cursor: pointer;
 `;
 
-export default function LoginForm(props) {
+export default function LoginForm() {
   const [formState, setFormState] = useState({ email: "", password: "" });
   const [login, { error, data }] = useMutation(LOGIN_USER);
 
@@ -148,7 +153,7 @@ export default function LoginForm(props) {
       <Form onSubmit={handleFormSubmit}>
         <Field>
           <Label>
-            <EmailIcon src={emailIcon}></EmailIcon>
+            <EmailIcon className="noselect" src={emailIcon}></EmailIcon>
           </Label>
           <EmailInput
             placeholder="Email"
@@ -160,7 +165,7 @@ export default function LoginForm(props) {
         </Field>
         <Field>
           <Label>
-            <PasswordIcon src={lockIcon}></PasswordIcon>
+            <PasswordIcon className="noselect" src={lockIcon}></PasswordIcon>
           </Label>
           <PasswordInput
             placeholder="Password"

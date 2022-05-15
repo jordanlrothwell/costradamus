@@ -13,10 +13,10 @@ import "./App.css";
 
 // import pages
 import Home from "./pages/Home";
-import Login from "./pages/Login"
+import Login from "./pages/Login";
 import Signup from "./pages/Signup";
-import Profile from "./pages/Profile"
-import Matter from "./pages/Matter"
+import Profile from "./pages/Profile";
+import Matter from "./pages/Matter";
 
 // import components
 import Navbar from "./components/Navbar/Navbar";
@@ -49,22 +49,19 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <Router>
-        <Navbar/>
-        <Routes>
-          <Route path="/" element={<Home />} />
-        </Routes>
-        <Routes>
-          <Route path="/login" element={<Login />} />
-        </Routes>
-        <Routes>
-          <Route path="/signup" element={<Signup />} />
-        </Routes>
-        <Routes>
-          <Route path="/profile" element={<Profile />} />
-        </Routes>
-        <Routes>
-          <Route path="/matter" element={<Matter />} />
-        </Routes>
+        <div>
+          <Navbar />
+          <div>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/signup" element={<Signup />} />
+              <Route path="/me" element={<Profile />} />
+              <Route path="/profile/:username" element={<Profile />} />
+              <Route path="/matter" element={<Matter />} />
+            </Routes>
+          </div>
+        </div>
       </Router>
     </ApolloProvider>
   );

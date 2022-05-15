@@ -27,7 +27,7 @@ const LogoWrapper = styled.div`
   height: 10rem;
 `;
 
-const LinkWrapper = styled.a`
+const LinkWrapper = styled.div`
   text-decoration: none;
   display: flex;
   align-items: center;
@@ -56,7 +56,7 @@ const ButtonWrapper = styled.div`
   }
 `;
 
-const LoginLink = styled.a`
+const LoginLink = styled.div`
   color: #0487c4;
   background-color: white;
   font-weight: 700;
@@ -68,7 +68,7 @@ const LoginLink = styled.a`
   font-size: 1.2rem;
 `;
 
-const SignUpLink = styled.a`
+const SignUpLink = styled.div`
   color: white;
   background-color: #0487c4;
   font-weight: 700;
@@ -94,8 +94,10 @@ export default function Navbar() {
             </LogoWrapper>
           </Link>
           <ButtonWrapper>
-            <Link to="/profile">
-              <LoginLink className="noselect">Profile</LoginLink>
+            <Link to="/profile/:username">
+              <LoginLink className="noselect">
+                {Auth.getProfile}Profile
+              </LoginLink>
             </Link>
             <Link to="/" onClick={() => Auth.logout()}>
               <SignUpLink className="noselect">Log Out</SignUpLink>

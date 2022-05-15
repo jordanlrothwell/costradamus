@@ -4,10 +4,12 @@ import React from "react";
 import Auth from "../utils/auth";
 
 // components
-import Navbar from "../components/Navbar/Navbar";
+import Landing from "../components/Landing/Landing";
 
 const Home = () => {
-  return (<div></div>)
+  return (
+    <Landing />
+  )
 };
 
 export default Home;

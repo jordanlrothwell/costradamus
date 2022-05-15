@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client';
+import { gql } from "@apollo/client";
 
 export const QUERY_USER = gql`
   query user($username: String!) {
@@ -6,72 +6,18 @@ export const QUERY_USER = gql`
       _id
       username
       email
-      matters {
-        _id
-        reference
-        quantum {
-          claimedAmount
-          awardedAmount
-        }
-        offer {
-          isPlaintiff
-          amount
-          date
-        }
-        milestones {
-          defence
-          preHearing
-          arbitration
-        }
-        matterUser
-      }
     }
   }
 `;
 
-export const QUERY_MATTERS = gql`
-  query matters {
-    matters {
+export const QUERY_ME = gql`
+  query me {
+    me {
       _id
-      reference
-      quantum {
-        claimedAmount
-        awardedAmount
-      }
-      offer {
-        isPlaintiff
-        amount
-        date
-      }
-      milestones {
-        defence
-        preHearing
-        arbitration
-      }
-      matterUser
-    }
-`;
-
-export const QUERY_SINGLE_MATTER = gql`
-  query getSingleMatter($reference: String!) {
-    getSingleMatter(reference: $reference) {
-      _id
-      reference
-      quantum {
-        claimedAmount
-        awardedAmount
-      }
-      offer {
-        isPlaintiff
-        amount
-        date
-      }
-      milestones {
-        defence
-        preHearing
-        arbitration
-      }
-      matterUser
+      username
+      email
     }
   }
 `;
+
+

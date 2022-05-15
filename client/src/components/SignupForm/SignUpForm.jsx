@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { useMutation } from "@apollo/client";
-import { ADD_USER } from '../../utils/mutations';
+import { ADD_USER } from "../../utils/mutations";
 
 import Auth from "../../utils/auth";
 
 // icons
-import userIcon from "../../assets/images/svg/userIcon.svg"
+import userIcon from "../../assets/images/svg/userIcon.svg";
 import emailIcon from "../../assets/images/svg/emailIcon.svg";
 import lockIcon from "../../assets/images/svg/lockIcon.svg";
 
@@ -135,46 +135,47 @@ const SubmitInput = styled.input`
     background-color: #dc5c04;
   }
   background-color: #f9b15b;
+  cursor: pointer;
 `;
 
-export default function SignupForm(props) {
-    const [formState, setFormState] = useState({
-        username: '',
-        email: '',
-        password: '',
+export default function SignupForm() {
+  const [formState, setFormState] = useState({
+    username: "",
+    email: "",
+    password: "",
+  });
+  const [addUser, { error, data }] = useMutation(ADD_USER);
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+
+    setFormState({
+      ...formState,
+      [name]: value,
+    });
+  };
+
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
+    console.log(formState);
+
+    try {
+      const { data } = await addUser({
+        variables: { ...formState },
       });
-      const [addUser, { error, data }] = useMutation(ADD_USER);
-    
-      const handleChange = (event) => {
-        const { name, value } = event.target;
-    
-        setFormState({
-          ...formState,
-          [name]: value,
-        });
-      };
-    
-      const handleFormSubmit = async (event) => {
-        event.preventDefault();
-        console.log(formState);
-    
-        try {
-          const { data } = await addUser({
-            variables: { ...formState },
-          });
-    
-          Auth.login(data.addUser.token);
-        } catch (e) {
-          console.error(e);
-        }
-      };
+
+      Auth.login(data.addUser.token);
+    } catch (e) {
+      console.error(e);
+    }
+  };
 
   return (
     <GridContainer>
       <Form onSubmit={handleFormSubmit}>
-      <Field>
+        <Field>
           <Label>
-            <UserIcon src={userIcon}></UserIcon>
+            <UserIcon className="noselect" src={userIcon}></UserIcon>
           </Label>
           <UserInput
             placeholder="User"
@@ -186,7 +187,7 @@ export default function SignupForm(props) {
         </Field>
         <Field>
           <Label>
-            <EmailIcon src={emailIcon}></EmailIcon>
+            <EmailIcon className="noselect" src={emailIcon}></EmailIcon>
           </Label>
           <EmailInput
             placeholder="Email"
@@ -198,7 +199,7 @@ export default function SignupForm(props) {
         </Field>
         <Field>
           <Label>
-            <PasswordIcon src={lockIcon}></PasswordIcon>
+            <PasswordIcon className="noselect" src={lockIcon}></PasswordIcon>
           </Label>
           <PasswordInput
             placeholder="Password"
@@ -208,9 +209,11 @@ export default function SignupForm(props) {
             onChange={handleChange}
           />
         </Field>
-
-          <SubmitInput type="submit" value="Sign Up"></SubmitInput>
-
+        <SubmitInput
+          className="noselect"
+          type="submit"
+          value="Sign Up"
+        ></SubmitInput>
       </Form>
     </GridContainer>
   );
