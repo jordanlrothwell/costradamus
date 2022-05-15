@@ -14,8 +14,9 @@ import "./App.css";
 // import pages
 import Home from "./pages/Home";
 import Login from "./pages/Login"
-import Matter from "./pages/Matter"
 import Signup from "./pages/Signup";
+import Profile from "./pages/Profile"
+import Matter from "./pages/Matter"
 
 // import components
 import Navbar from "./components/Navbar/Navbar";
@@ -53,13 +54,16 @@ function App() {
           <Route path="/" element={<Home />} />
         </Routes>
         <Routes>
-          <Route path="/matter" element={<Matter />} />
-        </Routes>
-        <Routes>
           <Route path="/login" element={<Login />} />
         </Routes>
         <Routes>
           <Route path="/signup" element={<Signup />} />
+        </Routes>
+        <Routes>
+          <Route path="/profile" element={<Profile />} />
+        </Routes>
+        <Routes>
+          <Route path="/matter" element={<Matter />} />
         </Routes>
       </Router>
     </ApolloProvider>

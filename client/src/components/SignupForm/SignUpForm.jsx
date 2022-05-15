@@ -2,11 +2,12 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { useMutation } from "@apollo/client";
-import { LOGIN_USER } from "../../utils/mutations";
+import { ADD_USER } from '../../utils/mutations';
 
 import Auth from "../../utils/auth";
 
 // icons
+import userIcon from "../../assets/images/svg/userIcon.svg"
 import emailIcon from "../../assets/images/svg/emailIcon.svg";
 import lockIcon from "../../assets/images/svg/lockIcon.svg";
 
@@ -31,6 +32,33 @@ const Field = styled.div`
 const Label = styled.label`
   padding: 1rem;
   padding-left: 2rem;
+  background-color: #7cc4eb;
+`;
+
+const UserIcon = styled.img`
+  width: 2rem;
+  height: 2rem;
+  margin-left: -0.5rem;
+`;
+
+const UserInput = styled.input`
+  background-image: none;
+  border: 0;
+  color: #ffffff;
+  font-family: "Source Sans Pro", sans-serif;
+  font-size: 1.25rem;
+  outline: 0;
+  padding: 1rem;
+  transition: background-color 0.3s;
+  &:hover {
+    background-color: #0487c4;
+  }
+  &:focus {
+    background-color: #0487c4;
+  }
+  &:active {
+    background-color: #0487c4;
+  }
   background-color: #7cc4eb;
 `;
 
@@ -109,43 +137,53 @@ const SubmitInput = styled.input`
   background-color: #f9b15b;
 `;
 
-export default function LoginForm(props) {
-  const [formState, setFormState] = useState({ email: "", password: "" });
-  const [login, { error, data }] = useMutation(LOGIN_USER);
-
-  // submit form
-  const handleFormSubmit = async (event) => {
-    event.preventDefault();
-    console.log(formState);
-    try {
-      const { data } = await login({
-        variables: { ...formState },
+export default function SignupForm(props) {
+    const [formState, setFormState] = useState({
+        username: '',
+        email: '',
+        password: '',
       });
+      const [addUser, { error, data }] = useMutation(ADD_USER);
+    
+      const handleChange = (event) => {
+        const { name, value } = event.target;
+    
+        setFormState({
+          ...formState,
+          [name]: value,
+        });
+      };
+    
+      const handleFormSubmit = async (event) => {
+        event.preventDefault();
+        console.log(formState);
+    
+        try {
+          const { data } = await addUser({
+            variables: { ...formState },
+          });
+    
+          Auth.login(data.addUser.token);
+        } catch (e) {
+          console.error(e);
+        }
+      };
 
-      Auth.login(data.login.token);
-    } catch (e) {
-      console.error(e);
-    }
-
-    // clear form values
-    setFormState({
-      email: "",
-      password: "",
-    });
-  };
-
-  // update state based on form input changes
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-
-    setFormState({
-      ...formState,
-      [name]: value,
-    });
-  };
   return (
     <GridContainer>
       <Form onSubmit={handleFormSubmit}>
+      <Field>
+          <Label>
+            <UserIcon src={userIcon}></UserIcon>
+          </Label>
+          <UserInput
+            placeholder="User"
+            name="username"
+            type="username"
+            value={formState.username}
+            onChange={handleChange}
+          />
+        </Field>
         <Field>
           <Label>
             <EmailIcon src={emailIcon}></EmailIcon>
@@ -171,7 +209,8 @@ export default function LoginForm(props) {
           />
         </Field>
 
-        <SubmitInput type="submit" value="Sign In"></SubmitInput>
+          <SubmitInput type="submit" value="Sign Up"></SubmitInput>
+
       </Form>
     </GridContainer>
   );

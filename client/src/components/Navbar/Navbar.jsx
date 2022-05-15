@@ -2,6 +2,8 @@
 import React from "react";
 import styled from "styled-components";
 
+import Auth from "../../utils/auth";
+
 import { Link } from "react-router-dom";
 
 import logo from "../../assets/images/logo.png";
@@ -79,26 +81,51 @@ const SignUpLink = styled.a`
 `;
 
 export default function Navbar() {
-  return (
-    <Header>
-      <FlexBetweenContainer>
-        <Link to="/">
-          <LogoWrapper>
-            <LinkWrapper>
-              <Logo className="noselect" src={logo} />
-              <LogoText className="noselect">costradamus</LogoText>
-            </LinkWrapper>
-          </LogoWrapper>
-        </Link>
-        <ButtonWrapper>
-          <Link to="/login">
-            <LoginLink className="noselect">Login</LoginLink>
+  if (Auth.loggedIn()) {
+    return (
+      <Header>
+        <FlexBetweenContainer>
+          <Link to="/">
+            <LogoWrapper>
+              <LinkWrapper>
+                <Logo className="noselect" src={logo} />
+                <LogoText className="noselect">costradamus</LogoText>
+              </LinkWrapper>
+            </LogoWrapper>
           </Link>
-          <Link to="/signup">
-            <SignUpLink className="noselect">Sign Up</SignUpLink>
+          <ButtonWrapper>
+            <Link to="/profile">
+              <LoginLink className="noselect">Profile</LoginLink>
+            </Link>
+            <Link to="/" onClick={() => Auth.logout()}>
+              <SignUpLink className="noselect">Log Out</SignUpLink>
+            </Link>{" "}
+          </ButtonWrapper>
+        </FlexBetweenContainer>
+      </Header>
+    );
+  } else {
+    return (
+      <Header>
+        <FlexBetweenContainer>
+          <Link to="/">
+            <LogoWrapper>
+              <LinkWrapper>
+                <Logo className="noselect" src={logo} />
+                <LogoText className="noselect">costradamus</LogoText>
+              </LinkWrapper>
+            </LogoWrapper>
           </Link>
-        </ButtonWrapper>
-      </FlexBetweenContainer>
-    </Header>
-  );
+          <ButtonWrapper>
+            <Link to="/login">
+              <LoginLink className="noselect">Login</LoginLink>
+            </Link>
+            <Link to="/signup">
+              <SignUpLink className="noselect">Sign Up</SignUpLink>
+            </Link>{" "}
+          </ButtonWrapper>
+        </FlexBetweenContainer>
+      </Header>
+    );
+  }
 }
