@@ -7,9 +7,7 @@ import Auth from "../utils/auth";
 import Landing from "../components/Landing/Landing";
 
 const Home = () => {
-  return (
-    <Landing />
-  )
+  return <Landing />;
 };
 
 export default Home;

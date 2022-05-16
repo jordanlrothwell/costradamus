@@ -1,8 +1,10 @@
-import React from "react"
+import React from "react";
 
-import Builder from "../components/Builder/Builder"
+import Builder from "../components/Builder/Builder";
+
 
 export default function Matter() {
-    return <Builder/>
+  return (
+      <Builder />
+  );
 }
-

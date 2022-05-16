@@ -180,24 +180,6 @@
         }
     },
     {
-        "itemNumber": 11,
-        "description": "If the attendance exceeds half an hour - for each quarter hour thereafter.",
-        "special": {
-            "rate": null,
-            "amount": null
-        },
-        "category": "View",
-        "scale": {
-            "A": null,
-            "B": null,
-            "C": 19,
-            "D": 53,
-            "E": 53,
-            "F": 53,
-            "G": 53
-        }
-    },
-    {
         "itemNumber": 12,
         "description": "Notice of discovery including filing and service.",
         "special": {
@@ -684,24 +666,6 @@
         }
     },
     {
-        "itemNumber": 38,
-        "description": "For each subsequent hour.",
-        "special": {
-            "rate": null,
-            "amount": null
-        },
-        "category": "Mediation",
-        "scale": {
-            "A": 54,
-            "B": 100,
-            "C": 126,
-            "D": 147,
-            "E": 190,
-            "F": 230,
-            "G": 268
-        }
-    },
-    {
         "itemNumber": 39,
         "description": "Attending mediation with counsel (where necessary) per hour.",
         "special": {
@@ -717,42 +681,6 @@
             "E": 190,
             "F": 230,
             "G": 268
-        }
-    },
-    {
-        "itemNumber": 40,
-        "description": "If Australian lawyer attends at a place more than 50 kilometres from the Australian lawyer's place of business, an additional fee may be allowed.",
-        "special": {
-            "rate": null,
-            "amount": null
-        },
-        "category": "Mediation",
-        "scale": {
-            "A": null,
-            "B": null,
-            "C": null,
-            "D": null,
-            "E": null,
-            "F": null,
-            "G": null
-        }
-    },
-    {
-        "itemNumber": 41,
-        "description": "The reasonable costs of a mediation held before the commencement of proceedings may be allowed.",
-        "special": {
-            "rate": null,
-            "amount": null
-        },
-        "category": "Mediation",
-        "scale": {
-            "A": null,
-            "B": null,
-            "C": null,
-            "D": null,
-            "E": null,
-            "F": null,
-            "G": null
         }
     },
     {
@@ -828,24 +756,6 @@
         }
     },
     {
-        "itemNumber": 46,
-        "description": "If attendance at Court exceeds 6 hours - for each hour thereafter.",
-        "special": {
-            "rate": null,
-            "amount": null
-        },
-        "category": "Court attendance",
-        "scale": {
-            "A": 83,
-            "B": 155,
-            "C": 184,
-            "D": 226,
-            "E": 280,
-            "F": 336,
-            "G": 393
-        }
-    },
-    {
         "itemNumber": 47,
         "description": "Attendance at Court by Australian lawyer on hearing with counsel for the first 3 hours.",
         "special": {
@@ -861,24 +771,6 @@
             "E": 561,
             "F": 675,
             "G": 780
-        }
-    },
-    {
-        "itemNumber": 48,
-        "description": "If attendance exceeds 3 hours - for each hour thereafter.",
-        "special": {
-            "rate": null,
-            "amount": null
-        },
-        "category": "Court attendance",
-        "scale": {
-            "A": 54,
-            "B": 100,
-            "C": 126,
-            "D": 148,
-            "E": 183,
-            "F": 222,
-            "G": 261
         }
     },
     {
@@ -954,24 +846,6 @@
         }
     },
     {
-        "itemNumber": 53,
-        "description": "Brief on hearing for each day or part of a day.",
-        "special": {
-            "rate": null,
-            "amount": null
-        },
-        "category": "Fees to counsel",
-        "scale": {
-            "A": 494,
-            "B": 1107,
-            "C": 1493,
-            "D": 1789,
-            "E": 2233,
-            "F": 2682,
-            "G": 2929
-        }
-    },
-    {
         "itemNumber": 55,
         "description": "Attending mediation, for the first 4 hours or part thereof.",
         "special": {
@@ -987,24 +861,6 @@
             "E": 874,
             "F": 1051,
             "G": 1224
-        }
-    },
-    {
-        "itemNumber": 56,
-        "description": "For each subsequent hour. ",
-        "special": {
-            "rate": null,
-            "amount": null
-        },
-        "category": "Fees to counsel",
-        "scale": {
-            "A": 62,
-            "B": 112,
-            "C": 137,
-            "D": 164,
-            "E": 221,
-            "F": 260,
-            "G": 306
         }
     },
     {
@@ -1206,42 +1062,6 @@
         }
     },
     {
-        "itemNumber": 67,
-        "description": "Attendance (personal or by telephone) of an Australian lawyer or managing clerk and involving the exercise of skill or legal knowledge - for each quarter hour.",
-        "special": {
-            "rate": null,
-            "amount": null
-        },
-        "category": "Attendances",
-        "scale": {
-            "A": 54,
-            "B": 54,
-            "C": 54,
-            "D": 54,
-            "E": 54,
-            "F": 54,
-            "G": 54
-        }
-    },
-    {
-        "itemNumber": 68,
-        "description": "Attendance which does not involve the exercise of skill or legal knowledge - for each quarter hour.",
-        "special": {
-            "rate": null,
-            "amount": null
-        },
-        "category": "Attendances",
-        "scale": {
-            "A": 26,
-            "B": 26,
-            "C": 26,
-            "D": 26,
-            "E": 26,
-            "F": 26,
-            "G": 26
-        }
-    },
-    {
         "itemNumber": 69,
         "description": "Warrant to seize property or of delivery including instructions, preparation and issuing.",
         "special": {
@@ -1401,42 +1221,6 @@
             "E": 13,
             "F": 13,
             "G": 13
-        }
-    },
-    {
-        "itemNumber": 78,
-        "description": "For every necessary visit made in attempting service of Court documents and for each report of non-service where the time, date and number of visits attempting service are shown by affidavit.",
-        "special": {
-            "rate": null,
-            "amount": null
-        },
-        "category": "Service",
-        "scale": {
-            "A": 53,
-            "B": 53,
-            "C": 53,
-            "D": 53,
-            "E": 53,
-            "F": 53,
-            "G": 53
-        }
-    },
-    {
-        "itemNumber": 79,
-        "description": "In addition to the abovementioned service fees an allowance at the rate of 72 cents for each 1 kilometre in respect of any distance measured both ways from the nearest court house or other building where the Court is held, or the residence of the person who served the court document, whichever is the closer, to the place of service or attempted service of the document.",
-        "special": {
-            "rate": 0.72,
-            "amount": 0
-        },
-        "category": "Service",
-        "scale": {
-            "A": null,
-            "B": null,
-            "C": null,
-            "D": null,
-            "E": null,
-            "F": null,
-            "G": null
         }
     },
     {

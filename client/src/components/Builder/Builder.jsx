@@ -7,11 +7,13 @@ import { ADD_MATTER, UPDATE_MATTER } from "../../utils/mutations";
 
 import tinyLogo from "../../assets/images/tiny-logo.png";
 
+import Viewer from "../PDFPreview/Viewer"
+
 import costData from "../../data/costData.json";
 
 const ColumnContainer = styled.div`
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: 1fr 1fr 1fr;
   padding: grid;
 `;
 
@@ -24,7 +26,7 @@ const Column = styled.div`
   margin-top: 3rem;
   margin-left: 1rem;
   margin-right: 1rem;
-  min-width: 34.5rem;
+  min-width: 10rem;
 `;
 
 const ColumnHeader = styled.div`
@@ -212,7 +214,7 @@ export default function Builder() {
           </Holder>
         </Column>
       </DragDropContext>
-      <iframe></iframe>
+      <Viewer/>
     </ColumnContainer>
   );
 }

@@ -27,50 +27,64 @@ export const QUERY_USER = gql`
 `;
 
 export const QUERY_ME = gql`
-  query me {
-    me {
+query Query {
+  me {
+    _id
+    username
+    email
+    password
+    matters {
       _id
-      username
-      email
-      matters {
-        reference
-        quantum {
-          claimedAmount
-          awardedAmount
+      reference
+      quantum
+      costs {
+        itemNumber
+        description
+        scale {
+          A
+          B
+          C
+          D
+          E
+          F
+          G
         }
-        offer {
-          isPlaintiff
+        category
+        special {
+          rate
           amount
-          date
         }
-        milestones {
-          defence
-          preHearing
-          arbitration
-        }
+      }
     }
   }
+}
 `;
 
 export const QUERY_MATTERS = gql`
-  query matters($username: String!) {
-    matters(username: $username) {
-      reference
-      quantum {
-        claimedAmount
-        awardedAmount
+query Matters($username: String) {
+  matters(username: $username) {
+    _id
+    reference
+    quantum
+    costs {
+      itemNumber
+      description
+      scale {
+        A
+        B
+        C
+        D
+        E
+        F
+        G
       }
-      offer {
-        isPlaintiff
+      category
+      special {
+        rate
         amount
-        date
-      }
-      milestones {
-        defence
-        preHearing
-        arbitration
       }
     }
   }
+}
 `;
 

@@ -26,27 +26,31 @@ export const ADD_USER = gql`
 `;
 
 export const ADD_MATTER = gql`
-  mutation createMatter($reference: String!, $quantum: QuantumInput, $offer: OfferInput, $milestones: MilestoneInput) {
-    createMatter(reference: $reference, quantum: $quantum, offer: $offer, milestones: $milestones) {
-      _id
-      reference
-      quantum {
-        claimedAmount
-        awardedAmount
+mutation Mutation($reference: String!) {
+  addMatter(reference: $reference) {
+    _id
+    reference
+    quantum
+    costs {
+      itemNumber
+      description
+      scale {
+        A
+        B
+        C
+        D
+        E
+        F
+        G
       }
-      offer {
-        isPlaintiff
+      category
+      special {
+        rate
         amount
-        date
       }
-      milestones {
-        defence
-        preHearing
-        arbitration
-      }
-      matterUser
     }
   }
+}
 `;
 
 export const UPDATE_MATTER = gql`
