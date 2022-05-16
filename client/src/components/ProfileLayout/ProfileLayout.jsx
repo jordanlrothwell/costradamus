@@ -1,106 +1,62 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { useMutation } from "@apollo/client";
 
-const GridContainer = styled.div`
-  margin-top: 15rem;
-  inline-size: 90%;
-  margin-inline: auto;
-  max-inline-size: 30rem;
-`;
-
-const Form = styled.form`
-  display: grid;
-  gap: 0.875rem;
-  height: 100%;
-`;
-
-const Field = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 5fr;
-`;
-
-const Label = styled.label`
-  padding: 1rem;
-  padding-left: 2rem;
-  background-color: #7cc4eb;
-`;
-
-const EmailIcon = styled.img`
-  width: 2rem;
-  height: 2rem;
-  margin-left: -0.5rem;
-`;
-
-const EmailInput = styled.input`
-  background-image: none;
-  border: 0;
-  color: #ffffff;
-  font-family: "Source Sans Pro", sans-serif;
-  font-size: 1.25rem;
-  outline: 0;
-  padding: 1rem;
-  transition: background-color 0.3s;
-  &:hover {
-    background-color: #0487c4;
-  }
-  &:focus {
-    background-color: #0487c4;
-  }
-  &:active {
-    background-color: #0487c4;
-  }
-  background-color: #7cc4eb;
-`;
-
-const PasswordIcon = styled.img`
-  width: 2rem;
-  height: 2rem;
-  margin-left: -0.5rem;
-`;
-
-const PasswordInput = styled.input`
-  background-image: none;
-  border: 0;
-  color: #ffffff;
-  font-family: "Source Sans Pro", sans-serif;
-  font-size: 1.25rem;
-  outline: 0;
-  padding: 1rem;
-  transition: background-color 0.3s;
-  &:hover {
-    background-color: #0487c4;
-  }
-  &:focus {
-    background-color: #0487c4;
-  }
-  &:active {
-    background-color: #0487c4;
-  }
-  background-color: #7cc4eb;
-`;
-
-const SubmitInput = styled.input`
-  background-image: none;
-  border: 0;
-  color: #ffffff;
-  font-family: "Source Sans Pro", sans-serif;
-  font-size: 1.25rem;
-  outline: 0;
-  padding: 1rem;
-  transition: background-color 0.3s;
-  &:hover {
-    background-color: #dc5c04;
-  }
-  &:focus {
-    background-color: #dc5c04;
-  }
-  &:active {
-    background-color: #dc5c04;
-  }
-  background-color: #f9b15b;
-  cursor: pointer;
-`;
+import { QUERY_MATTERS, QUERY_ME } from "../../utils/queries";
+import { ADD_MATTER } from "../../utils/mutations";
 
 export default function LoginForm() {
-  
+  const [reference, setReference] = useState("");
+
+  const [addMatter, { error }] = useMutation(ADD_MATTER, {
+    update(cache, { data: { addMatter } }) {
+      try {
+        const { matters } = cache.readQuery({ query: QUERY_MATTERS });
+
+        cache.writeQuery({
+          query: QUERY_MATTERS,
+          data: { matters: [addMatter, ...matters] },
+        });
+      } catch (err) {
+        console.error(err);
+      }
+
+      const { me } = cache.readQuery({ query: QUERY_ME });
+      cache.writeQuery({
+        query: QUERY_ME,
+        data: { me: { ...me, matters: [...me.matters, addMatter] } },
+      });
+    },
+  });
+
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
+
+    try {
+      const { data } = await addMatter({
+        variables: {
+          reference,
+        },
+      });
+
+      setReference("");
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const handleChange = (event) => {
+    const {name, value} = event.target;
+
+    if (name === "reference") {
+      setReference(value);
+    }
+  }
+
+  return (
+    <form onSubmit={handleFormSubmit}>
+      <textarea name="reference" value={reference} onchange={handleChange}></textarea>
+      <button></button>
+    </form>
+  );
 }

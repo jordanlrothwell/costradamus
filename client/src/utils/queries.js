@@ -6,6 +6,22 @@ export const QUERY_USER = gql`
       _id
       username
       email
+      matters {
+        reference
+        quantum {
+          claimedAmount
+          awardedAmount
+        }
+        offer {
+          isPlaintiff
+          amount
+          date
+        }
+        milestones {
+          defence
+          preHearing
+          arbitration
+        }
     }
   }
 `;
@@ -16,8 +32,45 @@ export const QUERY_ME = gql`
       _id
       username
       email
+      matters {
+        reference
+        quantum {
+          claimedAmount
+          awardedAmount
+        }
+        offer {
+          isPlaintiff
+          amount
+          date
+        }
+        milestones {
+          defence
+          preHearing
+          arbitration
+        }
     }
   }
 `;
 
+export const QUERY_MATTERS = gql`
+  query matters($username: String!) {
+    matters(username: $username) {
+      reference
+      quantum {
+        claimedAmount
+        awardedAmount
+      }
+      offer {
+        isPlaintiff
+        amount
+        date
+      }
+      milestones {
+        defence
+        preHearing
+        arbitration
+      }
+    }
+  }
+`;
 

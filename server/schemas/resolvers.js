@@ -5,15 +5,20 @@ const { signToken } = require("../utils/auth");
 // resolvers for the GraphQL schema
 const resolvers = {
   Query: {
-    // returns all users
-    users: async () => await User.find().populate("matters"),
-    // returns a user by username
-    user: async (root, { username }) =>
-      await User.findOne({ username }).populate("matters"),
-    // returns all costs
+    users: async () => {
+      return User.find().populate("matters");
+    },
+    user: async (parent, { username }) => {
+      await User.findOne({ username }).populate("matters");
+    },
+    matters: async (parent, { username }) => {
+      const params = username ? { username } : {};
+      return await Matter.find(params).populate();
+    },
+    matter: async (parent, { reference }) => {
+      await Matter.findOne({ reference });
+    },
     costs: async () => await Cost.find(),
-    // returns all matters
-    matters: async () => await Matter.find(),
     // returns the current user
     me: async (root, args, context) => {
       if (context.user) {
@@ -21,26 +26,6 @@ const resolvers = {
       }
       throw new AuthenticationError("You are not logged in");
     },
-  },
-  Matter: {
-    // returns the quantum of a matter
-    quantum: async (root) => await Quantum.findOne({ matter: root._id }),
-    // returns the offer of a matter
-    offer: async (root) => await Offer.findOne({ matter: root._id }),
-    // returns the milestones of a matter
-    milestones: async (root) => await Milestone.find({ matter: root._id }),
-    // returns the user of a matter
-    matterUser: async (root) => await User.findOne({ _id: root.matterUser }),
-  },
-  Cost: {
-    // returns the scale of a cost
-    scale: async (root) => await Scale.findOne({ cost: root._id }),
-    // returns the special of a cost
-    special: async (root) => await Special.findOne({ cost: root._id }),
-  },
-  User: {
-    // returns the matters of a user
-    matters: async (root) => await Matter.find({ user: root._id }),
   },
 
   Mutation: {
@@ -68,31 +53,12 @@ const resolvers = {
       if (context.user) {
         const matter = await Matter.create({
           reference,
-          matterUser: context.user.username,
         });
         await User.findOneAndUpdate(
           { _id: context.user._id },
           { $addToSet: { matters: matter._id } }
         );
         return matter;
-      }
-      throw new AuthenticationError("You are not logged in");
-    },
-    // updates a matter
-    updateMatter: async (
-      root,
-      { reference, quantum, offer, milestones },
-      context
-    ) => {
-      if (context.user) {
-        const matter = await Matter.findOneAndUpdate(
-          { _id: root._id },
-          { reference, quantum, offer, milestones }
-        );
-        await User.findOneAndUpdate(
-          { _id: context.user._id },
-          { $addToSet: { matters: matter._id } }
-        );
       }
       throw new AuthenticationError("You are not logged in");
     },

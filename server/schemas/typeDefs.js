@@ -11,17 +11,11 @@ const typeDefs = gql`
     matters: [Matter]
   }
 
-  type Auth {
-    token: ID!
-    user: User
-  }
-
-  type Query {
-    users: [User]
-    user(username: String!): User
+  type Matter {
+    _id: ID
+    reference: String
+    quantum: Float
     costs: [Cost]
-    matters: [Matter]
-    me: User
   }
 
   type Cost {
@@ -47,31 +41,18 @@ const typeDefs = gql`
     amount: Int
   }
 
-  type Matter {
-    reference: String!
-    quantum: Quantum
-    offer: Offer
-    milestones: Milestone
-    matterUser: ID
+  type Auth {
+    token: ID!
+    user: User
   }
 
-  type Quantum {
-    claimedAmount: Float
-    awardedAmount: Float
-  }
-
-  scalar Date # Custom scalar type
-
-  type Offer {
-    isPlaintiff: Boolean!
-    amount: Float
-    date: Date
-  }
-
-  type Milestone {
-    defence: Date
-    preHearing: Date
-    arbitration: Date
+  type Query {
+    users: [User]
+    user(username: String!): User
+    matters(username: String): [Matter]
+    matter(matterID: ID!): Matter
+    costs(matterID: ID!): Cost
+    me: User
   }
 
   input CostInput {
@@ -97,41 +78,11 @@ const typeDefs = gql`
     amount: Int
   }
 
-  input QuantumInput {
-    claimedAmount: Float
-    awardedAmount: Float
-  }
-
-  input OfferInput {
-    isPlaintiff: Boolean
-    amount: Float
-    date: String
-  }
-
-  input MilestoneInput {
-    defence: Date
-    preHearing: Date
-    arbitration: Date
-  }
-  
-  input MatterInput {
-    reference: String
-    description: String
-    quantum: QuantumInput
-    offer: OfferInput
-    milestones: MilestoneInput
-    matterUser: ID
-  }
-
   type Mutation {
     addUser(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
+    createMatter(reference: String!): Matter
     createCost(input: CostInput!): Cost
-    createMatter(input: MatterInput!): Matter
-    updateCost(id: ID!, input: CostInput!): Cost
-    updateMatter(id: ID!, input: MatterInput!): Matter
-    deleteCost(id: ID!): Cost
-    deleteMatter(id: ID!): Matter
   }
 `;
 

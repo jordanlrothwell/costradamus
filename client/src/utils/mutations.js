@@ -19,14 +19,15 @@ export const ADD_USER = gql`
       user {
         _id
         username
+
       }
     }
   }
 `;
 
 export const ADD_MATTER = gql`
-  mutation addMatter($reference: String!, $quantum: QuantumInput, $offer: OfferInput, $milestones: MilestoneInput) {
-    addMatter(reference: $reference, quantum: $quantum, offer: $offer, milestones: $milestones) {
+  mutation createMatter($reference: String!, $quantum: QuantumInput, $offer: OfferInput, $milestones: MilestoneInput) {
+    createMatter(reference: $reference, quantum: $quantum, offer: $offer, milestones: $milestones) {
       _id
       reference
       quantum {
