@@ -12,6 +12,7 @@ const matterSchema = new Schema({
   quantum: {
     type: Number,
   },
+  costPool: [{ type: Schema.Types.ObjectId, ref: "Cost" }],
   costs: [
     {
       type: Schema.Types.ObjectId,

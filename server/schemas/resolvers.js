@@ -52,21 +52,29 @@ const resolvers = {
       return { token, user };
     },
     addMatter: async (parent, { reference }, context) => {
-      if (context.user) {
-        const matter = await Matter.create({
-          reference,
-          matterAuthor: context.user.username,
-        });
+      // get all costs from the db and add them to costPool
+      const costs = await Cost.find();
+      const matter = await Matter.create({
+        reference,
+        matterAuthor: context.user.username,
+        quantum: 0,
+      });
 
+      costs.forEach((cost) => {
+        matter.costPool.push(cost);
+      }
+      );
+      
         await User.findOneAndUpdate(
           { _id: context.user._id },
           { $addToSet: { matters: matter._id } }
         );
 
         return matter;
-      }
+      
       throw new AuthenticationError("You need to be logged in!");
     },
+    // remove cost from costPool and add to costs
     addCost: async (parent, { matterId, costId }, context) => {
       if (context.user) {
         return Matter.findOneAndUpdate(
@@ -75,6 +83,9 @@ const resolvers = {
             $addToSet: {
               costs:  costId ,
             },
+            $pull: {
+              costPool: costId,
+            }
           },
           {
             new: true,
@@ -100,6 +111,7 @@ const resolvers = {
       }
       throw new AuthenticationError("You need to be logged in!");
     },
+    // remove cost from costs and add back to costPool
     removeCost: async (parent, { matterId, costId }, context) => {
       if (context.user) {
         return Matter.findOneAndUpdate(
@@ -108,6 +120,9 @@ const resolvers = {
             $pull: {
               costs: costId
             },
+            $addToSet: {
+              costPool: costId
+            }
           },
           { new: true }
         );

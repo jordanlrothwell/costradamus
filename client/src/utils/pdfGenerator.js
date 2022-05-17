@@ -111,9 +111,7 @@ const pdfGenerator = (matterRef, items, quantum) => {
 
   function generateRow(x, y, currentItem, quantum) {
     const amount = getScale(currentItem, quantum);
-
     const amountString = currencyFormatter(amount);
-
     doc
       .fontSize(10)
       .text(currentItem.itemNumber, x, y, { align: "left" })
@@ -123,21 +121,15 @@ const pdfGenerator = (matterRef, items, quantum) => {
 
   function generateTable(items, quantum) {
     const [x, y] = formatConstants.items;
-
     let total = 0;
-
     doc
       .fontSize(10)
       .text("Item", x, y, { align: "left" })
       .text("Description", x + 70, y, { width: 300, align: "left" })
       .text("Amount", x + 420, y, { align: "left" });
-
     doc.path(`M ${x} ${y + 15} L ${x + 500} ${y + 15}`).stroke();
-
     let currentY = y + 30;
-
     let spacingCount = 0;
-
     for (let i = 0; i < items.length; i++) {
       if (spacingCount <= 350) {
         generateRow(x, currentY, items[i], quantum);
@@ -153,16 +145,12 @@ const pdfGenerator = (matterRef, items, quantum) => {
         currentY += spacing;
         spacingCount += spacing;
       }
-
       total += getScale(items[i], quantum);
     }
-
     let GST = total * 0.1;
     let final = total + GST;
-
     let GSTString = currencyFormatter(GST);
     let finalString = currencyFormatter(final);
-
     doc.path(`M 365 ${currentY + 20} L 550 ${currentY + 20}`).stroke();
     doc.fontSize(10).text("GST", 365, currentY + 35, { align: "left" });
     doc.fontSize(10).text(GSTString, 470, currentY + 35, { align: "left" });
@@ -172,7 +160,7 @@ const pdfGenerator = (matterRef, items, quantum) => {
     doc.fontSize(10).text(finalString, 470, currentY + 60, { align: "left" });
     doc.path(`M 365 ${currentY + 80} L 550 ${currentY + 80}`).stroke();
   }
-
+  
   address(
     "Costradamus Law",
     "ABN: 51 496 096 744",

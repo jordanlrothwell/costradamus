@@ -7,6 +7,8 @@ import styled from "styled-components";
 import produce from "immer";
 import PDF from "../../assets/docs/output.pdf";
 import Viewer from "../Viewer";
+import {PDFViewer} from "@react-pdf/renderer"
+import MyDocument from "../TestPDF";
 
 import tinyLogo from "../../assets/tiny-logo.png";
 
@@ -147,7 +149,7 @@ function Builder() {
         fromIndex: result.source.index,
         toIndex: result.destination.index,
       });
-      // add the cost to this matter
+      // if droppable
       addCost({
         variables: {
           matterId: "62836efb92c0ab7b156af3ce",
@@ -273,7 +275,7 @@ function Builder() {
             </Droppable>
           </Holder>
         </Column>
-        <Viewer pdf={PDF} />
+
       </DragDropContext>
     </ColumnContainer>
   );

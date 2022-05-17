@@ -14,7 +14,8 @@ const typeDefs = gql`
     reference: String
     matterAuthor: String
     quantum: Float
-    costs: [Cost]!
+    costPool: [Cost]
+    costs: [Cost]
   }
 
   type Cost {
