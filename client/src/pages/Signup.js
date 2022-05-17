@@ -11,7 +11,7 @@ import emailIcon from "../assets/svg/emailIcon.svg";
 import lockIcon from "../assets/svg/lockIcon.svg";
 
 const GridContainer = styled.div`
-  margin-top: 15rem;
+  margin-top: 15.5rem;
   inline-size: 90%;
   margin-inline: auto;
   max-inline-size: 30rem;

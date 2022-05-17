@@ -1,15 +1,14 @@
-import React, { useCallback, useReducer } from "react";
+import React, { useCallback, useEffect, useReducer } from "react";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
-import { useQuery } from "@apollo/client";
-import { QUERY_COSTS } from "../../utils/queries";
+import { useQuery, useMutation } from "@apollo/client";
+import { QUERY_MATTER, QUERY_COSTS } from "../../utils/queries";
+import { ADD_COST, REMOVE_COST } from "../../utils/mutations";
 import styled from "styled-components";
 import produce from "immer";
-import PDF from "../../assets/docs/output.pdf"
+import PDF from "../../assets/docs/output.pdf";
 import Viewer from "../Viewer";
 
 import tinyLogo from "../../assets/tiny-logo.png";
-
-import costData from "../../data/costData.json"
 
 const ColumnContainer = styled.div`
   display: grid;
@@ -93,6 +92,10 @@ const dragReducer = produce((draft, action) => {
       draft[action.to] = draft[action.to] || [];
       const [removed] = draft[action.from].splice(action.fromIndex, 1);
       draft[action.to].splice(action.toIndex, 0, removed);
+      break;
+    }
+    case "FETCH": {
+      return { ...draft, items: action.items };
     }
   }
 });
@@ -104,12 +107,33 @@ const getListStyle = (isDraggingOver) => ({
 });
 
 function Builder() {
+  const [addCost] = useMutation(ADD_COST);
+  const [removeCost] = useMutation(REMOVE_COST);
 
-    // set initial state
-    const [state, dispatch] = useReducer(dragReducer, {
-        items: costData,
-        items2: [],
+  const { data } = useQuery(QUERY_MATTER, {
+    variables: {
+      matterId: "62836efb92c0ab7b156af3ce",
+    },
+  });
+
+  console.log(data);
+
+  const { data: costData } = useQuery(QUERY_COSTS);
+
+  console.log(costData)
+  
+  useEffect(() => {
+    dispatch({
+      type: "FETCH",
+      items: costData?.costs ?? [],
     });
+    
+  }, [costData]);
+
+  // set initial state
+  const [state, dispatch] = useReducer(dragReducer, {
+    items: costData?.costs ?? [],
+  });
 
   const onDragEnd = useCallback((result) => {
     if (result.reason === "DROP") {
@@ -122,6 +146,20 @@ function Builder() {
         to: result.destination.droppableId,
         fromIndex: result.source.index,
         toIndex: result.destination.index,
+      });
+      // add the cost to this matter
+      addCost({
+        variables: {
+          matterId: "62836efb92c0ab7b156af3ce",
+          costId: result.draggableId,
+        },
+      });
+      // remove the cost from the other matter
+      removeCost({
+        variables: {
+          matterId: "62836efb92c0ab7b156af3ce",
+          costId: result.draggableId,
+        },
       });
     }
   }, []);
@@ -146,8 +184,8 @@ function Builder() {
                       return (
                         <Adjacent>
                           <Draggable
-                            key={cost.description}
-                            draggableId={cost.description}
+                            key={cost._id}
+                            draggableId={cost._id}
                             index={index}
                           >
                             {(provided, snapshot) => {
@@ -199,8 +237,8 @@ function Builder() {
                       return (
                         <Adjacent>
                           <Draggable
-                            key={cost.description}
-                            draggableId={cost.description}
+                            key={cost._id}
+                            draggableId={cost._id}
                             index={index}
                           >
                             {(provided, snapshot) => {
@@ -235,7 +273,7 @@ function Builder() {
             </Droppable>
           </Holder>
         </Column>
-        <Viewer pdf={PDF}/>
+        <Viewer pdf={PDF} />
       </DragDropContext>
     </ColumnContainer>
   );

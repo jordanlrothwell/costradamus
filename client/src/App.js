@@ -7,13 +7,14 @@ import {
   createHttpLink,
 } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
+import styled from "styled-components";
 
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Profile from "./pages/Profile";
 import Nav from "./components/Nav";
-import { MatterProvider } from "./utils/GlobalState";
+import Footer from "./components/Footer";
 
 const httpLink = createHttpLink({
   uri: "/graphql",
@@ -34,11 +35,16 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
+const PageContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: space-between;
+  `
 function App() {
   return (
     <ApolloProvider client={client}>
       <Router>
-        <MatterProvider>
+        <PageContainer>
           <Nav />
           <Routes>
             <Route path="/" element={<Home />} />
@@ -46,7 +52,8 @@ function App() {
             <Route path="/signup" element={<Signup />} />
             <Route path="/profile" element={<Profile />} />
           </Routes>
-        </MatterProvider>
+          <Footer />
+        </PageContainer>
       </Router>
     </ApolloProvider>
   );

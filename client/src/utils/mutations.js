@@ -53,19 +53,25 @@ mutation Mutation($reference: String!) {
 `;
 
 export const ADD_COST = gql`
-mutation Mutation($matterId: ID!, $costNumber: Float!) {
-  addCost(matterId: $matterId, costNumber: $costNumber) {
+mutation Mutation($matterId: ID!, $costId: ID!) {
+  addCost(matterId: $matterId, costId: $costId) {
     _id
-    itemNumber
-    description
-    scale {
-      A
-      B
-      C
-      D
-      E
-      F
-      G
+    reference
+    matterAuthor
+    quantum
+    costs {
+      _id
+      itemNumber
+      description
+      scale {
+        A
+        B
+        C
+        D
+        E
+        F
+        G
+      }
     }
   }
 }
@@ -97,19 +103,25 @@ mutation Mutation($matterId: ID!) {
 `;
 
 export const REMOVE_COST = gql`
-mutation Mutation($matterId: ID!, $costNumber: Float!) {
-  removeCost(matterId: $matterId, costNumber: $costNumber) {
+mutation Mutation($removeCostMatterId2: ID!, $removeCostCostId2: ID!) {
+  removeCost(matterId: $removeCostMatterId2, costId: $removeCostCostId2) {
     _id
-    itemNumber
-    description
-    scale {
-      A
-      B
-      C
-      D
-      E
-      F
-      G
+    reference
+    matterAuthor
+    quantum
+    costs {
+      _id
+      itemNumber
+      description
+      scale {
+        A
+        B
+        C
+        D
+        E
+        F
+        G
+      }
     }
   }
 }

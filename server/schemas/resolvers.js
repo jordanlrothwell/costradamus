@@ -12,10 +12,10 @@ const resolvers = {
     },
     matters: async (parent, { username }) => {
       const params = username ? { username } : {};
-      return Matter.find(params);
+      return Matter.find(params).populate("costs");
     },
     matter: async (parent, { matterId }) => {
-      return Matter.findOne({ _id: matterId });
+      return Matter.findOne({ _id: matterId }).populate("costs");
     },
     me: async (parent, args, context) => {
       if (context.user) {
@@ -67,13 +67,13 @@ const resolvers = {
       }
       throw new AuthenticationError("You need to be logged in!");
     },
-    addCost: async (parent, { matterId, costNumber }, context) => {
+    addCost: async (parent, { matterId, costId }, context) => {
       if (context.user) {
         return Matter.findOneAndUpdate(
           { _id: matterId },
           {
             $addToSet: {
-              costs: { costNumber },
+              costs:  costId ,
             },
           },
           {
@@ -100,15 +100,13 @@ const resolvers = {
       }
       throw new AuthenticationError("You need to be logged in!");
     },
-    removeCost: async (parent, { matterId, costNumber }, context) => {
+    removeCost: async (parent, { matterId, costId }, context) => {
       if (context.user) {
         return Matter.findOneAndUpdate(
           { _id: matterId },
           {
             $pull: {
-              costs: {
-                _id: costNumber,
-              },
+              costs: costId
             },
           },
           { new: true }

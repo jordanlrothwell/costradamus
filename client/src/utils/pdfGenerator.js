@@ -1,6 +1,6 @@
 import PDFDocument from "pdfkit";
 import fs from "fs"
-import logo from "./assets/mainLogo.png"
+import logo from "./assets/mainLogo.jpg"
 
 const pdfGenerator = (matterRef, items, quantum) => {
     var doc = new PDFDocument();

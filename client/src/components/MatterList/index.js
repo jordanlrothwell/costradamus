@@ -1,39 +1,25 @@
 import React from "react";
+import { useQuery } from "@apollo/client";
+import { QUERY_MATTERS } from "../../utils/queries";
 import { Link } from "react-router-dom";
+import Auth from "../../utils/auth";
 
-const MatterList = ({ matters }) => {
-  if (!matters.length) {
+const MatterList = () => {
+  const { username } = Auth.getProfile().data;
+
+  const { data } = useQuery(QUERY_MATTERS, {
+    variables: {
+      username: username,
+    },
+  });
+
+  if (!data?.matters.length) {
     return <h3>No Matters Yet</h3>;
   }
 
   return (
-    <div>
-      {matters &&
-        matters.map((matter) => (
-          <div key={matter._id} className="card mb-3">
-            <h4 className="card-header bg-primary text-light p-2 m-0">
-              {
-                <Link
-                  className="text-light"
-                  to={`/profiles/${matter.matterAuthor}`}
-                >
-                  {matter.reference}
-                </Link>
-              }
-            </h4>
-            <div className="card-body bg-light p-2">
-              <p>{matter.reference}</p>
-            </div>
-            <Link
-              className="btn btn-primary btn-block btn-squared"
-              to={`/matters/${matter._id}`}
-            >
-              Join the discussion on this matter.
-            </Link>
-          </div>
-        ))}
-    </div>
-  );
+    <div></div>
+  )
 };
 
 export default MatterList;

@@ -52,9 +52,9 @@ const typeDefs = gql`
     addUser(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
     addMatter(reference: String!): Matter
-    addCost(matterId: ID!, costNumber: Float!): Matter
+    addCost(matterId: ID!, costId: ID!): Matter
     removeMatter(matterId: ID!): Matter
-    removeCost(matterId: ID!, costNumber: Float!): Matter
+    removeCost(matterId: ID!, costId: ID!): Matter
   }
 `;
 

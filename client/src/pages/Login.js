@@ -11,7 +11,7 @@ import emailIcon from "../assets/svg/emailIcon.svg";
 import lockIcon from "../assets/svg/lockIcon.svg";
 
 const GridContainer = styled.div`
-  margin-top: 15rem;
+  margin-top: 20rem;
   inline-size: 90%;
   margin-inline: auto;
   max-inline-size: 30rem;
@@ -110,6 +110,19 @@ const SubmitInput = styled.input`
   cursor: pointer;
 `;
 
+const ErrorField = styled.div`
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-items: center;
+`
+
+const ErrorText = styled.p`
+  color: #dc5c04;
+  font-size: 1.25rem;
+  font-weight: 500;
+  transition: color 0.3s;
+`;
+
 function Login() {
   const [formState, setFormState] = useState({ email: "", password: "" });
   const [login, { error, data }] = useMutation(LOGIN);
@@ -159,6 +172,7 @@ function Login() {
             onChange={handleChange}
           />
         </Field>
+        
         <Field>
           <Label>
             <PasswordIcon className="noselect" src={lockIcon}></PasswordIcon>
@@ -173,6 +187,11 @@ function Login() {
         </Field>
 
         <SubmitInput type="submit" value="Sign In"></SubmitInput>
+        {error ? (
+          <ErrorField>
+            <ErrorText className="fade-out noselect" >{error.message}</ErrorText>
+          </ErrorField>
+        ) : null}
       </Form>
     </GridContainer>
   );
