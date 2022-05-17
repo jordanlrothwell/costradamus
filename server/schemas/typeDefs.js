@@ -45,6 +45,7 @@ const typeDefs = gql`
     matters(username: String): [Matter]
     matter(matterId: ID!): Matter
     me: User
+    costs: [Cost]
   }
 
   type Mutation {

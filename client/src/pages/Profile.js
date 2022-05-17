@@ -1,9 +1,12 @@
-import React from "react";
+import React from 'react';
+
+import Builder from "../components/Builder"
 
 const Profile = () => {
+
   return (
     <div>
-      
+      <Builder/>
     </div>
   );
 };

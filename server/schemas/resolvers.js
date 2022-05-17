@@ -1,27 +1,30 @@
-const { AuthenticationError } = require('apollo-server-express');
-const { User, Matter, Cost } = require('../models');
-const { signToken } = require('../utils/auth');
+const { AuthenticationError } = require("apollo-server-express");
+const { User, Matter, Cost } = require("../models");
+const { signToken } = require("../utils/auth");
 
 const resolvers = {
   Query: {
     users: async () => {
-      return User.find().populate('matters');
+      return User.find().populate("matters");
     },
     user: async (parent, { username }) => {
-      return User.findOne({ username }).populate('matters');
+      return User.findOne({ username }).populate("matters");
     },
     matters: async (parent, { username }) => {
       const params = username ? { username } : {};
-      return Matter.find(params)
+      return Matter.find(params);
     },
     matter: async (parent, { matterId }) => {
       return Matter.findOne({ _id: matterId });
     },
     me: async (parent, args, context) => {
       if (context.user) {
-        return User.findOne({ _id: context.user._id }).populate('matters');
+        return User.findOne({ _id: context.user._id }).populate("matters");
       }
-      throw new AuthenticationError('You need to be logged in!');
+      throw new AuthenticationError("You need to be logged in!");
+    },
+    costs: async () => {
+      return Cost.find();
     },
   },
 
@@ -35,13 +38,13 @@ const resolvers = {
       const user = await User.findOne({ email });
 
       if (!user) {
-        throw new AuthenticationError('No user found with this email address');
+        throw new AuthenticationError("No user found with this email address");
       }
 
       const correctPw = await user.isCorrectPassword(password);
 
       if (!correctPw) {
-        throw new AuthenticationError('Incorrect credentials');
+        throw new AuthenticationError("Incorrect credentials");
       }
 
       const token = signToken(user);
@@ -62,7 +65,7 @@ const resolvers = {
 
         return matter;
       }
-      throw new AuthenticationError('You need to be logged in!');
+      throw new AuthenticationError("You need to be logged in!");
     },
     addCost: async (parent, { matterId, costNumber }, context) => {
       if (context.user) {
@@ -79,7 +82,7 @@ const resolvers = {
           }
         );
       }
-      throw new AuthenticationError('You need to be logged in!');
+      throw new AuthenticationError("You need to be logged in!");
     },
     removeMatter: async (parent, { matterId }, context) => {
       if (context.user) {
@@ -95,7 +98,7 @@ const resolvers = {
 
         return matter;
       }
-      throw new AuthenticationError('You need to be logged in!');
+      throw new AuthenticationError("You need to be logged in!");
     },
     removeCost: async (parent, { matterId, costNumber }, context) => {
       if (context.user) {
@@ -111,7 +114,7 @@ const resolvers = {
           { new: true }
         );
       }
-      throw new AuthenticationError('You need to be logged in!');
+      throw new AuthenticationError("You need to be logged in!");
     },
   },
 };

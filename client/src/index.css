@@ -52,3 +52,9 @@ a {
 ::selection {
   background: #7cc4eb; /* WebKit/Blink Browsers */
 }
+
+.react-pdf__Page__canvas {
+  margin: 0 auto;
+  width: 100% !important;
+  height: 100% !important;
+}

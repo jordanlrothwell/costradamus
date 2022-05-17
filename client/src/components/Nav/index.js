@@ -94,7 +94,7 @@ function Nav() {
     if (Auth.loggedIn()) {
       return (
         <ButtonWrapper>
-            <Link to="/Profile">
+            <Link to="/me">
               <LoginLink className="noselect">Profile</LoginLink>
             </Link>
           {/* this is not using the Link component to logout or user and then refresh the application to the start */}

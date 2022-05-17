@@ -1,21 +1,17 @@
 import React, { createContext, useContext } from "react";
-import { useProductReducer } from './reducers'
+import { useMatterReducer } from "./reducers";
 
-const UserContext = createContext();
-const { Provider } = UserContext;
+const MatterContext = createContext();
+const { Provider } = MatterContext;
 
-const UserProvider = ({ value = [], ...props }) => {
-  const [state, dispatch] = useProductReducer({
-    matters: [],
-    costs: [],
-    currentMatter: '',
-  });
+// provider for drag and drop
+const MatterProvider = ({ children }) => {
+    const [state, dispatch] = useMatterReducer();
+    return <Provider value={[state, dispatch]}>{children}</Provider>;
+}
 
-  return <Provider value={[state, dispatch]} {...props} />;
+const useMatterContext = () => {
+  return useContext(MatterContext);
 };
 
-const useUserContext = () => {
-  return useContext(UserContext);
-};
-
-export { UserProvider, useUserContext };
+export { MatterProvider, useMatterContext };

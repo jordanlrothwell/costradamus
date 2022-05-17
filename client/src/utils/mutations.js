@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client';
+import { gql } from "@apollo/client";
 
 export const LOGIN = gql`
   mutation login($email: String!, $password: String!) {
@@ -11,36 +11,107 @@ export const LOGIN = gql`
   }
 `;
 
-export const ADD_ORDER = gql`
-  mutation addOrder($products: [ID]!) {
-    addOrder(products: $products) {
-      purchaseDate
-      products {
+export const ADD_USER = gql`
+  mutation Mutation($username: String!, $email: String!, $password: String!) {
+    addUser(username: $username, email: $email, password: $password) {
+      token
+      user {
         _id
-        name
-        description
-        price
-        quantity
-        category {
-          name
+        username
+        email
+        matters {
+          _id
         }
       }
     }
   }
 `;
 
-export const ADD_USER = gql`
-mutation Mutation($username: String!, $email: String!, $password: String!) {
-  addUser(username: $username, email: $email, password: $password) {
-    token
-    user {
+export const ADD_MATTER = gql`
+mutation Mutation($reference: String!) {
+  addMatter(reference: $reference) {
+    _id
+    reference
+    matterAuthor
+    quantum
+    costs {
       _id
-      username
-      email
-      matters {
-        _id
+      itemNumber
+      description
+      scale {
+        A
+        B
+        C
+        D
+        E
+        F
+        G
       }
     }
   }
 }
 `;
+
+export const ADD_COST = gql`
+mutation Mutation($matterId: ID!, $costNumber: Float!) {
+  addCost(matterId: $matterId, costNumber: $costNumber) {
+    _id
+    itemNumber
+    description
+    scale {
+      A
+      B
+      C
+      D
+      E
+      F
+      G
+    }
+  }
+}
+`;
+
+export const REMOVE_MATTER = gql`
+mutation Mutation($matterId: ID!) {
+  removeMatter(matterId: $matterId) {
+    _id
+    reference
+    matterAuthor
+    quantum
+    costs {
+      _id
+      itemNumber
+      description
+      scale {
+        A
+        B
+        C
+        D
+        E
+        F
+        G
+      }
+    }
+  }
+}
+`;
+
+export const REMOVE_COST = gql`
+mutation Mutation($matterId: ID!, $costNumber: Float!) {
+  removeCost(matterId: $matterId, costNumber: $costNumber) {
+    _id
+    itemNumber
+    description
+    scale {
+      A
+      B
+      C
+      D
+      E
+      F
+      G
+    }
+  }
+}
+`;
+

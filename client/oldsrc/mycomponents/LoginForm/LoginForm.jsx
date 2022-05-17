@@ -1,15 +1,14 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
 import { useMutation } from "@apollo/client";
-import { LOGIN_USER } from "../../utils/mutations";
+import { LOGIN } from "../../utils/mutations";
 
 // auth middleware
-import Auth from "../../utils/auth";
+import Auth from "../utils/auth";
 
 // icons
-import emailIcon from "../../assets/images/svg/emailIcon.svg";
-import lockIcon from "../../assets/images/svg/lockIcon.svg";
+import emailIcon from "../assets/svg/emailIcon.svg";
+import lockIcon from "../assets/svg/lockIcon.svg";
 
 const GridContainer = styled.div`
   margin-top: 15rem;

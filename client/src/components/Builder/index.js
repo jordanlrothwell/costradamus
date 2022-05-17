@@ -1,19 +1,19 @@
 import React, { useCallback, useReducer } from "react";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
+import { useQuery } from "@apollo/client";
+import { QUERY_COSTS } from "../../utils/queries";
 import styled from "styled-components";
 import produce from "immer";
-import { useMutation } from "@apollo/client";
-import { ADD_MATTER, UPDATE_MATTER } from "../../utils/mutations";
+import PDF from "../../assets/docs/output.pdf"
+import Viewer from "../Viewer";
 
 import tinyLogo from "../../assets/tiny-logo.png";
 
-import Viewer from "../PDFPreview/Viewer"
-
-import costData from "../../data/costData.json";
+import costData from "../../data/costData.json"
 
 const ColumnContainer = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1.5fr;
   padding: grid;
 `;
 
@@ -26,7 +26,7 @@ const Column = styled.div`
   margin-top: 3rem;
   margin-left: 1rem;
   margin-right: 1rem;
-  min-width: 10rem;
+  min-width: 8rem;
 `;
 
 const ColumnHeader = styled.div`
@@ -79,12 +79,12 @@ const ItemNumber = styled.span`
   font-family: "Source Sans Pro", sans-serif;
   font-size: 1.2rem;
   margin-left: -0.5rem;
-`
+`;
 
 const ItemDescription = styled.span`
   font-family: "Source Sans Pro", sans-serif;
   font-size: 1.2rem;
-`
+`;
 
 const dragReducer = produce((draft, action) => {
   switch (action.type) {
@@ -101,14 +101,16 @@ const getListStyle = (isDraggingOver) => ({
   background: isDraggingOver ? "#ffdfc9" : "white",
   borderRadius: "10px",
   padding: "1rem",
-}); 
+});
 
-export default function Builder() {
-  const [state, dispatch] = useReducer(dragReducer, {
-    // return the entire costData array without the sixth item
-    items: costData
-  });
-  
+function Builder() {
+
+    // set initial state
+    const [state, dispatch] = useReducer(dragReducer, {
+        items: costData,
+        items2: [],
+    });
+
   const onDragEnd = useCallback((result) => {
     if (result.reason === "DROP") {
       if (!result.destination) {
@@ -135,7 +137,11 @@ export default function Builder() {
             <Droppable droppableId="items" type="COST">
               {(provided, snapshot) => {
                 return (
-                  <div ref={provided.innerRef} style={getListStyle(snapshot.isDraggingOver)} {...provided.droppableProps}>
+                  <div
+                    ref={provided.innerRef}
+                    style={getListStyle(snapshot.isDraggingOver)}
+                    {...provided.droppableProps}
+                  >
                     {state.items?.map((cost, index) => {
                       return (
                         <Adjacent>
@@ -151,11 +157,17 @@ export default function Builder() {
                                   {...provided.draggableProps}
                                   {...provided.dragHandleProps}
                                 >
-                                    <TinyLogo className="noselect" src={tinyLogo} alt="tiny logo" />
-                                    <ItemNumber className="noselect">{cost.itemNumber}</ItemNumber>
-                                    <ItemDescription className="noselect">
-                                      {cost.description}
-                                    </ItemDescription>
+                                  <TinyLogo
+                                    className="noselect"
+                                    src={tinyLogo}
+                                    alt="tiny logo"
+                                  />
+                                  <ItemNumber className="noselect">
+                                    {cost.itemNumber}
+                                  </ItemNumber>
+                                  <ItemDescription className="noselect">
+                                    {cost.description}
+                                  </ItemDescription>
                                 </Card>
                               );
                             }}
@@ -178,7 +190,11 @@ export default function Builder() {
             <Droppable droppableId="items2" type="COST">
               {(provided, snapshot) => {
                 return (
-                  <div style={getListStyle(snapshot.isDraggingOver)} ref={provided.innerRef} {...provided.droppableProps}>
+                  <div
+                    style={getListStyle(snapshot.isDraggingOver)}
+                    ref={provided.innerRef}
+                    {...provided.droppableProps}
+                  >
                     {state.items2?.map((cost, index) => {
                       return (
                         <Adjacent>
@@ -194,11 +210,17 @@ export default function Builder() {
                                   {...provided.draggableProps}
                                   {...provided.dragHandleProps}
                                 >
-                                  <TinyLogo className="noselect" src={tinyLogo} alt="tiny logo" />
-                                  <ItemNumber className="noselect">{cost.itemNumber}</ItemNumber>
+                                  <TinyLogo
+                                    className="noselect"
+                                    src={tinyLogo}
+                                    alt="tiny logo"
+                                  />
+                                  <ItemNumber className="noselect">
+                                    {cost.itemNumber}
+                                  </ItemNumber>
                                   <ItemDescription className="noselect">
-                                      {cost.description}
-                                    </ItemDescription>
+                                    {cost.description}
+                                  </ItemDescription>
                                 </Card>
                               );
                             }}
@@ -213,8 +235,10 @@ export default function Builder() {
             </Droppable>
           </Holder>
         </Column>
+        <Viewer pdf={PDF}/>
       </DragDropContext>
-      <Viewer/>
     </ColumnContainer>
   );
 }
+
+export default Builder;
