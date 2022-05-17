@@ -14,8 +14,9 @@ const resolvers = {
       const params = username ? { username } : {};
       return Matter.find(params).populate("costs");
     },
+    // populate costs and costPool for a matter
     matter: async (parent, { matterId }) => {
-      return Matter.findOne({ _id: matterId }).populate("costs");
+      return Matter.findOne({ _id: matterId }).populate("costs").populate("costPool");
     },
     me: async (parent, args, context) => {
       if (context.user) {
@@ -58,12 +59,8 @@ const resolvers = {
         reference,
         matterAuthor: context.user.username,
         quantum: 0,
+        costPool: costs,
       });
-
-      costs.forEach((cost) => {
-        matter.costPool.push(cost);
-      }
-      );
       
         await User.findOneAndUpdate(
           { _id: context.user._id },
@@ -71,8 +68,7 @@ const resolvers = {
         );
 
         return matter;
-      
-      throw new AuthenticationError("You need to be logged in!");
+    
     },
     // remove cost from costPool and add to costs
     addCost: async (parent, { matterId, costId }, context) => {

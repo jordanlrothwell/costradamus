@@ -1,13 +1,11 @@
 import React from "react";
 import { PDFViewer } from "@react-pdf/renderer";
 
-import MyDocument from "../components/TestPDF";
+import Builder from "../components/Builder";
 
 const Profile = () => {
   return (
-      <PDFViewer>
-        <MyDocument />
-      </PDFViewer>
+      <Builder/>
   );
 };
 
