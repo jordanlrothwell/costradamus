@@ -1,35 +1,41 @@
-const { Schema, model } = require("mongoose");
+const mongoose = require("mongoose");
 
-// import schemas
-const scaleSchema = require("./schemas/Scale");
-const SpecialSchema = require("./schemas/Special");
+const { Schema } = mongoose;
 
-// schema corresponding to the document interface
-const CostSchema = new Schema(
-  {
-    itemNumber: {
-      type: String,
-      required: true,
-    },
-    description: {
-      type: String,
-      required: true,
-    },
-    scale: scaleSchema,
-    category: {
-      type: String,
-      required: true,
-    },
-    special: SpecialSchema,
+const scaleSchema = new Schema({
+  A: {
+    type: Number,
   },
-  {
-    toJSON: {
-      getters: true,
-    },
-  }
-);
+  B: {
+    type: Number,
+  },
+  C: {
+    type: Number,
+  },
+  D: {
+    type: Number,
+  },
+  E: {
+    type: Number,
+  },
+  F: {
+    type: Number,
+  },
+  G: {
+    type: Number,
+  },
+});
 
-// model representing the collection in mongoDB
-const Cost = model("Cost", CostSchema);
+const costSchema = new Schema({
+  itemNumber: {
+    type: Number,
+  },
+  description: {
+    type: String,
+  },
+  scale: scaleSchema,
+});
+
+const Cost = mongoose.model("Cost", costSchema);
 
 module.exports = Cost;

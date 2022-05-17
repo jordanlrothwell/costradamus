@@ -1,8 +1,6 @@
-const { gql } = require("apollo-server-express");
+const { gql } = require('apollo-server-express');
 
-// GraphQL schema
 const typeDefs = gql`
-
   type User {
     _id: ID
     username: String
@@ -14,16 +12,16 @@ const typeDefs = gql`
   type Matter {
     _id: ID
     reference: String
+    matterAuthor: String
     quantum: Float
-    costs: [Cost]
+    costs: [Cost]!
   }
 
   type Cost {
-    itemNumber: String!
-    description: String!
+    _id: ID
+    itemNumber: Float
+    description: String
     scale: Scale
-    category: String!
-    special: Special
   }
 
   type Scale {
@@ -36,11 +34,6 @@ const typeDefs = gql`
     G: Float
   }
 
-  type Special {
-    rate: Float
-    amount: Int
-  }
-
   type Auth {
     token: ID!
     user: User
@@ -50,38 +43,17 @@ const typeDefs = gql`
     users: [User]
     user(username: String!): User
     matters(username: String): [Matter]
-    matter(matterID: ID!): Matter
-    costs(matterID: ID!): Cost
+    matter(matterId: ID!): Matter
     me: User
-  }
-
-  input CostInput {
-    itemNumber: String
-    description: String
-    scale: ScaleInput
-    category: String
-    special: SpecialInput
-  }
-
-  input ScaleInput {
-    A: Float
-    B: Float
-    C: Float
-    D: Float
-    E: Float
-    F: Float
-    G: Float
-  }
-
-  input SpecialInput {
-    rate: Float
-    amount: Int
   }
 
   type Mutation {
     addUser(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
     addMatter(reference: String!): Matter
+    addCost(matterId: ID!, costNumber: Float!): Matter
+    removeMatter(matterId: ID!): Matter
+    removeCost(matterId: ID!, costNumber: Float!): Matter
   }
 `;
 

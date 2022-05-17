@@ -1,0 +1,1064 @@
+[
+    {
+        "itemNumber": 1,
+        "description": "Claim for debt, liquidated demand or claim arising from a motor vehicle accident for costs of repairs only or for total loss of vehicle only including all professional costs.",
+        "special": {
+            "rate": null,
+            "amount": null
+        },
+        "category": "Claim",
+        "scale": {
+            "A": 232,
+            "B": 486,
+            "C": 596,
+            "D": 718,
+            "E": 891,
+            "F": 1073,
+            "G": 1282
+        }
+    },
+    {
+        "itemNumber": 2,
+        "description": "Instructions to make, issue or oppose an application or summons or any notice of objection under the Judgment Debt Recovery Act 1984 including instructions for any affidavit (not otherwise provided for).",
+        "special": {
+            "rate": null,
+            "amount": null
+        },
+        "category": "Instructions",
+        "scale": {
+            "A": 80,
+            "B": 80,
+            "C": 80,
+            "D": 119,
+            "E": 151,
+            "F": 178,
+            "G": 208
+        }
+    },
+    {
+        "itemNumber": 3,
+        "description": "Complaint, including instructions to sue, letter before action, attendances on counsel, copies for service, issuing, and attendances on process server.",
+        "special": {
+            "rate": null,
+            "amount": null
+        },
+        "category": "Institution of proceedings",
+        "scale": {
+            "A": 232,
+            "B": 487,
+            "C": 597,
+            "D": 719,
+            "E": 892,
+            "F": 1075,
+            "G": 1285
+        }
+    },
+    {
+        "itemNumber": 4,
+        "description": "Consent of litigation guardian including preparation of memorandum, copies and obtaining signature of litigation guardian.",
+        "special": {
+            "rate": null,
+            "amount": null
+        },
+        "category": "Institution of proceedings",
+        "scale": {
+            "A": null,
+            "B": null,
+            "C": 173,
+            "D": 228,
+            "E": 232,
+            "F": 247,
+            "G": 263
+        }
+    },
+    {
+        "itemNumber": 5,
+        "description": "Notices of defence to claim, counterclaim or third party notice including instructions to defend, perusal of claim, counterclaim or third party notice, reply, attendances on counsel, copies, filing and service.",
+        "special": {
+            "rate": null,
+            "amount": null
+        },
+        "category": "Institution of proceedings",
+        "scale": {
+            "A": 107,
+            "B": 230,
+            "C": 286,
+            "D": 341,
+            "E": 425,
+            "F": 511,
+            "G": 613
+        }
+    },
+    {
+        "itemNumber": 6,
+        "description": "Counterclaim, third party notice, notice of contribution or any further pleading including instructions to issue, attendances on counsel, copies, filing and service.",
+        "special": {
+            "rate": null,
+            "amount": null
+        },
+        "category": "Institution of proceedings",
+        "scale": {
+            "A": 124,
+            "B": 256,
+            "C": 313,
+            "D": 376,
+            "E": 464,
+            "F": 561,
+            "G": 671
+        }
+    },
+    {
+        "itemNumber": 7,
+        "description": "Perusal of notice of defence, counterclaim, third party notice or any other pleading, and notice of contribution.",
+        "special": {
+            "rate": null,
+            "amount": null
+        },
+        "category": "Institution of proceedings",
+        "scale": {
+            "A": 56,
+            "B": 56,
+            "C": 56,
+            "D": 56,
+            "E": 56,
+            "F": 56,
+            "G": 56
+        }
+    },
+    {
+        "itemNumber": 8,
+        "description": "Request for particulars of any document including attendances on counsel, copies, filing, service and perusal of further particulars.",
+        "special": {
+            "rate": null,
+            "amount": null
+        },
+        "category": "Particulars",
+        "scale": {
+            "A": 81,
+            "B": 183,
+            "C": 222,
+            "D": 266,
+            "E": 332,
+            "F": 395,
+            "G": 470
+        }
+    },
+    {
+        "itemNumber": 9,
+        "description": "Further and better particulars of any documents including perusal of request, attendances on counsel, copies, filing and service.",
+        "special": {
+            "rate": null,
+            "amount": null
+        },
+        "category": "Particulars",
+        "scale": {
+            "A": 74,
+            "B": 155,
+            "C": 184,
+            "D": 222,
+            "E": 275,
+            "F": 333,
+            "G": 397
+        }
+    },
+    {
+        "itemNumber": 10,
+        "description": "Attending view, including arranging view and attendance on counsel.",
+        "special": {
+            "rate": null,
+            "amount": null
+        },
+        "category": "View",
+        "scale": {
+            "A": null,
+            "B": null,
+            "C": 186,
+            "D": 259,
+            "E": 280,
+            "F": 313,
+            "G": 352
+        }
+    },
+    {
+        "itemNumber": 12,
+        "description": "Notice of discovery including filing and service.",
+        "special": {
+            "rate": null,
+            "amount": null
+        },
+        "category": "Discovery",
+        "scale": {
+            "A": 53,
+            "B": 87,
+            "C": 107,
+            "D": 127,
+            "E": 161,
+            "F": 188,
+            "G": 218
+        }
+    },
+    {
+        "itemNumber": 13,
+        "description": "Perusal of affidavit of documents and inspection of documents.",
+        "special": {
+            "rate": null,
+            "amount": null
+        },
+        "category": "Discovery",
+        "scale": {
+            "A": 65,
+            "B": 124,
+            "C": 146,
+            "D": 180,
+            "E": 226,
+            "F": 269,
+            "G": 317
+        }
+    },
+    {
+        "itemNumber": 14,
+        "description": "Affidavit of documents including instructions, attendances on counsel, copies, swearing, affirming, filing, service and production of documents for inspection.",
+        "special": {
+            "rate": null,
+            "amount": null
+        },
+        "category": "Discovery",
+        "scale": {
+            "A": 129,
+            "B": 271,
+            "C": 333,
+            "D": 397,
+            "E": 503,
+            "F": 592,
+            "G": 703
+        }
+    },
+    {
+        "itemNumber": 15,
+        "description": "Notice to produce documents including filing and service.",
+        "special": {
+            "rate": null,
+            "amount": null
+        },
+        "category": "Discovery",
+        "scale": {
+            "A": 53,
+            "B": 81,
+            "C": 107,
+            "D": 129,
+            "E": 161,
+            "F": 188,
+            "G": 218
+        }
+    },
+    {
+        "itemNumber": 16,
+        "description": "Interrogatories for examination including instructions, attendances on counsel, copies, filing, service and perusal of answers.",
+        "special": {
+            "rate": null,
+            "amount": null
+        },
+        "category": "Discovery",
+        "scale": {
+            "A": 104,
+            "B": 217,
+            "C": 263,
+            "D": 313,
+            "E": 394,
+            "F": 469,
+            "G": 542
+        }
+    },
+    {
+        "itemNumber": 17,
+        "description": "Answers to interrogatories including perusal of interrogatories, instructions, attendances on counsel, copies, swearing, affirming, filing and service.",
+        "special": {
+            "rate": null,
+            "amount": null
+        },
+        "category": "Discovery",
+        "scale": {
+            "A": 139,
+            "B": 296,
+            "C": 378,
+            "D": 453,
+            "E": 561,
+            "F": 675,
+            "G": 799
+        }
+    },
+    {
+        "itemNumber": 18,
+        "description": "Brief to advise including preparation of memorandum to counsel, attendances on counsel and perusal of advice.",
+        "special": {
+            "rate": null,
+            "amount": null
+        },
+        "category": "Brief to advise",
+        "scale": {
+            "A": null,
+            "B": null,
+            "C": 186,
+            "D": 259,
+            "E": 280,
+            "F": 313,
+            "G": 351
+        }
+    },
+    {
+        "itemNumber": 19,
+        "description": "Any necessary notice (including notices before proceeding), certificate (including certificates before proceeding), undertaking, consent, order, memorandum (not otherwise provided for) including copies, filing and service.",
+        "special": {
+            "rate": null,
+            "amount": null
+        },
+        "category": "Notices, certificates, undertakings, etc.",
+        "scale": {
+            "A": 52,
+            "B": 92,
+            "C": 108,
+            "D": 130,
+            "E": 162,
+            "F": 189,
+            "G": 229
+        }
+    },
+    {
+        "itemNumber": 20,
+        "description": "Notice to admit including perusal of admissions, copies, filing and service.",
+        "special": {
+            "rate": null,
+            "amount": null
+        },
+        "category": "Notices, certificates, undertakings, etc.",
+        "scale": {
+            "A": 139,
+            "B": 139,
+            "C": 139,
+            "D": 189,
+            "E": 240,
+            "F": 291,
+            "G": 346
+        }
+    },
+    {
+        "itemNumber": 21,
+        "description": "Admissions, including perusal of notice to admit, copies, filing and service.",
+        "special": {
+            "rate": null,
+            "amount": null
+        },
+        "category": "Notices, certificates, undertakings, etc.",
+        "scale": {
+            "A": 139,
+            "B": 139,
+            "C": 139,
+            "D": 189,
+            "E": 240,
+            "F": 291,
+            "G": 346
+        }
+    },
+    {
+        "itemNumber": 22,
+        "description": "Offer of compromise or notice of acceptance of offer including copies, filing and service.",
+        "special": {
+            "rate": null,
+            "amount": null
+        },
+        "category": "Notices, certificates, undertakings, etc.",
+        "scale": {
+            "A": 119,
+            "B": 119,
+            "C": 119,
+            "D": 178,
+            "E": 222,
+            "F": 266,
+            "G": 317
+        }
+    },
+    {
+        "itemNumber": 23,
+        "description": "Subpoena including instructions, copies and issuing.",
+        "special": {
+            "rate": null,
+            "amount": null
+        },
+        "category": "Witnesses and expert witnesses",
+        "scale": {
+            "A": 26,
+            "B": 45,
+            "C": 61,
+            "D": 61,
+            "E": 80,
+            "F": 96,
+            "G": 114
+        }
+    },
+    {
+        "itemNumber": 24,
+        "description": "Attendance on witness to arrange attendance to give evidence without subpoena, including reminders.",
+        "special": {
+            "rate": null,
+            "amount": null
+        },
+        "category": "Witnesses and expert witnesses",
+        "scale": {
+            "A": 25,
+            "B": 27,
+            "C": 28,
+            "D": 46,
+            "E": 50,
+            "F": 57,
+            "G": 68
+        }
+    },
+    {
+        "itemNumber": 25,
+        "description": "Arranging examination or inspection by an expert witness and notifying party, supplying relevant documents to witness, obtaining and perusing report.",
+        "special": {
+            "rate": null,
+            "amount": null
+        },
+        "category": "Witnesses and expert witnesses",
+        "scale": {
+            "A": 74,
+            "B": 76,
+            "C": 77,
+            "D": 116,
+            "E": 146,
+            "F": 173,
+            "G": 208
+        }
+    },
+    {
+        "itemNumber": 26,
+        "description": "Notifying party of examination or inspection arranged by opposite party.",
+        "special": {
+            "rate": null,
+            "amount": null
+        },
+        "category": "Witnesses and expert witnesses",
+        "scale": {
+            "A": 14,
+            "B": 14,
+            "C": 14,
+            "D": 56,
+            "E": 71,
+            "F": 87,
+            "G": 103
+        }
+    },
+    {
+        "itemNumber": 28,
+        "description": "Application or summons or any notice under the Judgment Debt Recovery Act 1984 including copies, issuing and affidavit of service.",
+        "special": {
+            "rate": null,
+            "amount": null
+        },
+        "category": "Applications",
+        "scale": {
+            "A": 45,
+            "B": 100,
+            "C": 108,
+            "D": 124,
+            "E": 154,
+            "F": 183,
+            "G": 216
+        }
+    },
+    {
+        "itemNumber": 29,
+        "description": "Application for an order under Rule 21.01 (in addition to item 1 if applicable) or 21.08 including copies and issuing.",
+        "special": {
+            "rate": null,
+            "amount": null
+        },
+        "category": "Applications",
+        "scale": {
+            "A": 49,
+            "B": 49,
+            "C": 49,
+            "D": 49,
+            "E": 49,
+            "F": 49,
+            "G": 49
+        }
+    },
+    {
+        "itemNumber": 29.1,
+        "description": "To draw or settle any necessary medical panel referral documents including medical questions, lists of documents and submissions pursuant to the Accident Compensation Act 1985 etc.",
+        "special": {
+            "rate": null,
+            "amount": null
+        },
+        "category": "Applications",
+        "scale": {
+            "A": 105,
+            "B": 196,
+            "C": 266,
+            "D": 296,
+            "E": 397,
+            "F": 476,
+            "G": 553
+        }
+    },
+    {
+        "itemNumber": 29.2,
+        "description": "To draw or settle any necessary medical panel referral documents including medical questions, section 304 statements, lists of documents and submissions pursuant to the Workplace Injury Rehabilitation and Compensation Act 2013 etc.",
+        "special": {
+            "rate": null,
+            "amount": null
+        },
+        "category": "Applications",
+        "scale": {
+            "A": 105,
+            "B": 196,
+            "C": 266,
+            "D": 296,
+            "E": 397,
+            "F": 476,
+            "G": 553
+        }
+    },
+    {
+        "itemNumber": 30,
+        "description": "Notice of objection under the Judgment Debt Recovery Act 1984 including copies, issuing and affidavit of service.",
+        "special": {
+            "rate": null,
+            "amount": null
+        },
+        "category": "Notice of Objection",
+        "scale": {
+            "A": 48,
+            "B": 48,
+            "C": 48,
+            "D": 48,
+            "E": 48,
+            "F": 48,
+            "G": 48
+        }
+    },
+    {
+        "itemNumber": 31,
+        "description": "Affidavit including attendances on counsel, copies, swearing, affirming, filing and service.",
+        "special": {
+            "rate": null,
+            "amount": null
+        },
+        "category": "Affidavits",
+        "scale": {
+            "A": 104,
+            "B": 217,
+            "C": 263,
+            "D": 313,
+            "E": 394,
+            "F": 464,
+            "G": 541
+        }
+    },
+    {
+        "itemNumber": 32,
+        "description": "Affidavit of service, including swearing or affirming and filing (not otherwise provided for).",
+        "special": {
+            "rate": null,
+            "amount": null
+        },
+        "category": "Affidavits",
+        "scale": {
+            "A": 46,
+            "B": 46,
+            "C": 46,
+            "D": 46,
+            "E": 46,
+            "F": 46,
+            "G": 46
+        }
+    },
+    {
+        "itemNumber": 33,
+        "description": "For work necessarily and properly done in preparing for hearing (not otherwise provided for).",
+        "special": {
+            "rate": null,
+            "amount": null
+        },
+        "category": "General preparation",
+        "scale": {
+            "A": 422,
+            "B": 1380,
+            "C": 1705,
+            "D": 2047,
+            "E": 2560,
+            "F": 3700,
+            "G": 5752
+        }
+    },
+    {
+        "itemNumber": 34,
+        "description": "Preparation including all necessary instructions, instructions for brief for counsel or brief notes for Australian lawyer, correspondence and perusals.",
+        "special": {
+            "rate": null,
+            "amount": null
+        },
+        "category": "Pre-hearing conference",
+        "scale": {
+            "A": 102,
+            "B": 312,
+            "C": 418,
+            "D": 505,
+            "E": 626,
+            "F": 752,
+            "G": 861
+        }
+    },
+    {
+        "itemNumber": 35,
+        "description": "Attendance at conference whether by counsel or Australian lawyer.",
+        "special": {
+            "rate": null,
+            "amount": null
+        },
+        "category": "Pre-hearing conference",
+        "scale": {
+            "A": 184,
+            "B": 353,
+            "C": 506,
+            "D": 626,
+            "E": 782,
+            "F": 943,
+            "G": 1099
+        }
+    },
+    {
+        "itemNumber": 36,
+        "description": "Preparation including all necessary instructions, instructions for brief for counsel or brief notes for Australian lawyer, all necessary correspondence, perusals, etc.",
+        "special": {
+            "rate": null,
+            "amount": null
+        },
+        "category": "Mediation",
+        "scale": {
+            "A": 102,
+            "B": 306,
+            "C": 418,
+            "D": 505,
+            "E": 614,
+            "F": 737,
+            "G": 846
+        }
+    },
+    {
+        "itemNumber": 37,
+        "description": "Attending mediation by Australian lawyer, for first 4 hours or part thereof.",
+        "special": {
+            "rate": null,
+            "amount": null
+        },
+        "category": "Mediation",
+        "scale": {
+            "A": 184,
+            "B": 353,
+            "C": 506,
+            "D": 626,
+            "E": 771,
+            "F": 927,
+            "G": 1081
+        }
+    },
+    {
+        "itemNumber": 42,
+        "description": "Attendance at Court or upon magistrate or officer of the Court on application, summons, appeal or to hear reserved judgment.",
+        "special": {
+            "rate": null,
+            "amount": null
+        },
+        "category": "Court attendance",
+        "scale": {
+            "A": 108,
+            "B": 244,
+            "C": 301,
+            "D": 366,
+            "E": 456,
+            "F": 549,
+            "G": 653
+        }
+    },
+    {
+        "itemNumber": 43,
+        "description": "Attendance of Australian lawyer without counsel at a directions hearing or at the hearing of an application for revocation of a direction of a conciliation officer including a WorkCover directions hearing or at the hearing of an application for revocation of a direction of a conciliation officer.",
+        "special": {
+            "rate": null,
+            "amount": null
+        },
+        "category": "Court attendance",
+        "scale": {
+            "A": 184,
+            "B": 353,
+            "C": 507,
+            "D": 629,
+            "E": 788,
+            "F": 947,
+            "G": 1101
+        }
+    },
+    {
+        "itemNumber": 44,
+        "description": "Attending WorkCover mentions.",
+        "special": {
+            "rate": null,
+            "amount": null
+        },
+        "category": "Court attendance",
+        "scale": {
+            "A": 165,
+            "B": 165,
+            "C": 165,
+            "D": 165,
+            "E": 165,
+            "F": 165,
+            "G": 165
+        }
+    },
+    {
+        "itemNumber": 45,
+        "description": "Attendance at Court on hearing - Australian lawyer without counsel for the first 6 hours (including any luncheon adjournment).",
+        "special": {
+            "rate": null,
+            "amount": null
+        },
+        "category": "Court attendance",
+        "scale": {
+            "A": 389,
+            "B": 782,
+            "C": 1180,
+            "D": 1415,
+            "E": 1768,
+            "F": 2112,
+            "G": 2458
+        }
+    },
+    {
+        "itemNumber": 47,
+        "description": "Attendance at Court by Australian lawyer on hearing with counsel for the first 3 hours.",
+        "special": {
+            "rate": null,
+            "amount": null
+        },
+        "category": "Court attendance",
+        "scale": {
+            "A": 177,
+            "B": 301,
+            "C": 377,
+            "D": 453,
+            "E": 561,
+            "F": 675,
+            "G": 780
+        }
+    },
+    {
+        "itemNumber": 50,
+        "description": "To draw or settle any necessary document including notice before action, particulars of claim or defence (including special defence), counterclaim, interrogatories etc.",
+        "special": {
+            "rate": null,
+            "amount": null
+        },
+        "category": "Fees to counsel",
+        "scale": {
+            "A": 74,
+            "B": 138,
+            "C": 180,
+            "D": 209,
+            "E": 270,
+            "F": 325,
+            "G": 376
+        }
+    },
+    {
+        "itemNumber": 52,
+        "description": "To advise on evidence or give opinion.",
+        "special": {
+            "rate": null,
+            "amount": null
+        },
+        "category": "Fees to counsel",
+        "scale": {
+            "A": null,
+            "B": null,
+            "C": 240,
+            "D": 362,
+            "E": 391,
+            "F": 437,
+            "G": 655
+        }
+    },
+    {
+        "itemNumber": 55,
+        "description": "Attending mediation, for the first 4 hours or part thereof.",
+        "special": {
+            "rate": null,
+            "amount": null
+        },
+        "category": "Fees to counsel",
+        "scale": {
+            "A": 203,
+            "B": 398,
+            "C": 565,
+            "D": 697,
+            "E": 874,
+            "F": 1051,
+            "G": 1224
+        }
+    },
+    {
+        "itemNumber": 57,
+        "description": "Attending at WorkCover directions hearing.",
+        "special": {
+            "rate": null,
+            "amount": null
+        },
+        "category": "Fees to counsel",
+        "scale": {
+            "A": 208,
+            "B": 404,
+            "C": 572,
+            "D": 708,
+            "E": 889,
+            "F": 1068,
+            "G": 1282
+        }
+    },
+    {
+        "itemNumber": 57.1,
+        "description": "Attending at the hearing of an application for revocation of a direction of a conciliation officer.",
+        "special": {
+            "rate": null,
+            "amount": null
+        },
+        "category": "Fees to counsel",
+        "scale": {
+            "A": 708,
+            "B": 708,
+            "C": 708,
+            "D": 708,
+            "E": 708,
+            "F": 708,
+            "G": 708
+        }
+    },
+    {
+        "itemNumber": 63,
+        "description": "Special letter.",
+        "special": {
+            "rate": null,
+            "amount": null
+        },
+        "category": "Perusals",
+        "scale": {
+            "A": 46,
+            "B": 46,
+            "C": 46,
+            "D": 46,
+            "E": 46,
+            "F": 46,
+            "G": 46
+        }
+    },
+    {
+        "itemNumber": 64,
+        "description": "Ordinary letter (including an agency letter).",
+        "special": {
+            "rate": null,
+            "amount": null
+        },
+        "category": "Correspondence",
+        "scale": {
+            "A": 31,
+            "B": 31,
+            "C": 31,
+            "D": 31,
+            "E": 31,
+            "F": 31,
+            "G": 31
+        }
+    },
+    {
+        "itemNumber": 65,
+        "description": "Circular letter. After the first, postage may be claimed as a disbursement.",
+        "special": {
+            "rate": null,
+            "amount": null
+        },
+        "category": "Correspondence",
+        "scale": {
+            "A": 16,
+            "B": 16,
+            "C": 16,
+            "D": 16,
+            "E": 16,
+            "F": 16,
+            "G": 16
+        }
+    },
+    {
+        "itemNumber": 66,
+        "description": "Attendance - such as an attendance at the office of the registrar or on a process server or to serve or an attendance which is capable of being made by a clerk.",
+        "special": {
+            "rate": null,
+            "amount": null
+        },
+        "category": "Attendances",
+        "scale": {
+            "A": 31,
+            "B": 31,
+            "C": 31,
+            "D": 31,
+            "E": 31,
+            "F": 31,
+            "G": 31
+        }
+    },
+    {
+        "itemNumber": 69,
+        "description": "Warrant to seize property or of delivery including instructions, preparation and issuing.",
+        "special": {
+            "rate": null,
+            "amount": null
+        },
+        "category": "Warrants, summons, etc.",
+        "scale": {
+            "A": 60,
+            "B": 123,
+            "C": 146,
+            "D": 183,
+            "E": 229,
+            "F": 275,
+            "G": 323
+        }
+    },
+    {
+        "itemNumber": 70,
+        "description": "Summons for oral examination, including instructions, preparation of summons and affidavit, issuing, arranging service, forwarding summons and affidavit to registrar with letter.",
+        "special": {
+            "rate": null,
+            "amount": null
+        },
+        "category": "Warrants, summons, etc.",
+        "scale": {
+            "A": 62,
+            "B": 148,
+            "C": 178,
+            "D": 196,
+            "E": 248,
+            "F": 301,
+            "G": 351
+        }
+    },
+    {
+        "itemNumber": 71,
+        "description": "Proceedings for attachment of debts including all professional costs.",
+        "special": {
+            "rate": null,
+            "amount": null
+        },
+        "category": "Warrants, summons, etc.",
+        "scale": {
+            "A": 177,
+            "B": 355,
+            "C": 400,
+            "D": 479,
+            "E": 596,
+            "F": 713,
+            "G": 934
+        }
+    },
+    {
+        "itemNumber": 72,
+        "description": "Summons for attachment of earnings, including instructions, preparation of summons, affidavit and Form 72A, issuing summons, arranging service, forwarding summons and affidavit to registrar with a letter (including affidavit of service).",
+        "special": {
+            "rate": null,
+            "amount": null
+        },
+        "category": "Warrants, summons, etc.",
+        "scale": {
+            "A": 317,
+            "B": 449,
+            "C": 483,
+            "D": 606,
+            "E": 757,
+            "F": 908,
+            "G": 1190
+        }
+    },
+    {
+        "itemNumber": 73,
+        "description": "Form 72F, including preparation, filing and service.",
+        "special": {
+            "rate": null,
+            "amount": null
+        },
+        "category": "Warrants, summons, etc.",
+        "scale": {
+            "A": 54,
+            "B": 93,
+            "C": 108,
+            "D": 130,
+            "E": 162,
+            "F": 189,
+            "G": 220
+        }
+    },
+    {
+        "itemNumber": 74,
+        "description": "Order to attend or to give a statement under Rule 72.04 including preparation, issuing and arranging service.",
+        "special": {
+            "rate": null,
+            "amount": null
+        },
+        "category": "Warrants, summons, etc.",
+        "scale": {
+            "A": 54,
+            "B": 93,
+            "C": 108,
+            "D": 130,
+            "E": 162,
+            "F": 189,
+            "G": 220
+        }
+    },
+    {
+        "itemNumber": 75,
+        "description": "Registration of interstate judgment.",
+        "special": {
+            "rate": null,
+            "amount": null
+        },
+        "category": "Warrants, summons, etc.",
+        "scale": {
+            "A": 80,
+            "B": 80,
+            "C": 80,
+            "D": 119,
+            "E": 119,
+            "F": 119,
+            "G": 119
+        }
+    },
+    {
+        "itemNumber": 80,
+        "description": "Order for substituted service including all professional costs.",
+        "special": {
+            "rate": null,
+            "amount": null
+        },
+        "category": "Substituted service",
+        "scale": {
+            "A": 157,
+            "B": 284,
+            "C": 337,
+            "D": 396,
+            "E": 500,
+            "F": 589,
+            "G": 685
+        }
+    }
+]

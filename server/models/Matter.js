@@ -1,28 +1,25 @@
 const { Schema, model } = require("mongoose");
 
-// schema corresponding to the document interface
-const MatterSchema = new Schema(
-  {
-    reference: {
-      type: String,
-      required: true,
-    },
-    quantum: {
-      type: Number,
-    },
-    costs: {
+const matterSchema = new Schema({
+  reference: {
+    type: String,
+  },
+  matterAuthor: {
+    type: String,
+    required: true,
+    trim: true,
+  },
+  quantum: {
+    type: Number,
+  },
+  costs: [
+    {
       type: Schema.Types.ObjectId,
       ref: "Cost",
     },
-  },
-  {
-    toJSON: {
-      getters: true,
-    },
-  }
-);
+  ],
+});
 
-// model representing the collection in mongoDB
-const Matter = model("Matter", MatterSchema);
+const Matter = model("Matter", matterSchema);
 
 module.exports = Matter;

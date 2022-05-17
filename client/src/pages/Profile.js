@@ -1,8 +1,11 @@
-// profile page
 import React from "react";
 
-import ProfileLayout from "../components/ProfileLayout/ProfileLayout";
+const Profile = () => {
+  return (
+    <div>
+      
+    </div>
+  );
+};
 
-export default function Profile() {
-  return <ProfileLayout />;
-}
+export default Profile;
