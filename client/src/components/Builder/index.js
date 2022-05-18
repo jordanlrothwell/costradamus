@@ -1,14 +1,23 @@
-import React, { useCallback, useEffect, useReducer } from "react";
+import React, { useEffect, useReducer, useRef } from "react";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import { useQuery, useMutation } from "@apollo/client";
+import { useParams } from "react-router-dom";
 import { QUERY_MATTER } from "../../utils/queries";
-import { ADD_COST, REMOVE_COST } from "../../utils/mutations";
+import { ADD_COST, REMOVE_COST, MOVE_COST } from "../../utils/mutations";
+import {
+  Page,
+  Text,
+  View,
+  Document,
+  StyleSheet,
+  Image,
+} from "@react-pdf/renderer";
+import Invoice from "./components/Invoice";
 import styled from "styled-components";
-import produce from "immer";
-import PDF from "../../assets/docs/output.pdf";
-import Viewer from "../Viewer";
-
 import tinyLogo from "../../assets/tiny-logo.png";
+import { PDFViewer } from "@react-pdf/renderer";
+import invoice from "./data/invoice";
+import dateFormat from "../../utils/dateFormat";
 
 const ColumnContainer = styled.div`
   display: grid;
@@ -85,20 +94,208 @@ const ItemDescription = styled.span`
   font-size: 1.2rem;
 `;
 
-const dragReducer = produce((draft, action) => {
-  switch (action.type) {
-    case "MOVE": {
-      draft[action.from] = draft[action.from] || [];
-      draft[action.to] = draft[action.to] || [];
-      const [removed] = draft[action.from].splice(action.fromIndex, 1);
-      draft[action.to].splice(action.toIndex, 0, removed);
-      break;
-    }
-    case "FETCH": {
-      return { ...draft, items: action.items, items2: action.items2 };
-    }
+const styles = StyleSheet.create({
+  page: {
+    fontFamily: "Helvetica",
+    fontSize: 11,
+    paddingTop: 30,
+    paddingLeft: 60,
+    paddingRight: 60,
+    lineHeight: 1.5,
+    flexDirection: "column",
+  },
+  logo: {
+    width: 74,
+    height: 66,
+    marginLeft: "auto",
+    marginRight: "auto",
+  },
+  titleContainer: {
+    flexDirection: "row",
+    marginTop: 24,
+  },
+  reportTitle: {
+    color: "#61dafb",
+    letterSpacing: 4,
+    fontSize: 25,
+    textAlign: "center",
+    textTransform: "uppercase",
+  },
+  invoiceNoContainer: {
+    flexDirection: "column",
+    marginTop: 36,
+    marginLeft: "auto",
+  },
+  invoiceDateContainer: {
+    flexDirection: "row",
+    justifyContent: "flex-end",
+  },
+  invoiceDate: {
+    fontSize: 12,
+    fontStyle: "bold",
+  },
+  label: {
+    marginLeft: "20",
+    position: "right",
+  },
+  headerContainer: {
+    marginTop: 36,
+  },
+  billTo: {
+    marginTop: 20,
+    paddingBottom: 3,
+  },
+  tableContainer: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    marginTop: 24,
+    border: "none",
+  },
+  container: {
+    flexDirection: "row",
+    borderBottom: 4,
+    alignItems: "left",
+    textAlign: "left",
+    fontStyle: "bold",
+    flexGrow: 1,
+    border: "none",
+  },
+  costContainer: {
+    flexDirection: "row",
+    borderBottom: 4,
+    alignItems: "left",
+    textAlign: "left",
+    fontStyle: "bold",
+    flexGrow: 1,
+    border: "none",
+    paddingBottom: 10,
+  },
+  description: {
+    width: "60%",
+    flexWrap: "wrap",
+    border: "none",
+  },
+  rate: {
+    width: "15%",
+  },
+  amount: {
+    width: "15%",
+    marginLeft: "auto",
+  },
+  row: {
+    flexDirection: "row",
+    alignItems: "center",
+    height: 24,
+    fontStyle: "bold",
+    border: "none",
+  },
+  rwDescription: {
+    width: "60%",
+    textAlign: "left",
+    paddingLeft: 8,
+  },
+  rwQty: {
+    width: "10%",
+    borderRightWidth: 1,
+    textAlign: "right",
+    paddingRight: 8,
+  },
+  rwRate: {
+    width: "15%",
+    borderRightWidth: 1,
+    textAlign: "right",
+    paddingRight: 8,
+  },
+  rwAmount: {
+    width: "15%",
+    textAlign: "right",
+    paddingRight: 8,
+  },
+  tyContainer: {
+    flexDirection: "row",
+    marginTop: 12,
+  },
+  tyTitle: {
+    fontSize: 12,
+    textAlign: "center",
+    textTransform: "uppercase",
+  },
+  footerContainer: {
+    flexDirection: "column",
+    justifyContent: "right",
+    marginTop: 60,
+    marginLeft: "360px",
   }
 });
+
+function getScale(item, quantum) {
+  if (quantum < 500) {
+    return item.scale.A;
+  }
+  if (500 < quantum && quantum < 5000) {
+    return item.scale.B;
+  }
+  if (5000 <= quantum && quantum < 7500) {
+    return item.scale.C;
+  }
+  if (7500 <= quantum && quantum < 20000) {
+    return item.scale.D;
+  }
+  if (20000 <= quantum && quantum < 40000) {
+    return item.scale.E;
+  }
+  if (40000 <= quantum && quantum < 70000) {
+    return item.scale.F;
+  }
+  if (70000 <= quantum) {
+    return item.scale.G;
+  }
+}
+
+function currencyFormatter(value) {
+  const formatter = new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+    minimumFractionDigits: 2,
+  });
+
+  return formatter.format(value);
+}
+
+const dragReducer = (state, action) => {
+  switch (action.type) {
+    case "ADD": {
+      const items = [...state.items];
+      items.splice(action.index, 0, action.item);
+      return {
+        ...state,
+        items,
+      };
+    }
+    case "REMOVE": {
+      return {
+        ...state,
+        items: state.items.filter((i) => i._id !== action.id),
+      };
+    }
+    case "MOVE": {
+      const items = [...state.items];
+      const item = items.find((i) => i._id === action.id);
+      items.splice(action.index, 1);
+      items.splice(action.newIndex, 0, item);
+      return {
+        ...state,
+        items,
+      };
+    }
+    case "FETCH": {
+      return {
+        ...state,
+        items: action.items,
+      };
+    }
+  }
+};
 
 const getListStyle = (isDraggingOver) => ({
   background: isDraggingOver ? "#ffdfc9" : "white",
@@ -107,42 +304,49 @@ const getListStyle = (isDraggingOver) => ({
 });
 
 function Builder() {
+  const paramId = useParams().reference;
+
   const [addCost] = useMutation(ADD_COST);
   const [removeCost] = useMutation(REMOVE_COST);
+  const [moveCost] = useMutation(MOVE_COST);
+  const shouldUpdate = useRef(true);
 
   const { data: costData } = useQuery(QUERY_MATTER, {
     variables: {
-      matterId: "628445a2bc128f38ecdc5c9b",
+      matterId: paramId,
     },
   });
 
-  useEffect(() => {
-    itemDispatch({
-      type: "FETCH",
-      items: costData?.matter?.costPool ?? [],
-    });
-  }, [costData]);
+  console.log(costData?.matter?.quantum);
 
   useEffect(() => {
-    item2Dispatch({
-      type: "FETCH",
-      items2: costData?.matter?.costs ?? [],
-    });
+    if (costData && shouldUpdate.current) {
+      shouldUpdate.current = false;
+      itemDispatch({
+        type: "FETCH",
+        items: costData?.matter?.costPool ?? [],
+      });
+      item2Dispatch({
+        type: "FETCH",
+        items: costData?.matter?.costs ?? [],
+      });
+    }
   }, [costData]);
 
   // set initial state
   const [itemState, itemDispatch] = useReducer(dragReducer, {
     items: costData?.costPool ?? [],
-    items2: costData?.costs ?? [],
   });
 
   const [item2State, item2Dispatch] = useReducer(dragReducer, {
-    items: costData?.costPool ?? [],
-    items2: costData?.costs ?? [],
+    items: costData?.costs ?? [],
   });
 
+  useEffect(() => {
+    console.log(item2State);
+  }, [item2State]);
 
-  const onDragEnd = useCallback((result) => {
+  const onDragEnd = (result) => {
     if (result.reason === "DROP") {
       if (!result.destination) {
         return;
@@ -151,46 +355,101 @@ function Builder() {
         result.source.droppableId === "items" &&
         result.destination.droppableId === "items2"
       ) {
-
         const itemID = result.draggableId;
         addCost({
           variables: {
             costId: itemID,
-            matterId: "628445a2bc128f38ecdc5c9b",
+            matterId: paramId,
+            index: result.destination.index,
           },
         });
+
+        const item = itemState.items.find((i) => i._id === result.draggableId);
+
         itemDispatch({
-          type: "MOVE",
-          from: result.source.droppableId,
-          to: result.destination.droppableId,
-          fromIndex: result.source.index,
-          toIndex: result.destination.index,
+          type: "REMOVE",
+          id: result.draggableId,
         });
 
+        item2Dispatch({
+          type: "ADD",
+          index: result.destination.index,
+          item,
+        });
       } else if (
         result.source.droppableId === "items2" &&
         result.destination.droppableId === "items"
       ) {
-        item2Dispatch({
-          type: "MOVE",
-          from: result.source.droppableId,
-          to: result.destination.droppableId,
-          fromIndex: result.source.index,
-          toIndex: result.destination.index,
-        });
         const item2ID = result.draggableId;
         removeCost({
           variables: {
             costId: item2ID,
-            matterId: "628445a2bc128f38ecdc5c9b",
+            matterId: paramId,
+            index: result.destination.index,
           },
         });
 
+        const item = item2State.items.find((i) => i._id === result.draggableId);
+
+        item2Dispatch({
+          type: "REMOVE",
+          id: result.draggableId,
+        });
+
+        itemDispatch({
+          type: "ADD",
+          index: result.destination.index,
+          item,
+        });
       }
+      // handle moving within the same list
+      else if (
+        result.source.droppableId === "items" &&
+        result.destination === "items" &&
+        result.source.index !== result.destination.index
+      ) {
+        const itemID = result.draggableId;
 
+        moveCost({
+          variables: {
+            costId: itemID,
+            matterId: paramId,
+            index: result.destination.index,
+            sourceId: "items",
+          },
+        });
 
+        itemDispatch({
+          type: "MOVE",
+          id: result.draggableId,
+          index: result.destination.index,
+        });
+      } else if (
+        result.source.droppableId === "items2" &&
+        result.destination === "items2" &&
+        result.source.index !== result.destination.index
+      ) {
+        const item2ID = result.draggableId;
+
+        moveCost({
+          variables: {
+            costId: item2ID,
+            matterId: paramId,
+            index: result.destination.index,
+            sourceId: "items2",
+          },
+        });
+
+        item2Dispatch({
+          type: "MOVE",
+          id: result.draggableId,
+          index: result.destination.index,
+          newIndex: result.source.index,
+        });
+      }
     }
-  }, []);
+    console.log(item2State);
+  };
 
   return (
     <ColumnContainer>
@@ -210,12 +469,8 @@ function Builder() {
                   >
                     {itemState.items?.map((cost, index) => {
                       return (
-                        <Adjacent>
-                          <Draggable
-                            key={cost._id}
-                            draggableId={cost._id}
-                            index={index}
-                          >
+                        <Adjacent key={cost._id}>
+                          <Draggable draggableId={cost._id} index={index}>
                             {(provided, snapshot) => {
                               return (
                                 <Card
@@ -261,14 +516,10 @@ function Builder() {
                     ref={provided.innerRef}
                     {...provided.droppableProps}
                   >
-                    {item2State.items2?.map((cost, index) => {
+                    {item2State.items?.map((cost, index) => {
                       return (
-                        <Adjacent>
-                          <Draggable
-                            key={cost._id}
-                            draggableId={cost._id}
-                            index={index}
-                          >
+                        <Adjacent key={cost._id}>
+                          <Draggable draggableId={cost._id} index={index}>
                             {(provided, snapshot) => {
                               return (
                                 <Card
@@ -301,7 +552,83 @@ function Builder() {
             </Droppable>
           </Holder>
         </Column>
-        <Viewer pdf={PDF} />
+        <PDFViewer
+          style={{
+            width: "100%",
+            height: "100vh",
+          }}
+        >
+          <Document>
+            <Page size="A4" style={styles.page}>
+              <View style={styles.titleContainer}>
+                <Text style={styles.reportTitle}>TAX INVOICE</Text>
+              </View>
+
+              <View style={styles.invoiceNoContainer}>
+                <Text style={styles.label}>Reference:</Text>
+                <Text style={styles.label}>{costData?.matter?.reference}</Text>
+
+                <Text style={styles.label}>Date:</Text>
+                <Text style={styles.label}>{dateFormat(Date())}</Text>
+              </View>
+
+              <View style={styles.headerContainer}>
+                <Text style={styles.billTo}>Bill To:</Text>
+                <Text>{invoice.company}</Text>
+                <Text>{invoice.address}</Text>
+                <Text>{invoice.phone}</Text>
+                <Text>{invoice.email}</Text>
+              </View>
+              <View style={styles.tableContainer}>
+                <View style={styles.container}>
+                  <Text style={styles.rate}>Item</Text>
+                  <Text style={styles.description}>Description</Text>
+                  <Text style={styles.amount}>Amount</Text>
+                </View>
+                {item2State?.items?.map((item) => {
+                  const currentQuantum = costData?.quantum;
+
+                  const scaledAmount = getScale(item, 5000);
+
+                  const formattedAmount = currencyFormatter(scaledAmount);
+
+                  return (
+                    <View style={styles.costContainer}>
+                      <Text style={styles.rate}>{item.itemNumber}</Text>
+                      <Text style={styles.description}>{item.description}</Text>
+                      <Text style={styles.amount}>{formattedAmount}</Text>
+                    </View>
+                  );
+                })}
+              </View>
+              <View style={styles.footerContainer}>
+                <Text style={styles.label}>
+                  GST:   {" "}
+                  {currencyFormatter(
+                    item2State?.items?.reduce((acc, item) => {
+                      const scaledAmount = getScale(item, 5000);
+                      return acc + scaledAmount * 0.1;
+                    }, 0)
+                  )}
+                </Text>
+                <Text style={styles.label}></Text>
+                <Text style={styles.label}>
+                  Total:   {" "}
+                  {currencyFormatter(
+                    item2State?.items?.reduce((acc, item) => {
+                      const scaledAmount = getScale(item, 5000);
+                      return (acc + scaledAmount) * 1.1;
+                    }, 0)
+                  )}
+                </Text>
+                <Text style={styles.label}></Text>
+              </View>
+              <View style={styles.tyContainer}>
+                <Text style={styles.tyTitle}>Thank you for your business</Text>
+              </View>
+            </Page>
+          </Document>
+        </PDFViewer>
       </DragDropContext>
     </ColumnContainer>
   );

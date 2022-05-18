@@ -76,40 +76,59 @@ const resolvers = {
       return matter;
     },
     // remove cost from costPool and add to costs
-    addCost: async (parent, { matterId, costId }, context) => {
+    addCost: async (parent, { matterId, costId, index }, context) => {
       if (context.user) {
-        return Matter.findOneAndUpdate(
-          { _id: matterId },
-          {
-            $pull: {
-              costPool: costId,
-            },
-            $addToSet: {
-              costs: costId,
-            },
-          },
-          {
-            new: true,
-          }
+        const matter = await Matter.findById(matterId);
+
+        matter.costPool = matter.costPool.filter(
+          (c) => c.toString() !== costId
         );
+        matter.costs = [...matter.costs];
+        matter.costs.splice(index, 0, costId);
+
+        await matter.save();
+        return matter;
       }
       throw new AuthenticationError("You need to be logged in!");
     },
     // remove cost from costs and add back to costPool
-    removeCost: async (parent, { matterId, costId }, context) => {
+    removeCost: async (parent, { matterId, costId, index }, context) => {
       if (context.user) {
-        return Matter.findOneAndUpdate(
-          { _id: matterId },
-          {
-            $pull: {
-              costs: costId,
-            },
-            $addToSet: {
-              costPool: costId,
-            },
-          },
-          { new: true }
-        );
+        const matter = await Matter.findById(matterId);
+
+        matter.costs = matter.costs.filter((c) => c.toString() !== costId);
+        matter.costPool = [...matter.costPool];
+        matter.costPool.splice(index, 0, costId);
+
+        await matter.save();
+        return matter;
+      }
+      throw new AuthenticationError("You need to be logged in!");
+    },
+    // reorder the index of a cost within either costPool or costs
+    // takes in the matterId, costId, sourceId, and index
+    moveCost: async (
+      parent,
+      { matterId, costId, sourceId, index },
+      context
+    ) => {
+      if (context.user) {
+        const matter = await Matter.findById(matterId);
+
+        if (sourceId === "items2") {
+          // costPool
+          matter.costPool = matter.costPool.filter(
+            (c) => c.toString() !== costId
+          );
+          matter.costPool.splice(index, 0, costId);
+        } else {
+          // costs
+          matter.costs = matter.costs.filter((c) => c.toString() !== costId);
+          matter.costs.splice(index, 0, costId);
+        }
+
+        await matter.save();
+        return matter;
       }
       throw new AuthenticationError("You need to be logged in!");
     },

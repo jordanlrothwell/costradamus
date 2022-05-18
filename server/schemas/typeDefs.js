@@ -55,8 +55,9 @@ const typeDefs = gql`
     login(email: String!, password: String!): Auth
     addMatter(reference: String!): Matter
     removeMatter(matterId: ID!): Matter
-    addCost(matterId: ID!, costId: ID!): Matter
-    removeCost(matterId: ID!, costId: ID!): Matter
+    addCost(matterId: ID!, costId: ID!, index: Int!): Matter
+    removeCost(matterId: ID!, costId: ID!, index: Int!): Matter
+    moveCost(matterId: ID!, costId: ID!, index: Int!): Matter
   }
 
   type Subscription {

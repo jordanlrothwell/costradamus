@@ -1,40 +1,66 @@
-import React from "react";
-import { QUERY_MATTER } from "../../utils/queries";
-import { useQuery } from "@apollo/client";
-import { Page, Text, View, Document, StyleSheet } from "@react-pdf/renderer";
+import React, { useState } from "react";
+import { Document, Page, pdfjs, Canvas } from "react-pdf";
 
-import costData from "../../data/costData.json"
+import "react-pdf/dist/esm/Page/AnnotationLayer.css";
 
-const styles = StyleSheet.create({
-  page: {
-    flexDirection: "row",
-    backgroundColor: "#E4E4E4",
-  },
-  section: {
-    flexGrow: 1,
-    padding: 10,
-    fontSize: 12,
-  },
-});
+function Viewer() {
+  const [numPages, setNumPages] = useState(null);
+  const [pageNumber, setPageNumber] = useState(1);
 
-function MyDocument() {
-  
+  pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
+
+  function onDocumentLoadSuccess({ numPages }) {
+    setNumPages(numPages);
+  }
+
+  function removeTextLayerOffset() {
+    const textLayers = document.querySelectorAll(
+      ".react-pdf__Page__textContent"
+    );
+    textLayers.forEach((layer) => {
+      const { style } = layer;
+      style.top = "0";
+      style.left = "0";
+      style.transform = "";
+    });
+  }
+
+  // canvas with a painter algorithm
+  function renderPage(page) {
+    const canvas = document.createElement("canvas");
+    const context = canvas.getContext("2d");
+    const viewport = page.getViewport({ scale: 1.5 });
+    canvas.height = viewport.height;
+    canvas.width = viewport.width;
+    page.render({ canvasContext: context, viewport });
+    return canvas;
+  }
+
+
   return (
-    <Document>
-      <Page size="A4">
-        {costData.map((cost, index) => (
-          <View key={index} style={styles.page}>
-            <View style={styles.section}>
-              <Text>{cost.itemNumber}</Text>
-            </View>
-            <View style={styles.section}>
-              <Text>{cost.description}</Text>
-            </View>
-          </View>
-        ))}
-      </Page>
-    </Document>
+    <div className="App">
+      <Document file="sample.pdf" onLoadSuccess={onDocumentLoadSuccess}>
+        <Page pageNumber={pageNumber} onLoadSuccess={removeTextLayerOffset} />
+      </Document>
+      <button
+        onClick={() => {
+          setPageNumber(pageNumber - 1);
+        }}
+      >
+        Previous
+      </button>
+      <p>
+        Page {pageNumber} of {numPages}
+      </p>
+      <button
+        onClick={() => {
+          setPageNumber(pageNumber + 1);
+        }}
+      >
+        Next
+      </button>
+    </div>
   );
 }
 
-export default MyDocument;
+export default Viewer;

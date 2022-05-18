@@ -1,10 +1,4 @@
-import PDFDocument from "pdfkit";
-import fs from "fs"
-import logo from "./assets/mainLogo.jpg"
-
 const pdfGenerator = (matterRef, items, quantum) => {
-    var doc = new PDFDocument();
-  doc.pipe(fs.createWriteStream(`../assets/docs/${matterRef}.pdf`));
 
   const lineCount = function (itemNumber) {
     const oneLine = [12, 13, 15, 23, 35, 44, 52, 53, 57, 63, 64, 73, 75, 80];
@@ -41,18 +35,18 @@ const pdfGenerator = (matterRef, items, quantum) => {
     items: [50, 255],
   };
 
-  //TODO: make sure logo works here
-  doc
-    .image(logo, {width: 150})
-
   function address(firm, ABN, addr1, addr2, addr3) {
-    const [x, y] = formatConstants.address;
 
-    doc.fontSize(8).text(firm, x, y);
-    doc.fontSize(8).text(ABN, x, y + 10);
-    doc.fontSize(8).text(addr1, x, y + 30);
-    doc.fontSize(8).text(addr2, x, y + 40);
-    doc.fontSize(8).text(addr3, x, y + 50);
+    return function addressFN(doc) {
+      const [x, y] = formatConstants.address;
+
+      doc.fontSize(8).text(firm, x, y);
+      doc.fontSize(8).text(ABN, x, y + 10);
+      doc.fontSize(8).text(addr1, x, y + 30);
+      doc.fontSize(8).text(addr2, x, y + 40);
+      doc.fontSize(8).text(addr3, x, y + 50);
+    }
+
   }
 
   function header() {

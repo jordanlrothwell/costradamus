@@ -37,47 +37,13 @@ export const QUERY_USER = gql`
 `;
 
 export const QUERY_ME = gql`
-  query Query {
-    me {
-      _id
-      username
-      email
-      password
-      matters {
-        _id
-        reference
-        matterAuthor
-        quantum
-        costPool {
-          _id
-          itemNumber
-          description
-          scale {
-            A
-            B
-            C
-            D
-            E
-            F
-            G
-          }
-        }
-        costs {
-          _id
-          itemNumber
-          description
-        }
-      }
-    }
-  }
-`;
-
-export const QUERY_MATTERS = gql`
-  query Query($username: String) {
-    matters(username: $username) {
+query Query {
+  me {
+    _id
+    username
+    matters {
       _id
       reference
-      matterAuthor
       quantum
       costPool {
         _id
@@ -97,9 +63,59 @@ export const QUERY_MATTERS = gql`
         _id
         itemNumber
         description
+        scale {
+          A
+          B
+          C
+          D
+          E
+          F
+          G
+        }
+      }
+    }
+
+  }
+}
+`;
+
+export const QUERY_MATTERS = gql`
+query Query($username: String) {
+  matters(username: $username) {
+    _id
+    reference
+    matterAuthor
+    quantum
+    costPool {
+      _id
+      itemNumber
+      description
+      scale {
+        A
+        B
+        C
+        D
+        E
+        F
+        G
+      }
+    }
+    costs {
+      _id
+      itemNumber
+      description
+      scale {
+        A
+        B
+        C
+        D
+        E
+        F
+        G
       }
     }
   }
+}
 `;
 
 export const QUERY_COSTS = gql`
@@ -145,6 +161,15 @@ export const QUERY_MATTER = gql`
         _id
         itemNumber
         description
+        scale {
+          A
+          B
+          C
+          D
+          E
+          F
+          G
+        }
       }
     }
   }

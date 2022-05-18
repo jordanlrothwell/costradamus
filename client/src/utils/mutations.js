@@ -28,117 +28,136 @@ export const ADD_USER = gql`
 `;
 
 export const ADD_MATTER = gql`
-mutation Mutation($reference: String!) {
-  addMatter(reference: $reference) {
-    _id
-    reference
-    matterAuthor
-    quantum
-    costs {
+  mutation Mutation($reference: String!) {
+    addMatter(reference: $reference) {
       _id
-      itemNumber
-      description
-      scale {
-        A
-        B
-        C
-        D
-        E
-        F
-        G
+      reference
+      matterAuthor
+      quantum
+      costs {
+        _id
+        itemNumber
+        description
+        scale {
+          A
+          B
+          C
+          D
+          E
+          F
+          G
+        }
       }
     }
   }
-}
 `;
 
 export const ADD_COST = gql`
-mutation Mutation($matterId: ID!, $costId: ID!) {
-  addCost(matterId: $matterId, costId: $costId) {
-    _id
-    reference
-    matterAuthor
-    quantum
-    costs {
+  mutation Mutation($matterId: ID!, $costId: ID!, $index: Int!) {
+    addCost(matterId: $matterId, costId: $costId, index: $index) {
       _id
-      itemNumber
-      description
-      scale {
-        A
-        B
-        C
-        D
-        E
-        F
-        G
+      reference
+      matterAuthor
+      quantum
+      costs {
+        _id
+        itemNumber
+        description
+        scale {
+          A
+          B
+          C
+          D
+          E
+          F
+          G
+        }
       }
     }
   }
-}
 `;
 
 export const REMOVE_MATTER = gql`
-mutation Mutation($matterId: ID!) {
-  removeMatter(matterId: $matterId) {
-    _id
-    reference
-    matterAuthor
-    quantum
-    costs {
+  mutation Mutation($matterId: ID!) {
+    removeMatter(matterId: $matterId) {
       _id
-      itemNumber
-      description
-      scale {
-        A
-        B
-        C
-        D
-        E
-        F
-        G
+      reference
+      matterAuthor
+      quantum
+      costs {
+        _id
+        itemNumber
+        description
+        scale {
+          A
+          B
+          C
+          D
+          E
+          F
+          G
+        }
       }
     }
   }
-}
 `;
 
 export const REMOVE_COST = gql`
-mutation Mutation($matterId: ID!, $costId: ID!) {
-  removeCost(matterId: $matterId, costId: $costId) {
-    _id
-    reference
-    matterAuthor
-    quantum
-    costPool {
+  mutation Mutation($matterId: ID!, $costId: ID!, $index: Int!) {
+    removeCost(matterId: $matterId, costId: $costId, index: $index) {
       _id
-      itemNumber
-      description
-      scale {
-        A
-        B
-        C
-        D
-        E
-        F
-        G
+      reference
+      matterAuthor
+      quantum
+      costPool {
+        _id
+        itemNumber
+        description
+        scale {
+          A
+          B
+          C
+          D
+          E
+          F
+          G
+        }
+      }
+      costs {
+        _id
+        itemNumber
+        description
+        scale {
+          A
+          B
+          C
+          D
+          E
+          F
+          G
+        }
       }
     }
-    costs {
-      _id
-      itemNumber
-      description
-      scale {
-        A
-        B
-        C
-        D
-        E
-        F
-        G
-      }
-    }
-    
   }
-}
 `;
 
+export const MOVE_COST = gql`
+  mutation Mutation($matterId: ID!, $costId: ID!, $index: Int!) {
+    moveCost(matterId: $matterId, costId: $costId, index: $index) {
+      _id
+      reference
+      matterAuthor
+      quantum
+      costPool {
+        _id
+        itemNumber
+        description
+      }
+      costs {
+        _id
+        itemNumber
+        description
+      }
+    }
+  }
+`;
