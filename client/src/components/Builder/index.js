@@ -96,13 +96,10 @@ const ItemDescription = styled.span`
 
 const styles = StyleSheet.create({
   page: {
-    fontFamily: "Helvetica",
-    fontSize: 11,
-    paddingTop: 30,
-    paddingLeft: 60,
-    paddingRight: 60,
-    lineHeight: 1.5,
-    flexDirection: "column",
+    paddingTop: 35,
+    paddingBottom: 65,
+    paddingHorizontal: 35,
+    fontSize: 12,
   },
   logo: {
     width: 74,
@@ -260,6 +257,26 @@ function currencyFormatter(value) {
   });
 
   return formatter.format(value);
+}
+
+function GST(value) {
+  const formatter = new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+    minimumFractionDigits: 2,
+  });
+
+  return formatter.format(value * 0.1);
+}
+
+function totalPlusGST(value) {
+  const formatter = new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+    minimumFractionDigits: 2,
+  });
+
+  return formatter.format(value * 1.1);
 }
 
 const dragReducer = (state, action) => {
@@ -604,20 +621,20 @@ function Builder() {
               <View style={styles.footerContainer}>
                 <Text style={styles.label}>
                   GST:   {" "}
-                  {currencyFormatter(
+                  {GST(
                     item2State?.items?.reduce((acc, item) => {
                       const scaledAmount = getScale(item, 5000);
-                      return acc + scaledAmount * 0.1;
+                      return acc + scaledAmount;
                     }, 0)
                   )}
                 </Text>
                 <Text style={styles.label}></Text>
                 <Text style={styles.label}>
                   Total:   {" "}
-                  {currencyFormatter(
+                  {totalPlusGST(
                     item2State?.items?.reduce((acc, item) => {
                       const scaledAmount = getScale(item, 5000);
-                      return (acc + scaledAmount) * 1.1;
+                      return acc + scaledAmount;
                     }, 0)
                   )}
                 </Text>
