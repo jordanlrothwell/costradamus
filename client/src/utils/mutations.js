@@ -103,12 +103,26 @@ mutation Mutation($matterId: ID!) {
 `;
 
 export const REMOVE_COST = gql`
-mutation Mutation($removeCostMatterId2: ID!, $removeCostCostId2: ID!) {
-  removeCost(matterId: $removeCostMatterId2, costId: $removeCostCostId2) {
+mutation Mutation($matterId: ID!, $costId: ID!) {
+  removeCost(matterId: $matterId, costId: $costId) {
     _id
     reference
     matterAuthor
     quantum
+    costPool {
+      _id
+      itemNumber
+      description
+      scale {
+        A
+        B
+        C
+        D
+        E
+        F
+        G
+      }
+    }
     costs {
       _id
       itemNumber
@@ -123,6 +137,7 @@ mutation Mutation($removeCostMatterId2: ID!, $removeCostCostId2: ID!) {
         G
       }
     }
+    
   }
 }
 `;

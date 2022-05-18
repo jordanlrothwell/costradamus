@@ -7,8 +7,6 @@ import styled from "styled-components";
 import produce from "immer";
 import PDF from "../../assets/docs/output.pdf";
 import Viewer from "../Viewer";
-import {PDFViewer} from "@react-pdf/renderer"
-import MyDocument from "../TestPDF";
 
 import tinyLogo from "../../assets/tiny-logo.png";
 
@@ -97,7 +95,7 @@ const dragReducer = produce((draft, action) => {
       break;
     }
     case "FETCH": {
-      return { ...draft, items: action.items };
+      return { ...draft, items: action.items, items2: action.items2 };
     }
   }
 });
@@ -112,54 +110,85 @@ function Builder() {
   const [addCost] = useMutation(ADD_COST);
   const [removeCost] = useMutation(REMOVE_COST);
 
-  const { data } = useQuery(QUERY_MATTER, {
+  const { data: costData } = useQuery(QUERY_MATTER, {
     variables: {
-      matterId: "628432ee652c907e4ba5628a",
+      matterId: "628445a2bc128f38ecdc5c9b",
     },
   });
 
-  // get costPool from data
-  const costPool = data.matter.costPool;
+  useEffect(() => {
+    itemDispatch({
+      type: "FETCH",
+      items: costData?.matter?.costPool ?? [],
+    });
+  }, [costData]);
 
   useEffect(() => {
-    dispatch({
+    item2Dispatch({
       type: "FETCH",
-      items: costPool?.costs ?? [],
+      items2: costData?.matter?.costs ?? [],
     });
-    
-  }, [costPool]);
+  }, [costData]);
 
   // set initial state
-  const [state, dispatch] = useReducer(dragReducer, {
-    items: costPool?.costs ?? [],
+  const [itemState, itemDispatch] = useReducer(dragReducer, {
+    items: costData?.costPool ?? [],
+    items2: costData?.costs ?? [],
   });
+
+  const [item2State, item2Dispatch] = useReducer(dragReducer, {
+    items: costData?.costPool ?? [],
+    items2: costData?.costs ?? [],
+  });
+
 
   const onDragEnd = useCallback((result) => {
     if (result.reason === "DROP") {
       if (!result.destination) {
         return;
       }
-      dispatch({
-        type: "MOVE",
-        from: result.source.droppableId,
-        to: result.destination.droppableId,
-        fromIndex: result.source.index,
-        toIndex: result.destination.index,
-      });
-      // if droppable
-      addCost({
-        variables: {
-          matterId: "62836efb92c0ab7b156af3ce",
-          costId: result.draggableId,
-        },
-      });
-      // remove the cost from the other matter
-      removeCost({
-        variables: {
-          matterId: "62836efb92c0ab7b156af3ce",
-          costId: result.draggableId,
-        },
-      });
+      if (
+        result.source.droppableId === "items" &&
+        result.destination.droppableId === "items2"
+      ) {
+
+        const itemID = result.draggableId;
+        addCost({
+          variables: {
+            costId: itemID,
+            matterId: "628445a2bc128f38ecdc5c9b",
+          },
+        });
+        itemDispatch({
+          type: "MOVE",
+          from: result.source.droppableId,
+          to: result.destination.droppableId,
+          fromIndex: result.source.index,
+          toIndex: result.destination.index,
+        });
+
+      } else if (
+        result.source.droppableId === "items2" &&
+        result.destination.droppableId === "items"
+      ) {
+        item2Dispatch({
+          type: "MOVE",
+          from: result.source.droppableId,
+          to: result.destination.droppableId,
+          fromIndex: result.source.index,
+          toIndex: result.destination.index,
+        });
+        const item2ID = result.draggableId;
+        removeCost({
+          variables: {
+            costId: item2ID,
+            matterId: "628445a2bc128f38ecdc5c9b",
+          },
+        });
+
+      }
+
+
     }
   }, []);
 
@@ -179,7 +208,7 @@ function Builder() {
                     style={getListStyle(snapshot.isDraggingOver)}
                     {...provided.droppableProps}
                   >
-                    {state.items?.map((cost, index) => {
+                    {itemState.items?.map((cost, index) => {
                       return (
                         <Adjacent>
                           <Draggable
@@ -232,7 +261,7 @@ function Builder() {
                     ref={provided.innerRef}
                     {...provided.droppableProps}
                   >
-                    {state.items2?.map((cost, index) => {
+                    {item2State.items2?.map((cost, index) => {
                       return (
                         <Adjacent>
                           <Draggable
@@ -272,7 +301,7 @@ function Builder() {
             </Droppable>
           </Holder>
         </Column>
-
+        <Viewer pdf={PDF} />
       </DragDropContext>
     </ColumnContainer>
   );

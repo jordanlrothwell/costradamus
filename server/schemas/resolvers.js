@@ -11,12 +11,15 @@ const resolvers = {
       return User.findOne({ username }).populate("matters");
     },
     matters: async (parent, { username }) => {
-      const params = username ? { username } : {};
-      return Matter.find(params).populate("costs");
+      return Matter.find({ matterAuthor: username })
+        .populate("costPool")
+        .populate("costs");
     },
     // populate costs and costPool for a matter
     matter: async (parent, { matterId }) => {
-      return Matter.findOne({ _id: matterId }).populate("costs").populate("costPool");
+      return Matter.findOne({ _id: matterId })
+        .populate("costPool")
+        .populate("costs");
     },
     me: async (parent, args, context) => {
       if (context.user) {
@@ -26,6 +29,9 @@ const resolvers = {
     },
     costs: async () => {
       return Cost.find();
+    },
+    costByDesc: async (parent, { description }) => {
+      return Cost.findOne({ description: description });
     },
   },
 
@@ -61,14 +67,13 @@ const resolvers = {
         quantum: 0,
         costPool: costs,
       });
-      
-        await User.findOneAndUpdate(
-          { _id: context.user._id },
-          { $addToSet: { matters: matter._id } }
-        );
 
-        return matter;
-    
+      await User.findOneAndUpdate(
+        { _id: context.user._id },
+        { $addToSet: { matters: matter._id } }
+      );
+
+      return matter;
     },
     // remove cost from costPool and add to costs
     addCost: async (parent, { matterId, costId }, context) => {
@@ -76,17 +81,34 @@ const resolvers = {
         return Matter.findOneAndUpdate(
           { _id: matterId },
           {
-            $addToSet: {
-              costs:  costId ,
-            },
             $pull: {
               costPool: costId,
-            }
+            },
+            $addToSet: {
+              costs: costId,
+            },
           },
           {
             new: true,
-            runValidators: true,
           }
+        );
+      }
+      throw new AuthenticationError("You need to be logged in!");
+    },
+    // remove cost from costs and add back to costPool
+    removeCost: async (parent, { matterId, costId }, context) => {
+      if (context.user) {
+        return Matter.findOneAndUpdate(
+          { _id: matterId },
+          {
+            $pull: {
+              costs: costId,
+            },
+            $addToSet: {
+              costPool: costId,
+            },
+          },
+          { new: true }
         );
       }
       throw new AuthenticationError("You need to be logged in!");
@@ -104,24 +126,6 @@ const resolvers = {
         );
 
         return matter;
-      }
-      throw new AuthenticationError("You need to be logged in!");
-    },
-    // remove cost from costs and add back to costPool
-    removeCost: async (parent, { matterId, costId }, context) => {
-      if (context.user) {
-        return Matter.findOneAndUpdate(
-          { _id: matterId },
-          {
-            $pull: {
-              costs: costId
-            },
-            $addToSet: {
-              costPool: costId
-            }
-          },
-          { new: true }
-        );
       }
       throw new AuthenticationError("You need to be logged in!");
     },

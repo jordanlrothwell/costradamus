@@ -47,15 +47,21 @@ const typeDefs = gql`
     matter(matterId: ID!): Matter
     me: User
     costs: [Cost]
+    costByDesc(description: String!): Cost
   }
 
   type Mutation {
     addUser(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
     addMatter(reference: String!): Matter
-    addCost(matterId: ID!, costId: ID!): Matter
     removeMatter(matterId: ID!): Matter
+    addCost(matterId: ID!, costId: ID!): Matter
     removeCost(matterId: ID!, costId: ID!): Matter
+  }
+
+  type Subscription {
+    costAdded(costId: ID!): Matter
+    costRemoved(costId: ID!): Matter
   }
 `;
 
