@@ -12,7 +12,6 @@ import {
   StyleSheet,
   Image,
 } from "@react-pdf/renderer";
-import Invoice from "./components/Invoice";
 import styled from "styled-components";
 import tinyLogo from "../../assets/tiny-logo.png";
 import { PDFViewer } from "@react-pdf/renderer";

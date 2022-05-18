@@ -17,6 +17,10 @@ const GridContainer = styled.div`
   max-inline-size: 30rem;
 `;
 
+const Wrapper = styled.div`
+
+  margin-top: 20rem;`
+
 const Form = styled.form`
   display: grid;
   gap: 0.875rem;
