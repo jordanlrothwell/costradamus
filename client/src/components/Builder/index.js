@@ -36,12 +36,8 @@ const Column = styled.div`
   min-width: 8rem;
 `;
 
-const ColumnHeader = styled.div`
-  border-radius: 3px;
-`;
-
 const ColumnTitle = styled.h2`
-  color: #dc5c04;
+color: #0487c4;
   font-size: 2rem;
   font-weight: bold;
   padding: 1rem;
@@ -49,8 +45,13 @@ const ColumnTitle = styled.h2`
   font-family: "Lalezar", cursive;
 `;
 
+const ColumnHeader = styled.div`
+  border-radius: 3px;
+  background-color: #F9BE65;
+  padding: 1rem;
+`;
 const Holder = styled.div`
-  padding: 1rem 1.5rem;
+  padding: 1rem;
   min-height: 34.5rem;
 `;
 
@@ -91,6 +92,49 @@ const ItemNumber = styled.span`
 const ItemDescription = styled.span`
   font-family: "Source Sans Pro", sans-serif;
   font-size: 1.2rem;
+`;
+
+const PDFAdjust = styled.span`
+margin-top: 3rem;
+`;
+
+const Field = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+  margin-bottom: 1rem;
+`;
+
+const Label = styled.label`
+  padding: 1rem;
+  padding-left: 2rem;
+  background-color: #7cc4eb;
+`;
+
+const EmailIcon = styled.img`
+  width: 2rem;
+  height: 2rem;
+  margin-left: -0.5rem;
+`;
+
+const EmailInput = styled.input`
+  background-image: none;
+  border: 0;
+  color: #ffffff;
+  font-family: "Source Sans Pro", sans-serif;
+  font-size: 1.25rem;
+  outline: 0;
+  padding: 1rem;
+  transition: background-color 0.3s;
+  &:hover {
+    background-color: #0487c4;
+  }
+  &:focus {
+    background-color: #0487c4;
+  }
+  &:active {
+    background-color: #0487c4;
+  }
+  background-color: #7cc4eb;
 `;
 
 const styles = StyleSheet.create({
@@ -568,6 +612,7 @@ function Builder() {
             </Droppable>
           </Holder>
         </Column>
+        <PDFAdjust>
         <PDFViewer
           style={{
             width: "100%",
@@ -645,6 +690,7 @@ function Builder() {
             </Page>
           </Document>
         </PDFViewer>
+        </PDFAdjust>
       </DragDropContext>
     </ColumnContainer>
   );

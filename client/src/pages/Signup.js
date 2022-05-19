@@ -11,7 +11,7 @@ import emailIcon from "../assets/svg/emailIcon.svg";
 import lockIcon from "../assets/svg/lockIcon.svg";
 
 const GridContainer = styled.div`
-  margin-top: 15.5rem;
+  margin-top: 10rem;
   inline-size: 90%;
   margin-inline: auto;
   max-inline-size: 30rem;
@@ -137,6 +137,23 @@ const SubmitInput = styled.input`
   cursor: pointer;
 `;
 
+const ColumnHeader = styled.div`
+border-radius: 3px;
+background-color: #FACB84;
+padding: 1rem;
+margin-bottom: 1rem;
+`;
+
+const ColumnTitle = styled.h2`
+margin-bottom: -1rem;
+color: #dc5c04;
+  font-size: 2rem;
+  font-weight: bold;
+  padding: 1rem;
+  text-align: center;
+  font-family: "Lalezar", cursive;
+`;
+
 function Signup() {
   const [formState, setFormState] = useState({
     username: "",
@@ -171,6 +188,9 @@ function Signup() {
 
   return (
     <GridContainer>
+         <ColumnHeader className="noselect">
+        <ColumnTitle className="noselect">Sign Up</ColumnTitle>
+      </ColumnHeader>
       <Form onSubmit={handleFormSubmit}>
         <Field>
           <Label>

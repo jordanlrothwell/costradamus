@@ -11,15 +11,11 @@ import emailIcon from "../assets/svg/emailIcon.svg";
 import lockIcon from "../assets/svg/lockIcon.svg";
 
 const GridContainer = styled.div`
-  margin-top: 20rem;
+  margin-top: 10rem;
   inline-size: 90%;
   margin-inline: auto;
   max-inline-size: 30rem;
 `;
-
-const Wrapper = styled.div`
-
-  margin-top: 20rem;`
 
 const Form = styled.form`
   display: grid;
@@ -118,13 +114,30 @@ const ErrorField = styled.div`
   display: grid;
   grid-template-columns: 1fr;
   justify-items: center;
-`
+`;
 
 const ErrorText = styled.p`
   color: #dc5c04;
   font-size: 1.25rem;
   font-weight: 500;
   transition: color 0.3s;
+`;
+
+const ColumnHeader = styled.div`
+border-radius: 3px;
+background-color: #FACB84;
+padding: 1rem;
+margin-bottom: 1rem;
+`;
+
+const ColumnTitle = styled.h2`
+margin-bottom: -1rem;
+color: #dc5c04;
+  font-size: 2rem;
+  font-weight: bold;
+  padding: 1rem;
+  text-align: center;
+  font-family: "Lalezar", cursive;
 `;
 
 function Login() {
@@ -134,7 +147,7 @@ function Login() {
   // submit form
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    console.log(formState);
+
     try {
       const { data } = await login({
         variables: { ...formState },
@@ -163,6 +176,9 @@ function Login() {
   };
   return (
     <GridContainer>
+      <ColumnHeader className="noselect">
+        <ColumnTitle className="noselect">Login</ColumnTitle>
+      </ColumnHeader>
       <Form onSubmit={handleFormSubmit}>
         <Field>
           <Label>
@@ -176,7 +192,7 @@ function Login() {
             onChange={handleChange}
           />
         </Field>
-        
+
         <Field>
           <Label>
             <PasswordIcon className="noselect" src={lockIcon}></PasswordIcon>
@@ -193,7 +209,7 @@ function Login() {
         <SubmitInput type="submit" value="Sign In"></SubmitInput>
         {error ? (
           <ErrorField>
-            <ErrorText className="fade-out noselect" >{error.message}</ErrorText>
+            <ErrorText className="fade-out noselect">{error.message}</ErrorText>
           </ErrorField>
         ) : null}
       </Form>

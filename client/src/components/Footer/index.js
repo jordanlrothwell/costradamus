@@ -16,7 +16,6 @@ margin-bottom: 0;
   padding-top: 50px;
   background: #006198;
   margin-top: 200px;
-
 `;
 
 const FooterContainer = styled.div`

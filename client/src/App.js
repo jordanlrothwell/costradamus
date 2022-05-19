@@ -39,9 +39,10 @@ const client = new ApolloClient({
 });
 
 const PageContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: space-between;
+display: flex;
+min-height: 100vh;
+flex-direction: column;
+justify-content: space-between;
 `;
 
 function App() {

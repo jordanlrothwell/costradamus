@@ -9,8 +9,7 @@ import styled from "styled-components";
 import Auth from "../../utils/auth";
 
 // icons
-import emailIcon from "../../assets/svg/emailIcon.svg";
-import lockIcon from "../../assets/svg/lockIcon.svg";
+import referenceIcon from "../../assets/svg/referenceIcon.svg";
 
 const GridsContainer = styled.div`
   margin-top: 10rem;
@@ -27,15 +26,15 @@ const GridContainer = styled.div`
 `;
 
 const Form = styled.form`
-  display: grid;
-  gap: 0.875rem;
-  height: 100%;
+display: flex;
+flex-direction: column;
+
 `;
 
 const Field = styled.div`
   display: grid;
   grid-template-columns: 1fr 5fr;
-  max-height: 2rem;
+  margin-bottom: 1rem;
 `;
 
 const Label = styled.label`
@@ -97,6 +96,7 @@ const SubmitInput = styled.input`
 
 const MatterLink = styled.input`
   background-image: none;
+  margin-bottom: 1rem;
   border: 0;
   color: #ffffff;
   font-family: "Source Sans Pro", sans-serif;
@@ -118,13 +118,20 @@ const MatterLink = styled.input`
 `;
 
 const ColumnTitle = styled.h2`
-  color: #dc5c04;
+margin-bottom: -1rem;
+color: #dc5c04;
   font-size: 2rem;
   font-weight: bold;
   padding: 1rem;
   text-align: center;
   font-family: "Lalezar", cursive;
-  text-decoration: underline;
+`;
+
+const ColumnHeader = styled.div`
+  border-radius: 3px;
+  background-color: #FACB84;
+  padding: 1rem;
+  margin-bottom: 1rem;
 `;
 
 function MatterList(props) {
@@ -176,11 +183,13 @@ function MatterList(props) {
   return (
     <GridsContainer>
       <GridContainer>
-        <ColumnTitle>Create A New Matter</ColumnTitle>
+        <ColumnHeader className="noselect">
+        <ColumnTitle className="noselect" >Create A New Matter</ColumnTitle>
+        </ColumnHeader>
         <Form onSubmit={handleFormSubmit}>
           <Field>
             <Label>
-              <EmailIcon className="noselect" src={emailIcon}></EmailIcon>
+              <EmailIcon className="noselect" src={referenceIcon}></EmailIcon>
             </Label>
             <EmailInput
               placeholder="Reference"
@@ -194,11 +203,13 @@ function MatterList(props) {
         </Form>
       </GridContainer>
       <Form>
+      <ColumnHeader className="noselect">
         <ColumnTitle>Existing Matters</ColumnTitle>
+      </ColumnHeader>
         {matters.map((matter) => (
           <Link to={`/matter/${matter._id}`}>
             <Form>
-              <MatterLink type="submit" value={matter.reference}></MatterLink>
+              <MatterLink className="noselect"  type="submit" value={matter.reference}></MatterLink>
             </Form>
           </Link>
         ))}
