@@ -44,13 +44,13 @@ export default function Landing() {
   return (
     <LandingContainer>
       <LandingTextWrapper>
-        <LandingHeader>Legal costs shouldn't be unpredictable</LandingHeader>
-        <LandingSubheader>
+        <LandingHeader className="noselect">Legal costs shouldn't be unpredictable</LandingHeader>
+        <LandingSubheader className="noselect">
           We make billing easy, accurate, and transparent. Sign up for a free
           account and get started.
         </LandingSubheader>
       </LandingTextWrapper>
-      <LandingImage src={landing} />
+      <LandingImage className="noselect" src={landing} />
     </LandingContainer>
   );
 }
