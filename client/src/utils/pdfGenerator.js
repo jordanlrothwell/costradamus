@@ -26,14 +26,8 @@ const pdfGenerator = (matterRef, items, quantum) => {
       return 5;
     }
   };
-
-  const formatConstants = {
-    logo: [50, 50],
-    address: [450, 50],
-    header: [50, 150],
-    reference: [380, 200],
-    items: [50, 255],
-  };
+  
+  // none of this code is used
 
   function address(firm, ABN, addr1, addr2, addr3) {
 
@@ -46,7 +40,6 @@ const pdfGenerator = (matterRef, items, quantum) => {
       doc.fontSize(8).text(addr2, x, y + 40);
       doc.fontSize(8).text(addr3, x, y + 50);
     }
-
   }
 
   function header() {
