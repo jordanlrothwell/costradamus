@@ -115,14 +115,10 @@ const resolvers = {
       if (context.user) {
         const matter = await Matter.findById(matterId);
 
-        if (sourceId === "items2") {
-          // costPool
-          matter.costPool = matter.costPool.filter(
-            (c) => c.toString() !== costId
-          );
+        if (sourceId === "costPool") {
+          matter.costPool = matter.costPool.filter((c) => c.toString() !== costId);
           matter.costPool.splice(index, 0, costId);
         } else {
-          // costs
           matter.costs = matter.costs.filter((c) => c.toString() !== costId);
           matter.costs.splice(index, 0, costId);
         }

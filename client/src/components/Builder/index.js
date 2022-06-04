@@ -302,11 +302,12 @@ const dragReducer = (state, action) => {
         items: state.items.filter((i) => i._id !== action.id),
       };
     }
+    // change index of item within array
     case "MOVE": {
       const items = [...state.items];
-      const item = items.find((i) => i._id === action.id);
-      items.splice(action.index, 1);
-      items.splice(action.newIndex, 0, item);
+      const item = items[action.from];
+      items.splice(action.from, 1);
+      items.splice(action.to, 0, item);
       return {
         ...state,
         items,
@@ -341,8 +342,6 @@ function Builder() {
     },
   });
 
-  console.log(costData?.matter?.quantum);
-
   useEffect(() => {
     if (costData && shouldUpdate.current) {
       shouldUpdate.current = false;
@@ -365,10 +364,6 @@ function Builder() {
   const [item2State, item2Dispatch] = useReducer(dragReducer, {
     items: costData?.costs ?? [],
   });
-
-  useEffect(() => {
-    console.log(item2State);
-  }, [item2State]);
 
   const onDragEnd = (result) => {
     if (result.reason === "DROP") {
@@ -426,53 +421,37 @@ function Builder() {
           item,
         });
       }
-      // handle moving within the same list
+      // reordering within the same list
       else if (
         result.source.droppableId === "items" &&
-        result.destination === "items" &&
-        result.source.index !== result.destination.index
+        result.destination.droppableId === "items"
       ) {
-        const itemID = result.draggableId;
-
-        moveCost({
-          variables: {
-            costId: itemID,
-            matterId: paramId,
-            index: result.destination.index,
-            sourceId: "items",
-          },
-        });
 
         itemDispatch({
           type: "MOVE",
-          id: result.draggableId,
-          index: result.destination.index,
+          from: result.source.index,
+          to: result.destination.index,
         });
+        
       } else if (
         result.source.droppableId === "items2" &&
-        result.destination === "items2" &&
-        result.source.index !== result.destination.index
+        result.destination.droppableId === "items2"
       ) {
-        const item2ID = result.draggableId;
-
         moveCost({
           variables: {
-            costId: item2ID,
+            costId: result.draggableId,
             matterId: paramId,
+            sourceId: "costs",
             index: result.destination.index,
-            sourceId: "items2",
           },
         });
-
         item2Dispatch({
           type: "MOVE",
-          id: result.draggableId,
-          index: result.destination.index,
-          newIndex: result.source.index,
+          from: result.source.index,
+          to: result.destination.index,
         });
       }
     }
-    console.log(item2State);
   };
 
   return (
