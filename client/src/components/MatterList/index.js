@@ -175,7 +175,8 @@ function MatterList(props) {
     },
   });
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return (
+  <ColumnTitle>Loading...</ColumnTitle>);
   if (err) return <p>Error :(</p>;
 
   const matters = matterList.matters;
